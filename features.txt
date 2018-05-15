@@ -1,0 +1,10 @@
+Feature story 1: Intégration de l'API.
+Feature story 2: Amélioration et ajout de graphes sur l'utilisation des apps par domaine.
+Feature story 3: Réorganisation et refactorisation du code client.
+Feature story 4: Ajout du graphe de l'utilisation des apps sur la vue globale.
+Feature story 5: Améliorations visuels clients + Ecriture du script de migration des bases de domaines.
+    1/ [OK] Récupérer les domaines voulues dans le dossier common
+    2/ [OK] Récupérer les noms et mdp associés
+    3/ Génération du fichier de conf logstash
+
+    => Remise en question sur la méthode. Voir fichier "notes.txt"
