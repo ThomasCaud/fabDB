@@ -56,3 +56,6 @@ https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-s
 
 # API rest Symfony
 https://openclassrooms.com/courses/construisez-une-api-rest-avec-symfony
+
+# Doctrine association mapping
+https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/association-mapping.html#many-to-many-bidirectional
