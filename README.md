@@ -1,15 +1,18 @@
 # README
 
+## Configuration
+```sh
+Create parameters.yml file in the app>config folder (based on 'parameters.yml.dist')
+```
+
 ## Installation
 
 ```sh
 # Install PHP dependencies
 composer install
-```
 
-## Configuration
-```sh
-Create parameters.yml file in the app>config folder (based on 'parameters.yml.dist')
+# Installer et mettre à jour la base
+php bin/console doctrine:schema:update --force
 ```
 
 ## Launching
@@ -29,4 +32,20 @@ go to http://localhost:8000/checkservices
 
 # Consult API doc
 go to http://localhost:8000/api/doc
+```
+
+## Other commands
+
+```sh
+# Generate new entity (take ORM annotations)
+php bin/console doctrine:generate:entity
+
+# Generate setter/getter on existing entity
+php bin/console doctrine:generate:entities ApiBundle:NameOfYourEntity
+
+# To dump the SQL statements to the screen
+php bin/console doctrine:schema:update --dump-sql
+
+# To execute the command
+php bin/console doctrine:schema:update --
 ```
