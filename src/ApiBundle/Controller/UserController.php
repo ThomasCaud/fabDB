@@ -40,6 +40,32 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Rest\Get(
+     *      path = "/users/{id}",
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Return the user data",
+     *     @SWG\Schema(
+     *          type="object",
+     *          @SWG\Property(property="id", type="integer"),
+     *          @SWG\Property(property="fname", type="string"),
+     *          @SWG\Property(property="lname", type="string"),
+     *          @SWG\Property(property="email", type="string"),
+     *          @SWG\Property(property="login", type="string")
+     *     )
+     * )
+     * @SWG\Response(
+     *      response = 404,
+     *      description="Returned when the user ID doesn't exist"
+     * )
+     */
+    public function getUserAction(User $user)
+    {
+        return self::createResponse($user);
+    }
+
+    /**
      * @Rest\Post(
      *      path = "/users",
      * )
