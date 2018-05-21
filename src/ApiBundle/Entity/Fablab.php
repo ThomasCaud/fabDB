@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Fablab
  *
  * @ORM\Table(name="fablab")
- * @ORM\Entity(repositoryClass="ApiBundle\Repository\FablabRepository")
+ * @ORM\Entity
  */
 class Fablab
 {
@@ -33,7 +33,7 @@ class Fablab
      *
      * @ORM\Column(name="PC", type="string", length=255)
      */
-    private $pC;
+    private $pc;
 
 
     /**
@@ -71,26 +71,26 @@ class Fablab
     }
 
     /**
-     * Set pC.
+     * Set pc.
      *
-     * @param string $pC
+     * @param string $pc
      *
      * @return Fablab
      */
-    public function setPC($pC)
+    public function setPC($pc)
     {
-        $this->pC = $pC;
+        $this->pc = $pc;
 
         return $this;
     }
 
     /**
-     * Get pC.
+     * Get pc.
      *
      * @return string
      */
-    public function getPC()
+    public function getPc()
     {
-        return $this->pC;
+        return $this->pc;
     }
 }

@@ -58,7 +58,7 @@ class UserController extends AbstractController
      *      description="Returned when the user ID doesn't exist"
      * )
      */
-    public function getUserAction(User $user)
+    public function getAction(User $user)
     {
         return self::createResponse($user);
     }
@@ -84,6 +84,6 @@ class UserController extends AbstractController
         $em->persist($user);
         $em->flush();
 
-        return $user;
+        return self::createResponse($user);
     }
 }
