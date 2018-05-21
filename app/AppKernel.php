@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new \JMS\SerializerBundle\JMSSerializerBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new ApiBundle\ApiBundle(),
         ];
 

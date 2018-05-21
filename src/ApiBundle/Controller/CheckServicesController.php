@@ -12,10 +12,7 @@ class CheckServicesController extends AbstractController
      * 
      * @SWG\Response(
      *     response=200,
-     *     description="Returns 'OK'",
-     *     @SWG\Schema(
-     *         type="string"
-     *     )
+     *     description="Returns 'OK'. Created in order to test the good API access."
      * )
      */
     public function getCheckservicesAction()

@@ -37,15 +37,15 @@ class User
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="email", nullable=true, type="text", unique=true)
+     *
+     * @ORM\Column(name="email", nullable=true, type="string", unique=true)
      */
     private $email;
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="login", type="text", unique=true)
+     *
+     * @ORM\Column(name="login", type="string", unique=true)
      */
     private $login;
 

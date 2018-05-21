@@ -29,6 +29,8 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig']
 
 # Twig Configuration
 twig:
@@ -74,3 +76,25 @@ doctrine_migrations:
     name: Application Migrations
     organize_migrations: false # Version >= 1.2, possible values are: "BY_YEAR", "BY_YEAR_AND_MONTH", false
     custom_template: ~ # Version >= 1.2, path to your custom migrations template
+
+sensio_framework_extra:
+    request: { converters: true }
+    view: { annotations: true }
+    
+fos_rest:
+    body_converter:
+        enabled: true
+    view:
+        formats: { json: true, xml: false, rss: false }
+        view_response_listener: true        
+    serializer:
+        serialize_null: true
+    format_listener:
+        rules:
+            - { path: '^/', priorities: ['json'], fallback_format: 'json' }
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~

@@ -47,5 +47,5 @@ php bin/console doctrine:generate:entities ApiBundle:NameOfYourEntity
 php bin/console doctrine:schema:update --dump-sql
 
 # To execute the command
-php bin/console doctrine:schema:update --
+php bin/console doctrine:schema:update --force
 ```
