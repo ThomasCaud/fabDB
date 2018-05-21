@@ -49,3 +49,10 @@ php bin/console doctrine:schema:update --dump-sql
 # To execute the command
 php bin/console doctrine:schema:update --force
 ```
+
+## Resources
+# Symfony
+https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony
+
+# API rest Symfony
+https://openclassrooms.com/courses/construisez-une-api-rest-avec-symfony
