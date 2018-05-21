@@ -4,9 +4,8 @@ namespace ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Swagger\Annotations as SWG;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
-class CheckServicesController extends Controller
+class CheckServicesController extends AbstractController
 {
     /**
      * @Route("/checkservices", methods={"GET"})
@@ -21,6 +20,6 @@ class CheckServicesController extends Controller
      */
     public function getCheckservicesAction()
     {
-        return new JsonResponse("OK");
+        return self::createResponse("OK");
     }
 }
