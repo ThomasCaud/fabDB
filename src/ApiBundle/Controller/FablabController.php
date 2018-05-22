@@ -9,6 +9,10 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class FablabController extends AbstractController
 {
+    protected function getGroup() {
+        return "fablab";
+    }
+
     /**
      * @Rest\Get(
      *      path = "/fablabs"

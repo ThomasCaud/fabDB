@@ -8,11 +8,13 @@ abstract class AbstractController extends Controller
 {
     protected function createResponse($entities)
     {
-        $entities = $this->get('serializer')->serialize($entities, 'json');
+        $entities = $this->get('serializer')->serialize($entities, 'json', array('groups' => array($this->getGroup())));
 
         $response = new Response($entities);
         $response->headers->set('Content-Type', 'application/json');
-        
+
         return $response;
     }
+
+    abstract protected function getGroup();
 }

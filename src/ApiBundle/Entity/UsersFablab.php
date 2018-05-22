@@ -3,6 +3,7 @@
 namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * UsersFablab
@@ -12,22 +13,23 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UsersFablab
 {
-    
-
     /**
      * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Fablab", inversedBy="fablab")
+     * @Groups({"user"})
      */
     private $fablab;
 
     /**
      * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="user")
+     * @Groups({"fablab"})
      */
     private $user;
 
     /**
      * @var date
-     * 
+     *
      * @ORM\Column(name="joined_at", type="date", options={"default" = "now()"})
+     * @Groups({"user","fablab"})
      */
     private $joined_at;
 

@@ -9,11 +9,15 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class UserController extends AbstractController
 {
+    protected function getGroup() {
+        return "user";
+    }
+
     /**
      * @Rest\Get(
      *      path = "/users"
      * )
-     *
+     * 
      * @SWG\Response(
      *     response=200,
      *     description="Returns users",
