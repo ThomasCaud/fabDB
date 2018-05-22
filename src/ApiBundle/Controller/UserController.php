@@ -105,14 +105,21 @@ class UserController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $body = (array)json_decode($req->getContent());
-        $fablabsRaw = $body['usersFablabs'];
 
-        foreach($fablabsRaw as $fablabRaw) {
-            $fablabRaw = (array)$fablabRaw;
-            $id = $fablabRaw["id"];
+        if(isset($body['usersFablabs']) && count($body['usersFablabs']) > 0) {
+            $fablabsRaw = $body['usersFablabs'];
 
-            $fablab = $this->getDoctrine()->getRepository('ApiBundle:Fablab')->find($id);
-            $this->addFablab($user, $fablab);
+            foreach($fablabsRaw as $fablabRaw) {
+                $fablabRaw = (array)$fablabRaw;
+                $id = $fablabRaw["id"];
+
+                $fablab = $this->getDoctrine()->getRepository('ApiBundle:Fablab')->find($id);
+                if($fablab != null) {
+                    $this->addFablab($user, $fablab);
+                } else {
+                    echo("Warning ! The fablab (id " . $id . ") doesn't exist!"); 
+                }
+            }
         }
 
         $em->merge($user);
