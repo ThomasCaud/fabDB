@@ -3,6 +3,7 @@
 namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Fablab
@@ -14,7 +15,7 @@ class Fablab
 {
     /**
      * @var int
-     *
+     * @Groups({"user","fablab"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,18 +24,23 @@ class Fablab
 
     /**
      * @var string
-     *
+     * @Groups({"user","fablab"})
      * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
 
     /**
      * @var string
-     *
+     * @Groups({"user","fablab"})
      * @ORM\Column(name="PC", type="string", length=255)
      */
     private $pc;
 
+    /**
+     * @Groups({"fablab"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\UsersFablab", mappedBy="fablab")
+     */
+    private $users;
 
     /**
      * Get id.
@@ -92,5 +98,38 @@ class Fablab
     public function getPc()
     {
         return $this->pc;
+    }
+
+    private function userIsIn(User $user)
+    {
+        return $user->getFablabs()->exists($this);
+    }
+
+    public function addUser(User $user)
+    {
+        $this->users[] = $user;
+
+        if(!userIsIn($user)) {
+            $user->addFablab($this);
+        }
+
+      return $this;
+    }
+  
+    public function removeUser(User $user)
+    {
+      $this->users->removeElement($user);
+    }
+  
+    public function getUsers()
+    {
+      return $this->users;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

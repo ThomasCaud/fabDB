@@ -82,6 +82,7 @@ sensio_framework_extra:
     view: { annotations: true }
     
 fos_rest:
+    param_fetcher_listener: true
     body_converter:
         enabled: true
     view:
