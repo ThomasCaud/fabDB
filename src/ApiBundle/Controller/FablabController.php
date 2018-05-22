@@ -81,7 +81,7 @@ class FablabController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $em->persist($fablab);
+        $em->merge($fablab);
         $em->flush();
 
         return self::createResponse($fablab);

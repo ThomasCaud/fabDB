@@ -102,14 +102,14 @@ class Fablab
 
     private function userIsIn(User $user)
     {
-        return $user->getFablabs()->exists($this);
+        return $user->getFablabs()->contains($this);
     }
 
     public function addUser(User $user)
     {
         $this->users[] = $user;
 
-        if(!userIsIn($user)) {
+        if(!$this->userIsIn($user)) {
             $user->addFablab($this);
         }
 

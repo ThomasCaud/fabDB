@@ -14,13 +14,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class UsersFablab
 {
     /**
-     * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Fablab", inversedBy="fablab")
+     * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Fablab", inversedBy="fablab", cascade="persist")
      * @Groups({"user"})
      */
     private $fablab;
 
     /**
-     * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="user")
+     * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="user", cascade="persist")
      * @Groups({"fablab"})
      */
     private $user;

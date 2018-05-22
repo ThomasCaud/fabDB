@@ -6,6 +6,9 @@ use Swagger\Annotations as SWG;
 use ApiBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Request;
+use ApiBundle\Entity\UsersFablab;
+use \Datetime;
 
 class UserController extends AbstractController
 {
@@ -67,6 +70,23 @@ class UserController extends AbstractController
         return self::createResponse($user);
     }
 
+    private function addFablab(User $user, \ApiBundle\Entity\Fablab $fablab)
+    {
+        $userFablab = new UsersFabLab();
+        $userFablab->setFablab($fablab);
+        $userFablab->setUser($user);
+        $dt = new DateTime();
+        $userFablab->setJoinedAt(new DateTime());
+
+        $user->addUsersFablab($userFablab);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);             
+        $em->persist($userFablab);
+
+        return $this;
+    }
+
     /**
      * @Rest\Post(
      *      path = "/users",
@@ -81,11 +101,21 @@ class UserController extends AbstractController
      *      description="Returned when a violation is raised by validation"
      * )
      */
-    public function createAction(User $user)
+    public function createAction(Request $req, User $user)
     {
         $em = $this->getDoctrine()->getManager();
+        $body = (array)json_decode($req->getContent());
+        $fablabsRaw = $body['usersFablabs'];
 
-        $em->persist($user);
+        foreach($fablabsRaw as $fablabRaw) {
+            $fablabRaw = (array)$fablabRaw;
+            $id = $fablabRaw["id"];
+
+            $fablab = $this->getDoctrine()->getRepository('ApiBundle:Fablab')->find($id);
+            $this->addFablab($user, $fablab);
+        }
+
+        $em->merge($user);
         $em->flush();
 
         return self::createResponse($user);

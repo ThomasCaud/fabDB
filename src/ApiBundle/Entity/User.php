@@ -4,6 +4,7 @@ namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiBundle\Entity\UsersFablab;
 
 /**
  * User
@@ -54,7 +55,7 @@ class User
      * @Groups({"user"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\UsersFablab", mappedBy="user")
      */
-    private $fablabs;
+    private $usersFablabs;
 
     /**
      * Get id.
@@ -164,18 +165,7 @@ class User
 
     private function isInFablab(Fablab $fablab)
     {
-        return $fablab->getUsers()->exists($this);
-    }
-
-    public function addFablab(Fablab $fablab)
-    {
-        $this->fablabs[] = $fablab;
-
-        if(!isInFablab($fablab)) {
-            $fablab->addUser($this);
-        }
-
-        return $this;
+        return $fablab->getUsers()->contains($this);
     }
   
     public function removeFablab(Fablab $fablab)
@@ -183,9 +173,9 @@ class User
       $this->fablabs->removeElement($fablab);
     }
   
-    public function getFablabs()
+    public function getUsersFablabs()
     {
-      return $this->fablabs;
+      return $this->usersFablabs;
     }
     /**
      * Constructor
@@ -195,4 +185,30 @@ class User
         $this->fablabs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
+    /**
+     * Add usersFablab.
+     *
+     * @param \ApiBundle\Entity\UsersFablab $usersFablab
+     *
+     * @return User
+     */
+    public function addUsersFablab(\ApiBundle\Entity\UsersFablab $usersFablab)
+    {
+        $this->usersFablabs[] = $usersFablab;
+
+        return $this;
+    }
+
+    /**
+     * Remove usersFablab.
+     *
+     * @param \ApiBundle\Entity\UsersFablab $usersFablab
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUsersFablab(\ApiBundle\Entity\UsersFablab $usersFablab)
+    {
+        return $this->usersFablabs->removeElement($usersFablab);
+    }
 }
