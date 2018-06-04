@@ -4,6 +4,7 @@ namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * UsersFablab
@@ -28,10 +29,18 @@ class UsersFablab
     /**
      * @var date
      *
-     * @ORM\Column(name="joined_at", type="date", options={"default" = "now()"})
+     * @ORM\Column(name="joined_at", type="date")
      * @Groups({"user","fablab"})
      */
     private $joined_at;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", columnDefinition="ENUM('maker','client','admin')")
+     * @Groups({"user","fablab"})
+     */
+    private $role = 'client';
 
     /**
      * Set joinedAt.
@@ -103,5 +112,29 @@ class UsersFablab
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set role.
+     *
+     * @param string $role
+     *
+     * @return UsersFablab
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role.
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

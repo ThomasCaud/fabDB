@@ -5,6 +5,7 @@ namespace ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiBundle\Entity\UsersFablab;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -56,6 +57,27 @@ class User
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\UsersFablab", mappedBy="user")
      */
     private $usersFablabs;
+
+    /**
+     * @var float
+     * @Groups({"user","fablab"})
+     * @ORM\Column(name="note", type="float", options={"default":0.0})
+     */
+    private $note;
+
+    /**
+     * @var int
+     * @Groups({"user","fablab"})
+     * @ORM\Column(name="currentRewardPoints", type="integer", options={"default":0})
+     */
+    private $currentRewardPoints;
+
+    /**
+     * @var int
+     * @Groups({"user","fablab"})
+     * @ORM\Column(name="totalRewardPoints", type="integer", options={"default":0})
+     */
+    private $totalRewardPoints;
 
     /**
      * Get id.
@@ -210,5 +232,77 @@ class User
     public function removeUsersFablab(\ApiBundle\Entity\UsersFablab $usersFablab)
     {
         return $this->usersFablabs->removeElement($usersFablab);
+    }
+
+    /**
+     * Set note.
+     *
+     * @param float $note
+     *
+     * @return User
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note.
+     *
+     * @return float
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * Set currentRewardPoints.
+     *
+     * @param int $currentRewardPoints
+     *
+     * @return User
+     */
+    public function setCurrentRewardPoints($currentRewardPoints)
+    {
+        $this->currentRewardPoints = $currentRewardPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get currentRewardPoints.
+     *
+     * @return int
+     */
+    public function getCurrentRewardPoints()
+    {
+        return $this->currentRewardPoints;
+    }
+
+    /**
+     * Set totalRewardPoints.
+     *
+     * @param int $totalRewardPoints
+     *
+     * @return User
+     */
+    public function setTotalRewardPoints($totalRewardPoints)
+    {
+        $this->totalRewardPoints = $totalRewardPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get totalRewardPoints.
+     *
+     * @return int
+     */
+    public function getTotalRewardPoints()
+    {
+        return $this->totalRewardPoints;
     }
 }
