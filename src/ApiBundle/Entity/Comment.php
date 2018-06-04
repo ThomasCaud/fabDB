@@ -3,6 +3,7 @@
 namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Comment
@@ -14,7 +15,7 @@ class Comment
 {
     /**
      * @var int
-     *
+     * @Groups({"all"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,21 +24,21 @@ class Comment
 
     /**
      * @var int
-     *
+     * @Groups({"all"})
      * @ORM\Column(name="note", type="integer")
      */
     private $note;
 
     /**
      * @var string|null
-     *
+     * @Groups({"all"})
      * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
     private $comment;
 
     /**
      * @var \DateTime
-     *
+     * @Groups({"all"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;

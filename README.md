@@ -13,6 +13,9 @@ composer install
 
 # Installer et mettre à jour la base
 php bin/console doctrine:schema:update --force
+
+# Do migrations (inserting datas)
+php bin/console doctrine:migrations:migrate
 ```
 
 ## Launching
@@ -59,3 +62,6 @@ https://openclassrooms.com/courses/construisez-une-api-rest-avec-symfony
 
 # Doctrine association mapping
 https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/association-mapping.html#many-to-many-bidirectional
+
+# Doctrine migrations
+https://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html
