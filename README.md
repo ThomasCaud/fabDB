@@ -51,6 +51,13 @@ php bin/console doctrine:schema:update --dump-sql
 
 # To execute the command
 php bin/console doctrine:schema:update --force
+
+# To up a special migration
+php bin/console doctrine:migrations:execute 20180604174532 --up
+
+# To down a special migration
+php bin/console doctrine:migrations:execute 20180604174532 --down
+
 ```
 
 ## Resources
