@@ -20,4 +20,19 @@ class UsersRepository extends \Doctrine\ORM\EntityRepository
 
     	return $query->getResult();
 	}
+
+	public function connect($login, $password)
+	{
+		$count = $this->getEntityManager()->createQueryBuilder()
+		->select('count(user)')
+		->add('from','ApiBundle:User user')
+        ->where('user.login LIKE :login')
+        ->setParameter('login', '%'.$login.'%')
+        ->andWhere('user.password LIKE :password')
+        ->setParameter('password', '%'.$password.'%')
+		->getQuery()
+		->getSingleScalarResult();
+
+		return intval($count) == 1;
+	}
 }

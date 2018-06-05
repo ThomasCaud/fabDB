@@ -96,6 +96,10 @@ fos_rest:
     format_listener:
         rules:
             - { path: '^/', priorities: ['json'], fallback_format: 'json' }
+    exception:
+        enabled: true
+        codes:
+           { ApiBundle\Exception\AuthenticationException: 401 }
 
 assetic:
     debug:          '%kernel.debug%'

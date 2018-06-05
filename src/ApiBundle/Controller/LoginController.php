@@ -1,25 +1,28 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
 use ApiBundle\Entity\User;
+use ApiBundle\Exception\AuthenticationException;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 
-class MakerController extends AbstractController
+class LoginController extends AbstractController
 {
     protected function getGroup() {
         return "user";
     }
 
     /**
-     * @Rest\Get(
-     *      path = "/makers"
+     * @Rest\Post(
+     *      path = "/login"
      * )
      *
      * @SWG\Response(
      *     response=200,
-     *     description="Returns makers",
+     *     description="Returns user",
      *     @SWG\Schema(
      *         type="array",
      *         @SWG\Items(
@@ -32,14 +35,24 @@ class MakerController extends AbstractController
      *     )
      * )
      */
-    public function getAllAction()
+    public function loginAction(Request $req)
     {
+        $body = (array)json_decode($req->getContent());
+
+        if(!isset($body['login'])) {
+            throw new AuthenticationException('login is mandatory');
+        }
+
+        if(!isset($body['password'])) {
+            throw new AuthenticationException('password is mandatory');
+        }
+
         $repository = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('ApiBundle:User');
 
-        $makers = $repository->getAll();        
+        $makers = $repository->connect($body['login'], $body['password']);        
         
         return self::createResponse($makers);
     }

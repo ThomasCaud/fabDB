@@ -87,10 +87,17 @@ class User
 
     /**
      * @var string|null
-     * @Groups({"user","fablab"})
+     * @Groups({"user"})
      * @ORM\Column(name="walletAddress", type="string", length=32, nullable=true)
      */
     protected $walletAddress;
+
+    /**
+     * @var string|null
+     * @Groups({"user"})
+     * @ORM\Column(name="password", type="string", nullable=false)
+     */
+    protected $password;
 
     /**
      * Get id.
@@ -377,5 +384,29 @@ class User
     public function getWalletAddress()
     {
         return $this->walletAddress;
+    }
+
+    /**
+     * Set password.
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password.
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 }

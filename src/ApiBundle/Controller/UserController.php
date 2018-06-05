@@ -1,13 +1,14 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
 use ApiBundle\Entity\User;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Request;
 use ApiBundle\Entity\UsersFablab;
+use ApiBundle\Exception\BadRequestException;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 use \Datetime;
 
 class UserController extends AbstractController
@@ -117,7 +118,7 @@ class UserController extends AbstractController
                 if($fablab != null) {
                     $this->addFablab($user, $fablab);
                 } else {
-                    echo("Warning ! The fablab (id " . $id . ") doesn't exist!"); 
+                    throw new BadRequestException("The fablab (id " . $id . ") doesn't exist.");
                 }
             }
         }
