@@ -11,6 +11,9 @@ Create parameters.yml file in the app>config folder (based on 'parameters.yml.di
 # Install PHP dependencies
 composer install
 
+# Initialiser la base
+Vous devez créer une base de données mysql, et indiquer les accès à cette base dans le fichier app.config.parameters.yml
+
 # Installer et mettre à jour la base
 php bin/console doctrine:schema:update --force
 
