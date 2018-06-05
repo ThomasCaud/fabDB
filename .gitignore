@@ -50,6 +50,10 @@
 ###> symfony/framework-bundle ###
 /.env
 /public/bundles/
-/var/
+/var/cache/*
+/var/logs/*
+/var/sessions/*
+/var/SymfonyRequirements.php
+/var/bootstrap.php.cache
 /vendor/
 ###< symfony/framework-bundle ###
