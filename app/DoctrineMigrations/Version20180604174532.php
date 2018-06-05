@@ -38,10 +38,10 @@ final class Version20180604174532 extends AbstractMigration
             ALTER TABLE users AUTO_INCREMENT = 1
         ");
         $this->addSql("
-            INSERT INTO users (fname, lname, email,login) VALUES
-            ('Thomas','Caudrelier','tcaudrel@etu.utc.fr','tcaudrel'),
-            ('Maxime','Lucas','lucasmax@etu.utc.fr','lucasmax'),
-            ('Louis','Delou','ldelou@etu.utc.fr','ldelou')
+            INSERT INTO users (fname,lname,email,login,password) VALUES
+            ('Thomas','Caudrelier','tcaudrel@etu.utc.fr','tcaudrel','pass1'),
+            ('Maxime','Lucas','lucasmax@etu.utc.fr','lucasmax','pass2'),
+            ('Louis','Delou','ldelou@etu.utc.fr','ldelou','pass3')
         ");
 
         $this->addSql("
@@ -79,7 +79,7 @@ final class Version20180604174532 extends AbstractMigration
     public function down(Schema $schema) : void
     {
         $this->addSQL("DELETE from users_fablab
-            WHERE user_id >
+            WHERE user_id > 0
             AND user_id < 4
         ");
 
