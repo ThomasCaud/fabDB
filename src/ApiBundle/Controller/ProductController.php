@@ -3,7 +3,7 @@ namespace ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Swagger\Annotations as SWG;
-use ApiBundle\Entity\Comment;
+use ApiBundle\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
@@ -53,6 +53,32 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Rest\Get(
+     *      path = "/products/{id}",
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Return the product data",
+     *     @SWG\Schema(
+     *          type="object",
+     *          @SWG\Property(property="id", type="integer"),
+     *          @SWG\Property(property="fname", type="string"),
+     *          @SWG\Property(property="lname", type="string"),
+     *          @SWG\Property(property="email", type="string"),
+     *          @SWG\Property(property="login", type="string")
+     *     )
+     * )
+     * @SWG\Response(
+     *      response = 404,
+     *      description="Returned when the product ID doesn't exist"
+     * )
+     */
+    public function getAction(Product $data)
+    {
+        return self::createResponse($data);
+    }
+
+    /**
      * @Rest\Post(
      *      path = "/products",
      * )
@@ -66,7 +92,7 @@ class ProductController extends AbstractController
      *      description="Returned when a violation is raised by validation"
      * )
      */
-    public function createAction(Comment $data)
+    public function createAction(Product $data)
     {
         $em = $this->getDoctrine()->getManager();
 
