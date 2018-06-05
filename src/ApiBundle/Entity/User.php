@@ -80,6 +80,12 @@ class User
     private $totalRewardPoints;
 
     /**
+     * @Groups({"user","fablab"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Product", cascade={"persist", "remove"}, mappedBy="maker")
+     */
+    protected $productsCreated;
+
+    /**
      * Get id.
      *
      * @return int
@@ -304,5 +310,41 @@ class User
     public function getTotalRewardPoints()
     {
         return $this->totalRewardPoints;
+    }
+
+    /**
+     * Add productsCreated.
+     *
+     * @param \ApiBundle\Entity\Product $productsCreated
+     *
+     * @return User
+     */
+    public function addProductsCreated(\ApiBundle\Entity\Product $productsCreated)
+    {
+        $this->productsCreated[] = $productsCreated;
+
+        return $this;
+    }
+
+    /**
+     * Remove productsCreated.
+     *
+     * @param \ApiBundle\Entity\Product $productsCreated
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeProductsCreated(\ApiBundle\Entity\Product $productsCreated)
+    {
+        return $this->productsCreated->removeElement($productsCreated);
+    }
+
+    /**
+     * Get productsCreated.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProductsCreated()
+    {
+        return $this->productsCreated;
     }
 }

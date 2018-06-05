@@ -44,6 +44,13 @@ class Fablab
     private $users;
 
     /**
+     * @var string
+     * @Groups({"user","fablab"})
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
      * Get id.
      *
      * @return int
@@ -132,5 +139,29 @@ class Fablab
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set city.
+     *
+     * @param string $city
+     *
+     * @return Fablab
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city.
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

@@ -46,7 +46,7 @@ class Product
     /**
      * @var float|null
      * @Groups({"user","fablab"})
-     * @ORM\Column(name="discount", type="float", nullable=true)
+     * @ORM\Column(name="discount", type="float", nullable=true, options={"default":1.0})
      */
     private $discount;
 
@@ -65,7 +65,6 @@ class Product
     private $publication;
 
     /**
-     * @Groups({"user","fablab"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User")
      */
     private $maker;
@@ -75,6 +74,11 @@ class Product
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Category")
      */
     private $category;
+
+    /**
+    * @ORM\OneToMany(targetEntity="ApiBundle\Entity\URL", cascade={"persist", "remove"}, mappedBy="product")
+    */
+    protected $urls;
 
 
     /**
@@ -277,5 +281,48 @@ class Product
     public function getCategory()
     {
         return $this->category;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->urls = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add url.
+     *
+     * @param \ApiBundle\Entity\URL $url
+     *
+     * @return Product
+     */
+    public function addUrl(\ApiBundle\Entity\URL $url)
+    {
+        $this->urls[] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Remove url.
+     *
+     * @param \ApiBundle\Entity\URL $url
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUrl(\ApiBundle\Entity\URL $url)
+    {
+        return $this->urls->removeElement($url);
+    }
+
+    /**
+     * Get urls.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUrls()
+    {
+        return $this->urls;
     }
 }
