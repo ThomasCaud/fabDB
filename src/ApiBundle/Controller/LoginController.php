@@ -22,17 +22,7 @@ class LoginController extends AbstractController
      *
      * @SWG\Response(
      *     response=200,
-     *     description="Returns user",
-     *     @SWG\Schema(
-     *         type="array",
-     *         @SWG\Items(
-     *              type="object",
-     *              @SWG\Property(property="id", type="integer"),
-     *              @SWG\Property(property="note", type="integer"),
-     *              @SWG\Property(property="comment", type="string"),
-     *              @SWG\Property(property="date", type="datetime"),
-     *         )
-     *     )
+     *     description="Return true if login and password match",
      * )
      */
     public function loginAction(Request $req)
