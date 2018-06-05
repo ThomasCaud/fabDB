@@ -64,10 +64,22 @@ final class Version20180604174532 extends AbstractMigration
             (3,'video','www.myvideo/5121'),
             (3,'video','www.myvideo/5122')
         ");
+        $this->addSql("
+            INSERT INTO users_fablab (fablab_id,user_id,joined_at,role) VALUES
+            (1,1,'2018-05-18','maker'),
+            (1,2,'2018-05-18','client'),
+            (2,1,'2018-05-18','admin'),
+            (2,2,'2018-05-18','maker')
+        ");
     }
 
     public function down(Schema $schema) : void
     {
+        $this->addSQL("DELETE from users_fablab
+            WHERE user_id = 1
+            OR user_id = 2
+        ");
+
         $this->addSQL("DELETE from fablab
             WHERE address = '139 Rue des Arts, Bâtiment C, 1er étage'
             OR address = '57 Avenue de Landshut'
