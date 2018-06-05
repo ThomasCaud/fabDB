@@ -86,6 +86,13 @@ class User
     protected $productsCreated;
 
     /**
+     * @var string|null
+     * @Groups({"user","fablab"})
+     * @ORM\Column(name="walletAddress", type="string", length=32, nullable=true)
+     */
+    protected $walletAddress;
+
+    /**
      * Get id.
      *
      * @return int
@@ -346,5 +353,29 @@ class User
     public function getProductsCreated()
     {
         return $this->productsCreated;
+    }
+
+    /**
+     * Set walletAddress.
+     *
+     * @param string|null $walletAddress
+     *
+     * @return User
+     */
+    public function setWalletAddress($walletAddress = null)
+    {
+        $this->walletAddress = $walletAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get walletAddress.
+     *
+     * @return string|null
+     */
+    public function getWalletAddress()
+    {
+        return $this->walletAddress;
     }
 }
