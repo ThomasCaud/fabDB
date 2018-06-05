@@ -15,7 +15,7 @@ class Product
 {
     /**
      * @var int
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,42 +24,42 @@ class Product
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string|null
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var float
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="price", type="float")
      */
     private $price;
 
     /**
      * @var float|null
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="discount", type="float", nullable=true, options={"default":1.0})
      */
     private $discount;
 
     /**
      * @var int|null
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="stock", type="integer", nullable=true)
      */
     private $stock;
 
     /**
      * @var \DateTime
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="publication", type="datetime")
      */
     private $publication;
@@ -70,16 +70,16 @@ class Product
     private $maker;
 
     /**
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Category")
      */
     private $category;
 
     /**
-    * @ORM\OneToMany(targetEntity="ApiBundle\Entity\URL", cascade={"persist", "remove"}, mappedBy="product")
-    */
+     * @Groups({"all","user","fablab"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\URL", cascade={"persist", "remove"}, mappedBy="product")
+     */
     protected $urls;
-
 
     /**
      * Get id.

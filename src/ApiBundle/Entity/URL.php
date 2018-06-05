@@ -15,7 +15,7 @@ class URL
 {
     /**
      * @var int
-     *
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,20 +24,19 @@ class URL
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="type", type="string", columnDefinition="ENUM('photo','video')")
      */
     private $type;
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"all","user","fablab"})
      * @ORM\Column(name="URL", type="string", length=255)
      */
     private $uRL;
 
     /**
-     * @Groups({"user","fablab"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Product")
      */
     private $product;

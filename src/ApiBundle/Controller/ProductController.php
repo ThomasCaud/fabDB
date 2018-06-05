@@ -7,20 +7,20 @@ use ApiBundle\Entity\Comment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
-class CommentController extends AbstractController
+class ProductController extends AbstractController
 {
     protected function getGroup() {
-        return "comment";
+        return "all";
     }
 
     /**
      * @Rest\Get(
-     *      path = "/comments"
+     *      path = "/products"
      * )
      *
      * @SWG\Response(
      *     response=200,
-     *     description="Returns comments",
+     *     description="Returns products",
      *     @SWG\Schema(
      *         type="array",
      *         @SWG\Items(
@@ -35,16 +35,16 @@ class CommentController extends AbstractController
      */
     public function getAllAction()
     {
-        $data = $this->getDoctrine()->getRepository('ApiBundle:Comment')->findAll();
+        $data = $this->getDoctrine()->getRepository('ApiBundle:Product')->findAll();
         
         return self::createResponse($data);
     }
 
     /**
      * @Rest\Post(
-     *      path = "/comments",
+     *      path = "/products",
      * )
-     * @ParamConverter("comment", class="ApiBundle\Entity\Comment", converter="fos_rest.request_body")
+     * @ParamConverter("product", class="ApiBundle\Entity\Product", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
      *      description="Returned when created"
