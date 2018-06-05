@@ -9,9 +9,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
- * 
- * @ORM\Table(name="users") 
- * @ORM\Entity
+ *
+ * @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="ApiBundle\Repository\UsersRepository")
  */
 class User
 {

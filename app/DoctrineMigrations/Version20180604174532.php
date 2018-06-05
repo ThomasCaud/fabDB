@@ -40,7 +40,8 @@ final class Version20180604174532 extends AbstractMigration
         $this->addSql("
             INSERT INTO users (fname, lname, email,login) VALUES
             ('Thomas','Caudrelier','tcaudrel@etu.utc.fr','tcaudrel'),
-            ('Maxime','Lucas','lucasmax@etu.utc.fr','lucasmax')
+            ('Maxime','Lucas','lucasmax@etu.utc.fr','lucasmax'),
+            ('Louis','Delou','ldelou@etu.utc.fr','ldelou')
         ");
 
         $this->addSql("
@@ -69,15 +70,17 @@ final class Version20180604174532 extends AbstractMigration
             (1,1,'2018-05-18','maker'),
             (1,2,'2018-05-18','client'),
             (2,1,'2018-05-18','admin'),
-            (2,2,'2018-05-18','maker')
+            (2,2,'2018-05-18','maker'),
+            (1,3,'2015-04-18','client'),
+            (2,3,'2015-04-18','client')
         ");
     }
 
     public function down(Schema $schema) : void
     {
         $this->addSQL("DELETE from users_fablab
-            WHERE user_id = 1
-            OR user_id = 2
+            WHERE user_id >
+            AND user_id < 4
         ");
 
         $this->addSQL("DELETE from fablab
@@ -104,6 +107,7 @@ final class Version20180604174532 extends AbstractMigration
         $this->addSQL("DELETE from users
             WHERE login = 'tcaudrel'
             OR login = 'lucasmax'
+            OR login = 'ldelou'
         ");
     }
 }
