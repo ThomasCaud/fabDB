@@ -26,9 +26,21 @@ class ProductController extends AbstractController
      *         @SWG\Items(
      *              type="object",
      *              @SWG\Property(property="id", type="integer"),
-     *              @SWG\Property(property="note", type="integer"),
-     *              @SWG\Property(property="comment", type="string"),
-     *              @SWG\Property(property="date", type="datetime"),
+     *              @SWG\Property(property="name", type="string"),
+     *              @SWG\Property(property="description", type="string"),
+     *              @SWG\Property(property="price", type="number"),
+     *              @SWG\Property(property="discount", type="number"),
+     *              @SWG\Property(property="stock", type="integer"),
+     *              @SWG\Property(property="publication", type="string"),
+     *              @SWG\Property(
+     *                  property="urls", type="array",
+     *                  @SWG\Items(
+     *                      type="object",
+     *                      @SWG\Property(property="id", type="integer"),
+     *                      @SWG\Property(property="type", type="string"),
+     *                      @SWG\Property(property="url", type="string")
+     *                  )
+     *              )
      *         )
      *     )
      * )
