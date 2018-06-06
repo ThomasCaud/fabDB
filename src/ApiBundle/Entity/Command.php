@@ -63,6 +63,12 @@ class Command
      */
     private $purchaser;
 
+    /**
+     * @Groups({"command","user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Purchase", cascade={"persist", "remove"}, mappedBy="command")
+     */
+    protected $purchases;
+
 
     /**
      * Get id.
@@ -216,5 +222,48 @@ class Command
     public function getPurchaser()
     {
         return $this->purchaser;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->purchases = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add purchase.
+     *
+     * @param \ApiBundle\Entity\Purchase $purchase
+     *
+     * @return Command
+     */
+    public function addPurchase(\ApiBundle\Entity\Purchase $purchase)
+    {
+        $this->purchases[] = $purchase;
+
+        return $this;
+    }
+
+    /**
+     * Remove purchase.
+     *
+     * @param \ApiBundle\Entity\Purchase $purchase
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePurchase(\ApiBundle\Entity\Purchase $purchase)
+    {
+        return $this->purchases->removeElement($purchase);
+    }
+
+    /**
+     * Get purchases.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPurchases()
+    {
+        return $this->purchases;
     }
 }
