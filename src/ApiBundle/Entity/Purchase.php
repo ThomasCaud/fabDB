@@ -15,7 +15,7 @@ class Purchase
 {
     /**
      * @var int
-     * @Groups({"all"})
+     * @Groups({"purchase", "user"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,20 +24,21 @@ class Purchase
 
     /**
      * @var int
-     * @Groups({"all"})
+     * @Groups({"purchase", "user"})
      * @ORM\Column(name="quantity", type="integer")
      */
     private $quantity;
 
     /**
      * @var float
-     * @Groups({"all"})
+     * @Groups({"purchase", "user"})
      * @ORM\Column(name="price", type="float")
      */
     private $price;
 
     /**
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Command")
+     * @ORM\JoinColumn(name="command_id", referencedColumnName="id", nullable=false)
      */
     private $command;
 
@@ -105,30 +106,6 @@ class Purchase
     }
 
     /**
-     * Set command.
-     *
-     * @param \ApiBundle\Entity\Command|null $command
-     *
-     * @return Purchase
-     */
-    public function setCommand(\ApiBundle\Entity\Command $command = null)
-    {
-        $this->command = $command;
-
-        return $this;
-    }
-
-    /**
-     * Get command.
-     *
-     * @return \ApiBundle\Entity\Command|null
-     */
-    public function getCommand()
-    {
-        return $this->command;
-    }
-
-    /**
      * Set product.
      *
      * @param \ApiBundle\Entity\Product|null $product
@@ -150,5 +127,53 @@ class Purchase
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Set commandId.
+     *
+     * @param \ApiBundle\Entity\Command|null $commandId
+     *
+     * @return Purchase
+     */
+    public function setCommandId(\ApiBundle\Entity\Command $commandId = null)
+    {
+        $this->commandId = $commandId;
+
+        return $this;
+    }
+
+    /**
+     * Get commandId.
+     *
+     * @return \ApiBundle\Entity\Command|null
+     */
+    public function getCommandId()
+    {
+        return $this->commandId;
+    }
+
+    /**
+     * Set command.
+     *
+     * @param \ApiBundle\Entity\Command|null $command
+     *
+     * @return Purchase
+     */
+    public function setCommand(\ApiBundle\Entity\Command $command = null)
+    {
+        $this->command = $command;
+
+        return $this;
+    }
+
+    /**
+     * Get command.
+     *
+     * @return \ApiBundle\Entity\Command|null
+     */
+    public function getCommand()
+    {
+        return $this->command;
     }
 }
