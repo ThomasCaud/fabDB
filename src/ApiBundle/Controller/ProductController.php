@@ -101,4 +101,30 @@ class ProductController extends AbstractController
 
         return self::createResponse($data);
     }
+
+    /**
+     * @Rest\Delete(
+     *      path = "/products/{id}",
+     * )
+     * @SWG\Response(
+     *      response = 200,
+     *      description="Returned when deleted"
+     * )
+     * @SWG\Response(
+     *      response = 404,
+     *      description="Returned when product id doesn't exist"
+     * )
+     */
+    public function deleteAction(Product $data)
+    {
+        if (!$data) {
+            throw $this->createNotFoundException('No product found');
+        }
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($data);
+        $em->flush();
+
+        return self::createResponse($data);
+    }
 }
