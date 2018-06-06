@@ -76,10 +76,16 @@ class Product
     private $category;
 
     /**
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\URL", cascade={"persist", "remove"}, mappedBy="product")
      */
     protected $urls;
+
+    /**
+     * @Groups({"all","user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Comment", cascade={"persist", "remove"}, mappedBy="product")
+     */
+    protected $comments;
 
     /**
      * Get id.
@@ -324,5 +330,41 @@ class Product
     public function getUrls()
     {
         return $this->urls;
+    }
+
+    /**
+     * Add comment.
+     *
+     * @param \ApiBundle\Entity\Comment $comment
+     *
+     * @return Product
+     */
+    public function addComment(\ApiBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment.
+     *
+     * @param \ApiBundle\Entity\Comment $comment
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeComment(\ApiBundle\Entity\Comment $comment)
+    {
+        return $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

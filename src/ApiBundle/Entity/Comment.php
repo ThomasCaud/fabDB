@@ -43,6 +43,15 @@ class Comment
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User")
+     */
+    private $writer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Product")
+     */
+    private $product;
 
     /**
      * Get id.
@@ -124,5 +133,53 @@ class Comment
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set writer.
+     *
+     * @param \ApiBundle\Entity\User|null $writer
+     *
+     * @return Comment
+     */
+    public function setWriter(\ApiBundle\Entity\User $writer = null)
+    {
+        $this->writer = $writer;
+
+        return $this;
+    }
+
+    /**
+     * Get writer.
+     *
+     * @return \ApiBundle\Entity\User|null
+     */
+    public function getWriter()
+    {
+        return $this->writer;
+    }
+
+    /**
+     * Set product.
+     *
+     * @param \ApiBundle\Entity\Product|null $product
+     *
+     * @return Comment
+     */
+    public function setProduct(\ApiBundle\Entity\Product $product = null)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product.
+     *
+     * @return \ApiBundle\Entity\Product|null
+     */
+    public function getProduct()
+    {
+        return $this->product;
     }
 }
