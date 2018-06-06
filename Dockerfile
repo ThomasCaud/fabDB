@@ -1,5 +1,7 @@
 FROM ubuntu:latest
 
+RUN add-apt-repository ppa:ondrej/php -y
+
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
     php7.1 \
     software-properties-common \
@@ -8,11 +10,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
     git \
     zip \
     unzip \
-    ca-certificates
-
-RUN add-apt-repository ppa:ondrej/php -y
-
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
+    ca-certificates \
     php7.1-fpm \
     php7.1-mysql \
     php-mysql
