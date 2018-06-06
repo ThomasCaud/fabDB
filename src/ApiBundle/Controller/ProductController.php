@@ -144,6 +144,24 @@ class ProductController extends AbstractController
             $product->setDiscount($req->get('discount'));
         }
 
+        if(null !== $req->get('stock')) {
+            if(!is_int($req->get('stock'))) {
+                throw new BadRequestException("stock should be an integer");
+            }
+            if($req->get('stock') < 0) {
+                throw new BadRequestException("stock should be positive");
+            }
+            $product->setStock($req->get('stock'));
+        }
+
+        if(null !== $req->get('publication')) {
+            $product->setPublication(date_create_from_format('Y-m-d\TH:i:s+P',$req->get('publication')));
+        }
+
+        if(null !== $req->get('category')) {
+            $product->setCategory($req->get('category'));
+        }
+
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
