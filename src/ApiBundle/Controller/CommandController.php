@@ -84,17 +84,32 @@ class CommandController extends AbstractController
      *      description="Returned when a violation is raised by validation"
      * )
      */
-    // public function createAction(Command $data)
-    // {
-    //      Doesn't work! Converter seems forget some data...
-    //     var_dump($data);
-    //     $em = $this->getDoctrine()->getManager();
+    public function createAction(Request $req, Command $data)
+    {
+        $purchaser_id = $req->get('purchaser_id');
 
-    //     $em->merge($data);
-    //     $em->flush();
+        if(null == $purchaser_id || !is_int($purchaser_id)) {
+            throw new BadRequestException("purchaser_id (integer) is needed");
+        }
 
-    //     return self::createResponse($data);
-    // }
+        $purchaser = $this->getDoctrine()->getRepository('ApiBundle:User')->find($purchaser_id);
+        if(null == $purchaser) {
+            throw new BadRequestException("user/purchaser " . $purchaser_id . " doesn't exist");
+        }
+
+        $data->setPurchaser($purchaser);
+        $data->setBillingAddress($req->get('billingAddress'));
+        $data->setDeliveryAddress($req->get('deliveryAddress'));
+        $data->setLastDigitCard($req->get('lastDigitCard'));
+        $data->setDateCommand(date_create_from_format('Y-m-d H:i:s',$req->get('dateCommand')));
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->merge($data);
+        $em->flush();
+
+        return self::createResponse($data);
+    }
 
     /**
      * @Rest\Put(

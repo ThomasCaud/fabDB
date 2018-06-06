@@ -15,7 +15,7 @@ class Purchase
 {
     /**
      * @var int
-     * @Groups({"purchase", "user"})
+     * @Groups({"command", "purchase", "user"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,14 +24,14 @@ class Purchase
 
     /**
      * @var int
-     * @Groups({"purchase", "user"})
+     * @Groups({"command", "purchase", "user"})
      * @ORM\Column(name="quantity", type="integer")
      */
     private $quantity;
 
     /**
      * @var float
-     * @Groups({"purchase", "user"})
+     * @Groups({"command", "purchase", "user"})
      * @ORM\Column(name="price", type="float")
      */
     private $price;
