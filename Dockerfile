@@ -1,9 +1,9 @@
 FROM ubuntu:latest
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
-    php \
+    php7.1 \
     software-properties-common \
-    php-xml \
+    php7.1-xml \
     php-mbstring \
     git \
     zip \
@@ -13,10 +13,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
 RUN add-apt-repository ppa:ondrej/php -y
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
-    php7.0-fpm \
-    php7.0-mysql \
-    php-mysql \
-    php7.1-xml
+    php7.1-fpm \
+    php7.1-mysql \
+    php-mysql
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --filename=composer
