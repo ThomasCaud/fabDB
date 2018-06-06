@@ -17,7 +17,7 @@ class User
 {
     /**
      * @var int
-     * @Groups({"user","fablab"})
+     * @Groups({"user","fablab", "command"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -98,6 +98,12 @@ class User
      * @ORM\Column(name="password", type="string", nullable=false)
      */
     protected $password;
+
+    /**
+     * @Groups({"all","user","fablab"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Command", cascade={"persist", "remove"}, mappedBy="purchaser")
+     */
+    protected $commands;
 
     /**
      * Get id.
@@ -408,5 +414,41 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Add command.
+     *
+     * @param \ApiBundle\Entity\Command $command
+     *
+     * @return User
+     */
+    public function addCommand(\ApiBundle\Entity\Command $command)
+    {
+        $this->commands[] = $command;
+
+        return $this;
+    }
+
+    /**
+     * Remove command.
+     *
+     * @param \ApiBundle\Entity\Command $command
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCommand(\ApiBundle\Entity\Command $command)
+    {
+        return $this->commands->removeElement($command);
+    }
+
+    /**
+     * Get commands.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommands()
+    {
+        return $this->commands;
     }
 }
