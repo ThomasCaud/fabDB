@@ -3,6 +3,7 @@
 namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Purchase
@@ -14,7 +15,7 @@ class Purchase
 {
     /**
      * @var int
-     *
+     * @Groups({"all"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,14 +24,14 @@ class Purchase
 
     /**
      * @var int
-     *
+     * @Groups({"all"})
      * @ORM\Column(name="quantity", type="integer")
      */
     private $quantity;
 
     /**
      * @var float
-     *
+     * @Groups({"all"})
      * @ORM\Column(name="price", type="float")
      */
     private $price;

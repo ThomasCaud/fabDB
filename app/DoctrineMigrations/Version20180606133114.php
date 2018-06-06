@@ -19,7 +19,6 @@ final class Version20180606133114 extends AbstractMigration
             (2,579,'2018-05-18','cancelled','Adresse de facturation 3','Adresse de livraison 3'),
             (2,579,'2015-04-18','pending','Adresse de facturation 4','Adresse de livraison 4')
         ");
-
     }
 
     public function down(Schema $schema) : void
