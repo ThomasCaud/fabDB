@@ -82,7 +82,7 @@ class ProductController extends AbstractController
      * @Rest\Post(
      *      path = "/products",
      * )
-     * @ParamConverter("product", class="ApiBundle\Entity\Product", converter="fos_rest.request_body")
+     * @ParamConverter("data", class="ApiBundle\Entity\Product", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
      *      description="Returned when created"
