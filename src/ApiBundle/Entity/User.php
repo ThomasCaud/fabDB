@@ -66,27 +66,27 @@ class User
 
     /**
      * @var float
-     * @Groups({"user","fablab"})
+     * @Groups({"user"})
      * @ORM\Column(name="note", type="float", options={"default":0.0})
      */
     private $note;
 
     /**
      * @var int
-     * @Groups({"user","fablab"})
+     * @Groups({"user"})
      * @ORM\Column(name="currentRewardPoints", type="integer", options={"default":0})
      */
     private $currentRewardPoints;
 
     /**
      * @var int
-     * @Groups({"user","fablab"})
+     * @Groups({"user"})
      * @ORM\Column(name="totalRewardPoints", type="integer", options={"default":0})
      */
     private $totalRewardPoints;
 
     /**
-     * @Groups({"user","fablab"})
+     * @Groups({"user"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Product", cascade={"persist", "remove"}, mappedBy="maker")
      */
     protected $productsCreated;
@@ -106,10 +106,59 @@ class User
     protected $password;
 
     /**
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","user"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Command", cascade={"persist", "remove"}, mappedBy="purchaser")
      */
     protected $commands;
+
+    /**
+     * @var string|null
+     * @Groups({"user"})
+     * @ORM\Column(name="photo", type="string", nullable=true)
+     */
+    protected $photo;
+
+    /**
+     * @var \DateTime
+     * @Groups({"user"})
+     * @ORM\Column(name="birthDate", type="datetime", nullable=true)
+     */
+    private $birthDate;
+
+    /**
+     * @var string
+     * @Groups({"user"})
+     * @ORM\Column(name="sexe", type="string", columnDefinition="ENUM('M','F','O')", nullable=true)
+     */
+    private $sexe;
+
+    /**
+     * @var string
+     * @Groups({"user"})
+     * @ORM\Column(name="maritalStatus", type="string", columnDefinition="ENUM('married','widowed','separated', 'divorced','single')", nullable=true)
+     */
+    private $maritalStatus;
+
+    /**
+     * @var string|null
+     * @Groups({"user"})
+     * @ORM\Column(name="quote", type="string", nullable=true)
+     */
+    private $quote;
+
+    /**
+     * @var string|null
+     * @Groups({"user"})
+     * @ORM\Column(name="biography", type="string", nullable=true)
+     */
+    private $biography;
+
+    /**
+     * @var int
+     * @Groups({"user"})
+     * @ORM\Column(name="money", type="integer", length=1, options={"default":0})
+     */
+    private $money;
 
     /**
      * Get id.
@@ -492,5 +541,173 @@ class User
     public function getAccess()
     {
         return $this->access;
+    }
+
+    /**
+     * Set photo.
+     *
+     * @param string $photo
+     *
+     * @return User
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo.
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set birthDate.
+     *
+     * @param \DateTime|null $birthDate
+     *
+     * @return User
+     */
+    public function setBirthDate($birthDate = null)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthDate.
+     *
+     * @return \DateTime|null
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * Set sexe.
+     *
+     * @param string|null $sexe
+     *
+     * @return User
+     */
+    public function setSexe($sexe = null)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe.
+     *
+     * @return string|null
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * Set maritalStatus.
+     *
+     * @param string|null $maritalStatus
+     *
+     * @return User
+     */
+    public function setMaritalStatus($maritalStatus = null)
+    {
+        $this->maritalStatus = $maritalStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get maritalStatus.
+     *
+     * @return string|null
+     */
+    public function getMaritalStatus()
+    {
+        return $this->maritalStatus;
+    }
+
+    /**
+     * Set quote.
+     *
+     * @param string|null $quote
+     *
+     * @return User
+     */
+    public function setQuote($quote = null)
+    {
+        $this->quote = $quote;
+
+        return $this;
+    }
+
+    /**
+     * Get quote.
+     *
+     * @return string|null
+     */
+    public function getQuote()
+    {
+        return $this->quote;
+    }
+
+    /**
+     * Set biography.
+     *
+     * @param string|null $biography
+     *
+     * @return User
+     */
+    public function setBiography($biography = null)
+    {
+        $this->biography = $biography;
+
+        return $this;
+    }
+
+    /**
+     * Get biography.
+     *
+     * @return string|null
+     */
+    public function getBiography()
+    {
+        return $this->biography;
+    }
+
+    /**
+     * Set money.
+     *
+     * @param int $money
+     *
+     * @return User
+     */
+    public function setMoney($money)
+    {
+        $this->money = $money;
+
+        return $this;
+    }
+
+    /**
+     * Get money.
+     *
+     * @return int
+     */
+    public function getMoney()
+    {
+        return $this->money;
     }
 }
