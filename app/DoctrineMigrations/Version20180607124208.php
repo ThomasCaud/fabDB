@@ -13,7 +13,7 @@ final class Version20180607124208 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         $this->addSql("
-            INSERT INTO website (name,logoURL) VALUES
+            INSERT INTO website (name,logo_url) VALUES
 			('Facebook', 'https://cdn.pixabay.com/photo/2015/05/17/10/51/facebook-770688_960_720.png'),
 			('Google maps', 'https://png.icons8.com/color/1600/google-maps.png'),
 			('Gmail', 'https://png.icons8.com/color/1600/gmail.png'),

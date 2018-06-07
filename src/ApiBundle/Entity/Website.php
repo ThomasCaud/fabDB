@@ -3,6 +3,7 @@
 namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Website
@@ -14,7 +15,7 @@ class Website
 {
     /**
      * @var int
-     *
+     * @Groups({"website"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,18 +24,17 @@ class Website
 
     /**
      * @var string
-     *
+     * @Groups({"website"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="logoURL", type="string", length=255)
+     * @Groups({"website"})
+     * @ORM\Column(name="logo_url", type="string", length=255)
      */
     private $logoURL;
-
 
     /**
      * Get id.
