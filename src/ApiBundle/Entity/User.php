@@ -59,6 +59,12 @@ class User
     private $usersFablabs;
 
     /**
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Access", mappedBy="user")
+     */
+    private $access;
+
+    /**
      * @var float
      * @Groups({"user","fablab"})
      * @ORM\Column(name="note", type="float", options={"default":0.0})
@@ -450,5 +456,41 @@ class User
     public function getCommands()
     {
         return $this->commands;
+    }
+
+    /**
+     * Add access.
+     *
+     * @param \ApiBundle\Entity\Access $access
+     *
+     * @return User
+     */
+    public function addAccess(\ApiBundle\Entity\Access $access)
+    {
+        $this->access[] = $access;
+
+        return $this;
+    }
+
+    /**
+     * Remove access.
+     *
+     * @param \ApiBundle\Entity\Access $access
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAccess(\ApiBundle\Entity\Access $access)
+    {
+        return $this->access->removeElement($access);
+    }
+
+    /**
+     * Get access.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAccess()
+    {
+        return $this->access;
     }
 }
