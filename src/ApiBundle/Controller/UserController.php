@@ -128,4 +128,92 @@ class UserController extends AbstractController
 
         return self::createResponse($user);
     }
+
+    /**
+     * @Rest\Put(
+     *      path = "/users/{id}",
+     * )
+     * @SWG\Response(
+     *      response = 200,
+     *      description="Returned when updated"
+     * )
+     * @SWG\Response(
+     *      response = 400,
+     *      description="Returned when a violation is raised by validation"
+     * )
+     */
+    public function updateAction(Request $req, User $user)
+    {
+        $portrait_id = $req->get('portrait_id');
+        if(isset($portrait_id)) {
+            if(!is_int($portrait_id)) {
+                throw new BadRequestException("portrait_id must be an integer");
+            }
+
+            $portrait = $this->getDoctrine()->getRepository('ApiBundle:Portrait')->find($portrait_id);
+            if(null == $portrait) {
+                throw new BadRequestException("portrait_id " . $portrait_id . " doesn't exist");
+            }
+
+            $user->setPortrait($portrait);
+        }
+
+        if($this->isString($req, 'fname')) {
+            $user->setFname($req->get('fname'));
+        }
+
+        if($this->isString($req, 'lname')) {
+            $user->setLname($req->get('lname'));
+        }
+
+        if($this->isString($req, 'email')) {
+            $user->setEmail($req->get('email'));
+        }
+
+        if($this->isString($req, 'login')) {
+            $user->setLogin($req->get('login'));
+        }
+        
+        if($this->isInteger($req, 'note')) {
+            $user->setNote($req->get('note'));
+        }
+        
+        if($this->isInteger($req, 'currentRewardPoints')) {
+            $user->setCurrentRewardPoints($req->get('currentRewardPoints'));
+        }
+        
+        if($this->isInteger($req, 'totalRewardPoints')) {
+            $user->setTotalRewardPoints($req->get('totalRewardPoints'));
+        }
+        if($this->isString($req, 'walletAddress')) {
+            $user->setWalletAddress($req->get('walletAddress'));
+        }
+
+        if($this->isString($req, 'password')) {
+            $user->setPassword($req->get('password'));
+        }
+
+        if($this->isString($req, 'photo')) {
+            $user->setPhoto($req->get('photo'));
+        }
+
+        if($this->isString($req, 'quote')) {
+            $user->setQuote($req->get('quote'));
+        }
+
+        if($this->isString($req, 'biography')) {
+            $user->setBiography($req->get('biography'));
+        }
+        
+        if($this->isInteger($req, 'money')) {
+            $user->setMoney($req->get('money'));
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->merge($user);
+        $em->flush();
+
+        return self::createResponse($user);
+    }
 }

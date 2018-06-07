@@ -32,5 +32,20 @@ abstract class AbstractController extends Controller
         return true;
     }
 
+    protected function isInteger(Request $req, $variableName)
+    {
+        $value = $req->get($variableName);
+
+        if(!isset($value)) {
+            return false;
+        }
+
+        if(!is_int($value)) {
+            throw new BadRequestException($variableName . " should be an integer");
+        }
+
+        return true;
+    }
+
     abstract protected function getGroup();
 }
