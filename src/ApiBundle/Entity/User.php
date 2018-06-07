@@ -173,6 +173,12 @@ class User
     protected $website_accounts;
 
     /**
+     * @Groups({"user"})
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Portrait", cascade={"persist"})
+     */
+    private $portrait;
+
+    /**
      * Get id.
      *
      * @return int
@@ -793,5 +799,29 @@ class User
     public function getWebsiteAccounts()
     {
         return $this->website_accounts;
+    }
+
+    /**
+     * Set portrait.
+     *
+     * @param \ApiBundle\Entity\Portrait|null $portrait
+     *
+     * @return User
+     */
+    public function setPortrait(\ApiBundle\Entity\Portrait $portrait = null)
+    {
+        $this->portrait = $portrait;
+
+        return $this;
+    }
+
+    /**
+     * Get portrait.
+     *
+     * @return \ApiBundle\Entity\Portrait|null
+     */
+    public function getPortrait()
+    {
+        return $this->portrait;
     }
 }
