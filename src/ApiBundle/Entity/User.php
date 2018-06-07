@@ -17,7 +17,7 @@ class User
 {
     /**
      * @var int
-     * @Groups({"user","fablab", "command","comment"})
+     * @Groups({"user","fablab", "command","comment", "access"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
