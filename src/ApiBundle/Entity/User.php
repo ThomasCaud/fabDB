@@ -166,6 +166,11 @@ class User
      */
     protected $familyMembers;
 
+    /** 
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\WebsiteAccount", cascade={"persist", "remove"}, mappedBy="owner")
+     */
+    protected $website_accounts;
+
     /**
      * Get id.
      *
