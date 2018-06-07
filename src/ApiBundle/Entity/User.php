@@ -161,6 +161,12 @@ class User
     private $money;
 
     /**
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\FamilyMember", cascade={"persist", "remove"}, mappedBy="referrer")
+     */
+    protected $familyMembers;
+
+    /**
      * Get id.
      *
      * @return int
@@ -709,5 +715,41 @@ class User
     public function getMoney()
     {
         return $this->money;
+    }
+
+    /**
+     * Add familyMember.
+     *
+     * @param \ApiBundle\Entity\FamilyMember $familyMember
+     *
+     * @return User
+     */
+    public function addFamilyMember(\ApiBundle\Entity\FamilyMember $familyMember)
+    {
+        $this->familyMembers[] = $familyMember;
+
+        return $this;
+    }
+
+    /**
+     * Remove familyMember.
+     *
+     * @param \ApiBundle\Entity\FamilyMember $familyMember
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeFamilyMember(\ApiBundle\Entity\FamilyMember $familyMember)
+    {
+        return $this->familyMembers->removeElement($familyMember);
+    }
+
+    /**
+     * Get familyMembers.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFamilyMembers()
+    {
+        return $this->familyMembers;
     }
 }
