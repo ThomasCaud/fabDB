@@ -25,7 +25,7 @@ class FamilyMember
     /**
      * @var \DateTime
      * @Groups({"familyMember"})
-     * @ORM\Column(name="birthDate", type="datetime")
+     * @ORM\Column(name="birth_date", type="datetime")
      */
     private $birthDate;
 
@@ -55,7 +55,7 @@ class FamilyMember
      * @ORM\OneToOne(targetEntity="ApiBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(name="user_account_id", referencedColumnName="id", nullable=true)
      */
-    private $userAccount;
+    private $user_account;
 
     /**
      * Get id.
@@ -65,30 +65,6 @@ class FamilyMember
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set birthDate.
-     *
-     * @param \DateTime $birthDate
-     *
-     * @return FamilyMember
-     */
-    public function setBirthDate($birthDate)
-    {
-        $this->birthDate = $birthDate;
-
-        return $this;
-    }
-
-    /**
-     * Get birthDate.
-     *
-     * @return \DateTime
-     */
-    public function getBirthDate()
-    {
-        return $this->birthDate;
     }
 
     /**
@@ -161,5 +137,53 @@ class FamilyMember
     public function getReferrer()
     {
         return $this->referrer;
+    }
+
+    /**
+     * Set userAccount.
+     *
+     * @param \ApiBundle\Entity\User|null $userAccount
+     *
+     * @return FamilyMember
+     */
+    public function setUserAccount(\ApiBundle\Entity\User $userAccount = null)
+    {
+        $this->user_account = $userAccount;
+
+        return $this;
+    }
+
+    /**
+     * Get userAccount.
+     *
+     * @return \ApiBundle\Entity\User|null
+     */
+    public function getUserAccount()
+    {
+        return $this->user_account;
+    }
+
+    /**
+     * Set birthDate.
+     *
+     * @param \DateTime $birthDate
+     *
+     * @return FamilyMember
+     */
+    public function setBirthDate($birthDate)
+    {
+        $this->birth_date = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthDate.
+     *
+     * @return \DateTime
+     */
+    public function getBirthDate()
+    {
+        return $this->birth_date;
     }
 }
