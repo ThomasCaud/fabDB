@@ -167,6 +167,7 @@ class User
     protected $familyMembers;
 
     /** 
+     * @Groups({"user"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\WebsiteAccount", cascade={"persist", "remove"}, mappedBy="owner")
      */
     protected $website_accounts;
@@ -756,5 +757,41 @@ class User
     public function getFamilyMembers()
     {
         return $this->familyMembers;
+    }
+
+    /**
+     * Add websiteAccount.
+     *
+     * @param \ApiBundle\Entity\WebsiteAccount $websiteAccount
+     *
+     * @return User
+     */
+    public function addWebsiteAccount(\ApiBundle\Entity\WebsiteAccount $websiteAccount)
+    {
+        $this->website_accounts[] = $websiteAccount;
+
+        return $this;
+    }
+
+    /**
+     * Remove websiteAccount.
+     *
+     * @param \ApiBundle\Entity\WebsiteAccount $websiteAccount
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeWebsiteAccount(\ApiBundle\Entity\WebsiteAccount $websiteAccount)
+    {
+        return $this->website_accounts->removeElement($websiteAccount);
+    }
+
+    /**
+     * Get websiteAccounts.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWebsiteAccounts()
+    {
+        return $this->website_accounts;
     }
 }

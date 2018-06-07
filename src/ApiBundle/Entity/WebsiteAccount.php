@@ -24,10 +24,10 @@ class WebsiteAccount
 
     /**
      * @var string
-     * @Groups({"website"})
+     * @Groups({"website","user"})
      * @ORM\Column(name="account_url", type="string", length=255)
      */
-    private $accountUrl;
+    private $account_url;
 
     /**
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User")
@@ -35,7 +35,7 @@ class WebsiteAccount
     private $owner;
 
     /**
-     * @Groups({"website"})
+     * @Groups({"website","user"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Website")
      */
     private $website;
@@ -48,30 +48,6 @@ class WebsiteAccount
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set accountUrl.
-     *
-     * @param string $accountUrl
-     *
-     * @return WebsiteAccount
-     */
-    public function setAccountUrl($accountUrl)
-    {
-        $this->accountUrl = $accountUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get accountUrl.
-     *
-     * @return string
-     */
-    public function getAccountUrl()
-    {
-        return $this->accountUrl;
     }
 
     /**
@@ -120,5 +96,29 @@ class WebsiteAccount
     public function getWebsite()
     {
         return $this->website;
+    }
+
+    /**
+     * Set accountUrl.
+     *
+     * @param string $accountUrl
+     *
+     * @return WebsiteAccount
+     */
+    public function setAccountUrl($accountUrl)
+    {
+        $this->account_url = $accountUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get accountUrl.
+     *
+     * @return string
+     */
+    public function getAccountUrl()
+    {
+        return $this->account_url;
     }
 }

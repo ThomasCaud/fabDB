@@ -15,7 +15,7 @@ class Website
 {
     /**
      * @var int
-     * @Groups({"website"})
+     * @Groups({"website","user"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,14 +24,14 @@ class Website
 
     /**
      * @var string
-     * @Groups({"website"})
+     * @Groups({"website","user"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
     /**
      * @var string
-     * @Groups({"website"})
+     * @Groups({"website","user"})
      * @ORM\Column(name="logo_url", type="string", length=255)
      */
     private $logoURL;
