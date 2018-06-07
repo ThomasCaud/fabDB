@@ -87,4 +87,47 @@ class AccessController extends AbstractController
 
         return self::createResponse($data);
     }
+
+    /**
+     * @Rest\Put(
+     *      path = "/access",
+     * )
+     * @SWG\Response(
+     *      response = 200,
+     *      description="Returned when updated"
+     * )
+     * @SWG\Response(
+     *      response = 400,
+     *      description="Returned when a violation is raised by validation"
+     * )
+     */
+    public function updateAction(Request $req)
+    {
+        $body = (array)json_decode($req->getContent(), true);
+
+        $user_id = $body['user_id'];
+        $connected_object_id = $body['connected_object_id'];
+        $type = $body['type'];
+
+        if(!isset($user_id) || !is_int($user_id)) {
+            throw $this->createNotFoundException("'user_id' (integer) must appear in body");
+        }
+
+        if(!isset($connected_object_id) || !is_int($connected_object_id)) {
+            throw $this->createNotFoundException("'connected_object_id' (integer) must appear in body");
+        }
+
+        if(!in_array($type,['normal','premium','admin'])) {
+            throw $this->createNotFoundException("'type' should be 'normal','premium' or 'admin'");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $access = $em->find("ApiBundle\Entity\Access", array("user" => $user_id, "connectedObject" => $connected_object_id));
+
+        $access->setType($type);
+
+        $em->flush();
+
+        return self::createResponse($access);
+    }
 }
