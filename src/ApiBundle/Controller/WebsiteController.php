@@ -64,4 +64,38 @@ class WebsiteController extends AbstractController
 
         return self::createResponse($data);
     }
+
+
+    /**
+     * @Rest\Put(
+     *      path = "/websites/{id}",
+     * )
+     * @SWG\Response(
+     *      response = 200,
+     *      description="Returned when updated"
+     * )
+     * @SWG\Response(
+     *      response = 400,
+     *      description="Returned when a violation is raised by validation"
+     * )
+     */
+    public function updateAction(Request $req, Website $website)
+    {
+        $logo_url = $req->get('logo_url');
+        if(null == $logo_url) {
+            throw new BadRequestException("logo_url is needed");
+        }
+
+        if(!is_string($logo_url)) {
+            throw new BadRequestException("logo_url must be a string");
+        }
+
+        $website->setLogoURL($logo_url);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->merge($website);
+        $em->flush();
+
+        return self::createResponse($website);
+    }
 }

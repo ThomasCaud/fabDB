@@ -93,7 +93,8 @@ fos_rest:
     exception:
         enabled: true
         codes:
-           { ApiBundle\Exception\AuthenticationException: 401 }
+            ApiBundle\Exception\AuthenticationException: 401
+            ApiBundle\Exception\BadRequestException: 400
 
 assetic:
     debug:          '%kernel.debug%'
