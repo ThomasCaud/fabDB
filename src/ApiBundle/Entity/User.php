@@ -861,4 +861,28 @@ class User
     {
         return $this->wallet_address;
     }
+
+    /**
+     * Set motivation.
+     *
+     * @param \ApiBundle\Entity\Motivation|null $motivation
+     *
+     * @return User
+     */
+    public function setMotivation(\ApiBundle\Entity\Motivation $motivation = null)
+    {
+        $this->motivation = $motivation;
+
+        return $this;
+    }
+
+    /**
+     * Get motivation.
+     *
+     * @return \ApiBundle\Entity\Motivation|null
+     */
+    public function getMotivation()
+    {
+        return $this->motivation;
+    }
 }
