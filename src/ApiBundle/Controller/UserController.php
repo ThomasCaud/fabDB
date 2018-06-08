@@ -185,8 +185,13 @@ class UserController extends AbstractController
         if($this->isInteger($req, 'totalRewardPoints')) {
             $user->setTotalRewardPoints($req->get('totalRewardPoints'));
         }
-        if($this->isString($req, 'walletAddress')) {
-            $user->setWalletAddress($req->get('walletAddress'));
+
+        if($this->isString($req, 'wallet_address')) {
+            $user->setWalletAddress($req->get('wallet_address'));
+        }
+
+        if($this->isString($req, 'private_key')) {
+            $user->setPrivateKey($req->get('private_key'));
         }
 
         if($this->isString($req, 'password')) {

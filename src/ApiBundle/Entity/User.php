@@ -94,9 +94,16 @@ class User
     /**
      * @var string|null
      * @Groups({"user"})
-     * @ORM\Column(name="walletAddress", type="string", length=32, nullable=true)
+     * @ORM\Column(name="wallet_address", type="string", length=32, nullable=true)
      */
-    protected $walletAddress;
+    protected $wallet_address;
+
+    /**
+     * @var string|null
+     * @Groups({"user"})
+     * @ORM\Column(name="private_key", type="string", length=32, nullable=true)
+     */
+    protected $private_key;
 
     /**
      * @var string|null
@@ -439,30 +446,6 @@ class User
     public function getProductsCreated()
     {
         return $this->productsCreated;
-    }
-
-    /**
-     * Set walletAddress.
-     *
-     * @param string|null $walletAddress
-     *
-     * @return User
-     */
-    public function setWalletAddress($walletAddress = null)
-    {
-        $this->walletAddress = $walletAddress;
-
-        return $this;
-    }
-
-    /**
-     * Get walletAddress.
-     *
-     * @return string|null
-     */
-    public function getWalletAddress()
-    {
-        return $this->walletAddress;
     }
 
     /**
@@ -823,5 +806,53 @@ class User
     public function getPortrait()
     {
         return $this->portrait;
+    }
+
+    /**
+     * Set privateKey.
+     *
+     * @param string|null $privateKey
+     *
+     * @return User
+     */
+    public function setPrivateKey($privateKey = null)
+    {
+        $this->private_key = $privateKey;
+
+        return $this;
+    }
+
+    /**
+     * Get privateKey.
+     *
+     * @return string|null
+     */
+    public function getPrivateKey()
+    {
+        return $this->private_key;
+    }
+
+    /**
+     * Set walletAddress.
+     *
+     * @param string|null $walletAddress
+     *
+     * @return User
+     */
+    public function setWalletAddress($walletAddress = null)
+    {
+        $this->wallet_address = $walletAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get walletAddress.
+     *
+     * @return string|null
+     */
+    public function getWalletAddress()
+    {
+        return $this->wallet_address;
     }
 }
