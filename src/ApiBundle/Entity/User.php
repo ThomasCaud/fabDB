@@ -186,6 +186,12 @@ class User
     private $portrait;
 
     /**
+     * @Groups({"user"})
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Motivation", cascade={"persist"})
+     */
+    private $motivation;
+
+    /**
      * Get id.
      *
      * @return int
