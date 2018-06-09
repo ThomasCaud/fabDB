@@ -4,6 +4,7 @@ namespace ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use ApiBundle\Exception\BadRequestException;
 
 abstract class AbstractController extends Controller
 {
