@@ -33,7 +33,7 @@ class PortraitController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $em->merge($data);
+        $em->persist($data);
         $em->flush();
 
         return self::createResponse($data);

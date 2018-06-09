@@ -127,7 +127,7 @@ class UserController extends AbstractController
             }
         }
 
-        $em->merge($user);
+        $em->persist($user);
         $em->flush();
 
         return self::createResponse($user);
