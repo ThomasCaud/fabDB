@@ -102,11 +102,11 @@ class CommandController extends AbstractController
         $data->setBillingAddress($req->get('billingAddress'));
         $data->setDeliveryAddress($req->get('deliveryAddress'));
         $data->setLastDigitCard($req->get('lastDigitCard'));
-        $data->setDateCommand(date_create_from_format('Y-m-d H:i:s',$req->get('dateCommand')));
+        $data->setDateCommand(date_create_from_format('Y-m-d\TH:i:sP',$req->get('dateCommand')));
 
         $em = $this->getDoctrine()->getManager();
 
-        $em->merge($data);
+        $em->persist($data);
         $em->flush();
 
         return self::createResponse($data);

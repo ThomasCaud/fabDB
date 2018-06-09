@@ -37,7 +37,7 @@ class Purchase
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Command")
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Command", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="command_id", referencedColumnName="id", nullable=false)
      */
     private $command;
