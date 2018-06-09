@@ -69,7 +69,6 @@ class Command
      */
     protected $purchases;
 
-
     /**
      * Get id.
      *

@@ -75,7 +75,7 @@ class CommandController extends AbstractController
      * @Rest\Post(
      *      path = "/commands",
      * )
-     * @ParamConverter("data", class="ApiBundle\Entity\Command", converter="fos_rest.request_body")
+     * @ParamConverter("command", class="ApiBundle\Entity\Command", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
      *      description="Returned when created"
@@ -85,8 +85,9 @@ class CommandController extends AbstractController
      *      description="Returned when a violation is raised by validation"
      * )
      */
-    public function createAction(Request $req, Command $data)
+    public function createAction(Request $req, Command $command)
     {
+
         $purchaser_id = $req->get('purchaser_id');
 
         if(null == $purchaser_id || !is_int($purchaser_id)) {
@@ -98,18 +99,40 @@ class CommandController extends AbstractController
             throw new BadRequestException("user/purchaser " . $purchaser_id . " doesn't exist");
         }
 
-        $data->setPurchaser($purchaser);
-        $data->setBillingAddress($req->get('billingAddress'));
-        $data->setDeliveryAddress($req->get('deliveryAddress'));
-        $data->setLastDigitCard($req->get('lastDigitCard'));
-        $data->setDateCommand(date_create_from_format('Y-m-d\TH:i:sP',$req->get('dateCommand')));
+        $command->setPurchaser($purchaser);
+        $command->setBillingAddress($req->get('billingAddress'));
+        $command->setDeliveryAddress($req->get('deliveryAddress'));
+        $command->setLastDigitCard($req->get('lastDigitCard'));
+        $command->setDateCommand(date_create_from_format('Y-m-d\TH:i:sP',$req->get('dateCommand')));
 
         $em = $this->getDoctrine()->getManager();
+        // on persiste la commande
+        $em->persist($command);
 
-        $em->persist($data);
+        $purchases = $command->getPurchases()->toArray();
+
+        for($i = 0 ; $i < count($purchases) ; $i++) {
+            // on lie la commande aux achats
+            $purchase = $purchases[$i];
+            $purchase->setCommand($command);
+            
+            if(!isset($req->get('purchases')[$i]['product_id'])) {
+                throw new BadRequestException("product_id is needed for adding purchase");
+            }
+            $product_id = $req->get('purchases')[$i]['product_id'];
+            
+            $product = $this->getDoctrine()->getRepository('ApiBundle:Product')->find($product_id);
+            if(null == $product) {
+                throw new BadRequestException("product with product_id " . $product_id . " doesn't exist");
+            }
+
+            // on lie le produit à l'achat
+            $purchases[$i]->setProduct($product);
+        }
+
         $em->flush();
 
-        return self::createResponse($data);
+        return self::createResponse($command);
     }
 
     /**
@@ -156,7 +179,7 @@ class CommandController extends AbstractController
      * )
      * @SWG\Response(
      *      response = 404,
-     *      description="Returned when product id doesn't exist"
+     *      description="Returned when command id doesn't exist"
      * )
      */
     public function deleteAction(Command $data)
