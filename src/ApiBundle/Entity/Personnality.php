@@ -65,6 +65,12 @@ class Personnality
     private $profil;
 
     /**
+     * @Groups({"personnality","user"})
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\SubsidiaryProfil", cascade={"persist"})
+     */
+    private $subprofil;
+
+    /**
      * Get id.
      *
      * @return int
@@ -216,5 +222,29 @@ class Personnality
     public function getProfil()
     {
         return $this->profil;
+    }
+
+    /**
+     * Set subprofil.
+     *
+     * @param \ApiBundle\Entity\SubsidiaryProfil|null $subprofil
+     *
+     * @return Personnality
+     */
+    public function setSubprofil(\ApiBundle\Entity\SubsidiaryProfil $subprofil = null)
+    {
+        $this->subprofil = $subprofil;
+
+        return $this;
+    }
+
+    /**
+     * Get subprofil.
+     *
+     * @return \ApiBundle\Entity\SubsidiaryProfil|null
+     */
+    public function getSubprofil()
+    {
+        return $this->subprofil;
     }
 }

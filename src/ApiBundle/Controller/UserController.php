@@ -176,6 +176,20 @@ class UserController extends AbstractController
             $user->setMotivation($motivation);
         }
 
+        $personnality_id = $req->get('personnality_id');
+        if(isset($personnality_id)) {
+            if(!is_int($personnality_id)) {
+                throw new BadRequestException("personnality_id must be an integer");
+            }
+
+            $personnality = $this->getDoctrine()->getRepository('ApiBundle:Personnality')->find($personnality_id);
+            if(null == $personnality) {
+                throw new BadRequestException("personnality_id " . $personnality_id . " doesn't exist");
+            }
+
+            $user->setPersonnality($personnality);
+        }
+
         if($this->isString($req, 'fname')) {
             $user->setFname($req->get('fname'));
         }

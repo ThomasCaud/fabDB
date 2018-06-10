@@ -62,7 +62,21 @@ class PersonnalityController extends AbstractController
     public function createAction(Request $req, Personnality $data)
     {
         if(!in_array($data->getProfil(),['analyst','diplomat','explorer','sentinel'])) {
-            throw $this->createNotFoundException("'profil' should be 'analyst','diplomat','explorer' or 'sentinel'");
+            throw new BadRequestException("'profil' should be 'analyst','diplomat','explorer' or 'sentinel'");
+        }
+
+        $subprofil_id = $req->get('subprofil_id');
+        if(isset($subprofil_id)) {
+            if(!is_int($subprofil_id)) {
+                throw new BadRequestException("subprofil_id must be an integer");
+            }
+
+            $subprofil = $this->getDoctrine()->getRepository('ApiBundle:SubsidiaryProfil')->find($subprofil_id);
+            if(null == $subprofil) {
+                throw new BadRequestException("subprofil_id " . $subprofil_id . " doesn't exist");
+            }
+
+            $data->setSubprofil($subprofil);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -109,9 +123,23 @@ class PersonnalityController extends AbstractController
         
         if($this->isString($req, 'profil')) {
             if(!in_array($req->get('profil'),['analyst','diplomat','explorer','sentinel'])) {
-                throw $this->createNotFoundException("'profil' should be 'analyst','diplomat','explorer' or 'sentinel'");
+                throw new BadRequestException("'profil' should be 'analyst','diplomat','explorer' or 'sentinel'");
             }
             $personnality->setProfil($req->get('profil'));
+        }
+
+        $subprofil_id = $req->get('subprofil_id');
+        if(isset($subprofil_id)) {
+            if(!is_int($subprofil_id)) {
+                throw new BadRequestException("subprofil_id must be an integer");
+            }
+
+            $subprofil = $this->getDoctrine()->getRepository('ApiBundle:SubsidiaryProfil')->find($subprofil_id);
+            if(null == $subprofil) {
+                throw new BadRequestException("subprofil_id " . $subprofil_id . " doesn't exist");
+            }
+
+            $personnality->setSubprofil($subprofil);
         }
         
         $em = $this->getDoctrine()->getManager();
