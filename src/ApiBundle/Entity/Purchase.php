@@ -43,7 +43,7 @@ class Purchase
     private $command;
 
     /**
-     * @Groups({"command"})
+     * @Groups({"command","purchase"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Product")
      */
     private $product;
