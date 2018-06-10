@@ -126,11 +126,11 @@ class User
     protected $photo;
 
     /**
-     * @var \DateTime
+     * @var \Date
      * @Groups({"user"})
-     * @ORM\Column(name="birthDate", type="datetime", nullable=true)
+     * @ORM\Column(name="birthday", type="date", nullable=true)
      */
-    private $birthDate;
+    private $birthday;
 
     /**
      * @var string
@@ -575,30 +575,6 @@ class User
     }
 
     /**
-     * Set birthDate.
-     *
-     * @param \DateTime|null $birthDate
-     *
-     * @return User
-     */
-    public function setBirthDate($birthDate = null)
-    {
-        $this->birthDate = $birthDate;
-
-        return $this;
-    }
-
-    /**
-     * Get birthDate.
-     *
-     * @return \DateTime|null
-     */
-    public function getBirthDate()
-    {
-        return $this->birthDate;
-    }
-
-    /**
      * Set sexe.
      *
      * @param string|null $sexe
@@ -884,5 +860,29 @@ class User
     public function getMotivation()
     {
         return $this->motivation;
+    }
+
+    /**
+     * Set birthday.
+     *
+     * @param \DateTime|null $birthday
+     *
+     * @return User
+     */
+    public function setBirthday($birthday = null)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * Get birthday.
+     *
+     * @return \DateTime|null
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
     }
 }

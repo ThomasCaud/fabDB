@@ -25,9 +25,9 @@ class FamilyMember
     /**
      * @var \DateTime
      * @Groups({"familyMember"})
-     * @ORM\Column(name="birth_date", type="datetime")
+     * @ORM\Column(name="birthday", type="date")
      */
-    private $birthDate;
+    private $birthday;
 
     /**
      * @var string
@@ -164,26 +164,26 @@ class FamilyMember
     }
 
     /**
-     * Set birthDate.
+     * Set birthday.
      *
-     * @param \DateTime $birthDate
+     * @param \DateTime $birthday
      *
      * @return FamilyMember
      */
-    public function setBirthDate($birthDate)
+    public function setBirthday($birthday)
     {
-        $this->birth_date = $birthDate;
+        $this->birthday = $birthday;
 
         return $this;
     }
 
     /**
-     * Get birthDate.
+     * Get birthday.
      *
      * @return \DateTime
      */
-    public function getBirthDate()
+    public function getBirthday()
     {
-        return $this->birth_date;
+        return $this->birthday;
     }
 }

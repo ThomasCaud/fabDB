@@ -103,13 +103,19 @@ class CommandController extends AbstractController
         $command->setBillingAddress($req->get('billingAddress'));
         $command->setDeliveryAddress($req->get('deliveryAddress'));
         $command->setLastDigitCard($req->get('lastDigitCard'));
-        $command->setDateCommand(date_create_from_format('Y-m-d\TH:i:sP',$req->get('dateCommand')));
+        $command->setDateCommand(date_create_from_format('Y-m-d\TH:i:s',$req->get('dateCommand')));
 
         $em = $this->getDoctrine()->getManager();
         // on persiste la commande
         $em->persist($command);
 
-        $purchases = $command->getPurchases()->toArray();
+        $purchases = $command->getPurchases();
+
+        if(null == $purchases) {
+            throw new BadRequestException("You must specified at least one purchase in a command");
+        }
+
+        $purchases = $purchases->toArray();
 
         for($i = 0 ; $i < count($purchases) ; $i++) {
             // on lie la commande aux achats
