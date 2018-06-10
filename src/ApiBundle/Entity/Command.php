@@ -32,9 +32,9 @@ class Command
     /**
      * @var \DateTime
      * @Groups({"command","user"})
-     * @ORM\Column(name="dateCommand", type="datetime")
+     * @ORM\Column(name="date", type="datetime")
      */
-    private $dateCommand;
+    private $date;
 
     /**
      * @var string
@@ -264,5 +264,29 @@ class Command
     public function getPurchases()
     {
         return $this->purchases;
+    }
+
+    /**
+     * Set date.
+     *
+     * @param \DateTime $date
+     *
+     * @return Command
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date.
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }
