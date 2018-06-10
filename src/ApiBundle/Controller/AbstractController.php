@@ -33,7 +33,7 @@ abstract class AbstractController extends Controller
         return true;
     }
 
-    protected function isInteger(Request $req, $variableName)
+    protected function isInteger(Request $req, $variableName, $gt = 0, $lt = 999999)
     {
         $value = $req->get($variableName);
 
@@ -43,6 +43,10 @@ abstract class AbstractController extends Controller
 
         if(!is_int($value)) {
             throw new BadRequestException($variableName . " should be an integer");
+        }
+
+        if($value < $gt || $value > $lt) {
+            throw new BadRequestException($variableName . " should be between " . $gt . " and " . $lt);
         }
 
         return true;
