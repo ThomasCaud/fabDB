@@ -891,4 +891,28 @@ class User
     {
         return $this->birthday;
     }
+
+    /**
+     * Set personnality.
+     *
+     * @param \ApiBundle\Entity\Personnality|null $personnality
+     *
+     * @return User
+     */
+    public function setPersonnality(\ApiBundle\Entity\Personnality $personnality = null)
+    {
+        $this->personnality = $personnality;
+
+        return $this;
+    }
+
+    /**
+     * Get personnality.
+     *
+     * @return \ApiBundle\Entity\Personnality|null
+     */
+    public function getPersonnality()
+    {
+        return $this->personnality;
+    }
 }
