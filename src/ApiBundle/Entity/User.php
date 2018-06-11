@@ -67,23 +67,23 @@ class User
     /**
      * @var float
      * @Groups({"user"})
-     * @ORM\Column(name="note", type="float", options={"default":0.0})
+     * @ORM\Column(name="note", type="float", options={"default":0.0}, nullable=true)
      */
     private $note;
 
     /**
      * @var int
      * @Groups({"user"})
-     * @ORM\Column(name="currentRewardPoints", type="integer", options={"default":0})
+     * @ORM\Column(name="current_reward_points", type="integer", options={"default":0}, nullable=true)
      */
-    private $currentRewardPoints;
+    private $current_reward_points;
 
     /**
      * @var int
      * @Groups({"user"})
-     * @ORM\Column(name="totalRewardPoints", type="integer", options={"default":0})
+     * @ORM\Column(name="total_reward_points", type="integer", options={"default":0}, nullable=true)
      */
-    private $totalRewardPoints;
+    private $total_reward_points;
 
     /**
      * @Groups({"user"})
@@ -94,7 +94,7 @@ class User
     /**
      * @var string|null
      * @Groups({"user"})
-     * @ORM\Column(name="wallet_address", type="string", length=150, nullable=true)
+     * @ORM\Column(name="wallet_address", type="string", length=150, nullable=true, unique=true)
      */
     protected $wallet_address;
 
@@ -142,9 +142,9 @@ class User
     /**
      * @var string
      * @Groups({"user"})
-     * @ORM\Column(name="maritalStatus", type="string", columnDefinition="ENUM('married','widowed','separated', 'divorced','single')", nullable=true)
+     * @ORM\Column(name="marital_status", type="string", columnDefinition="ENUM('married','widowed','separated', 'divorced','single')", nullable=true)
      */
-    private $maritalStatus;
+    private $marital_status;
 
     /**
      * @var string|null
@@ -163,7 +163,7 @@ class User
     /**
      * @var int
      * @Groups({"user"})
-     * @ORM\Column(name="money", type="integer", length=1, options={"default":0})
+     * @ORM\Column(name="money", type="integer", length=1, options={"default":0}, nullable=true)
      */
     private $money;
 
@@ -377,54 +377,6 @@ class User
     }
 
     /**
-     * Set currentRewardPoints.
-     *
-     * @param int $currentRewardPoints
-     *
-     * @return User
-     */
-    public function setCurrentRewardPoints($currentRewardPoints)
-    {
-        $this->currentRewardPoints = $currentRewardPoints;
-
-        return $this;
-    }
-
-    /**
-     * Get currentRewardPoints.
-     *
-     * @return int
-     */
-    public function getCurrentRewardPoints()
-    {
-        return $this->currentRewardPoints;
-    }
-
-    /**
-     * Set totalRewardPoints.
-     *
-     * @param int $totalRewardPoints
-     *
-     * @return User
-     */
-    public function setTotalRewardPoints($totalRewardPoints)
-    {
-        $this->totalRewardPoints = $totalRewardPoints;
-
-        return $this;
-    }
-
-    /**
-     * Get totalRewardPoints.
-     *
-     * @return int
-     */
-    public function getTotalRewardPoints()
-    {
-        return $this->totalRewardPoints;
-    }
-
-    /**
      * Add productsCreated.
      *
      * @param \ApiBundle\Entity\Product $productsCreated
@@ -602,30 +554,6 @@ class User
     public function getSexe()
     {
         return $this->sexe;
-    }
-
-    /**
-     * Set maritalStatus.
-     *
-     * @param string|null $maritalStatus
-     *
-     * @return User
-     */
-    public function setMaritalStatus($maritalStatus = null)
-    {
-        $this->maritalStatus = $maritalStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get maritalStatus.
-     *
-     * @return string|null
-     */
-    public function getMaritalStatus()
-    {
-        return $this->maritalStatus;
     }
 
     /**
@@ -914,5 +842,77 @@ class User
     public function getPersonnality()
     {
         return $this->personnality;
+    }
+
+    /**
+     * Set currentRewardPoints.
+     *
+     * @param int $currentRewardPoints
+     *
+     * @return User
+     */
+    public function setCurrentRewardPoints($currentRewardPoints)
+    {
+        $this->current_reward_points = $currentRewardPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get currentRewardPoints.
+     *
+     * @return int
+     */
+    public function getCurrentRewardPoints()
+    {
+        return $this->current_reward_points;
+    }
+
+    /**
+     * Set totalRewardPoints.
+     *
+     * @param int $totalRewardPoints
+     *
+     * @return User
+     */
+    public function setTotalRewardPoints($totalRewardPoints)
+    {
+        $this->total_reward_points = $totalRewardPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get totalRewardPoints.
+     *
+     * @return int
+     */
+    public function getTotalRewardPoints()
+    {
+        return $this->total_reward_points;
+    }
+
+    /**
+     * Set maritalStatus.
+     *
+     * @param string|null $maritalStatus
+     *
+     * @return User
+     */
+    public function setMaritalStatus($maritalStatus = null)
+    {
+        $this->marital_status = $maritalStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get maritalStatus.
+     *
+     * @return string|null
+     */
+    public function getMaritalStatus()
+    {
+        return $this->marital_status;
     }
 }
