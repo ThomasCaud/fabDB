@@ -17,7 +17,7 @@ class User
 {
     /**
      * @var int
-     * @Groups({"user","fablab", "command","comment"})
+     * @Groups({"user","fablab", "command","comment", "access"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -59,28 +59,34 @@ class User
     private $usersFablabs;
 
     /**
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Access", mappedBy="user")
+     */
+    private $access;
+
+    /**
      * @var float
-     * @Groups({"user","fablab"})
+     * @Groups({"user"})
      * @ORM\Column(name="note", type="float", options={"default":0.0})
      */
     private $note;
 
     /**
      * @var int
-     * @Groups({"user","fablab"})
+     * @Groups({"user"})
      * @ORM\Column(name="currentRewardPoints", type="integer", options={"default":0})
      */
     private $currentRewardPoints;
 
     /**
      * @var int
-     * @Groups({"user","fablab"})
+     * @Groups({"user"})
      * @ORM\Column(name="totalRewardPoints", type="integer", options={"default":0})
      */
     private $totalRewardPoints;
 
     /**
-     * @Groups({"user","fablab"})
+     * @Groups({"user"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Product", cascade={"persist", "remove"}, mappedBy="maker")
      */
     protected $productsCreated;
@@ -88,9 +94,16 @@ class User
     /**
      * @var string|null
      * @Groups({"user"})
-     * @ORM\Column(name="walletAddress", type="string", length=32, nullable=true)
+     * @ORM\Column(name="wallet_address", type="string", length=150, nullable=true)
      */
-    protected $walletAddress;
+    protected $wallet_address;
+
+    /**
+     * @var string|null
+     * @Groups({"user"})
+     * @ORM\Column(name="private_key", type="string", length=150, nullable=true)
+     */
+    protected $private_key;
 
     /**
      * @var string|null
@@ -100,10 +113,89 @@ class User
     protected $password;
 
     /**
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","user"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Command", cascade={"persist", "remove"}, mappedBy="purchaser")
      */
     protected $commands;
+
+    /**
+     * @var string|null
+     * @Groups({"user"})
+     * @ORM\Column(name="photo", type="string", nullable=true)
+     */
+    protected $photo;
+
+    /**
+     * @var \Date
+     * @Groups({"user"})
+     * @ORM\Column(name="birthday", type="date", nullable=true)
+     */
+    private $birthday;
+
+    /**
+     * @var string
+     * @Groups({"user"})
+     * @ORM\Column(name="sexe", type="string", columnDefinition="ENUM('M','F','O')", nullable=true)
+     */
+    private $sexe;
+
+    /**
+     * @var string
+     * @Groups({"user"})
+     * @ORM\Column(name="maritalStatus", type="string", columnDefinition="ENUM('married','widowed','separated', 'divorced','single')", nullable=true)
+     */
+    private $maritalStatus;
+
+    /**
+     * @var string|null
+     * @Groups({"user"})
+     * @ORM\Column(name="quote", type="string", nullable=true)
+     */
+    private $quote;
+
+    /**
+     * @var string|null
+     * @Groups({"user"})
+     * @ORM\Column(name="biography", type="string", nullable=true)
+     */
+    private $biography;
+
+    /**
+     * @var int
+     * @Groups({"user"})
+     * @ORM\Column(name="money", type="integer", length=1, options={"default":0})
+     */
+    private $money;
+
+    /**
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\FamilyMember", cascade={"persist", "remove"}, mappedBy="referrer")
+     */
+    protected $familyMembers;
+
+    /** 
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\WebsiteAccount", cascade={"persist", "remove"}, mappedBy="owner")
+     */
+    protected $website_accounts;
+
+    /**
+     * @Groups({"user"})
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Portrait", cascade={"persist"})
+     */
+    private $portrait;
+
+    /**
+     * @Groups({"user"})
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Motivation", cascade={"persist"})
+     */
+    private $motivation;
+
+    /**
+     * @Groups({"user"})
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Personnality", cascade={"persist"})
+     */
+    private $personnality;
 
     /**
      * Get id.
@@ -369,30 +461,6 @@ class User
     }
 
     /**
-     * Set walletAddress.
-     *
-     * @param string|null $walletAddress
-     *
-     * @return User
-     */
-    public function setWalletAddress($walletAddress = null)
-    {
-        $this->walletAddress = $walletAddress;
-
-        return $this;
-    }
-
-    /**
-     * Get walletAddress.
-     *
-     * @return string|null
-     */
-    public function getWalletAddress()
-    {
-        return $this->walletAddress;
-    }
-
-    /**
      * Set password.
      *
      * @param string $password
@@ -450,5 +518,401 @@ class User
     public function getCommands()
     {
         return $this->commands;
+    }
+
+    /**
+     * Add access.
+     *
+     * @param \ApiBundle\Entity\Access $access
+     *
+     * @return User
+     */
+    public function addAccess(\ApiBundle\Entity\Access $access)
+    {
+        $this->access[] = $access;
+
+        return $this;
+    }
+
+    /**
+     * Remove access.
+     *
+     * @param \ApiBundle\Entity\Access $access
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAccess(\ApiBundle\Entity\Access $access)
+    {
+        return $this->access->removeElement($access);
+    }
+
+    /**
+     * Get access.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAccess()
+    {
+        return $this->access;
+    }
+
+    /**
+     * Set photo.
+     *
+     * @param string $photo
+     *
+     * @return User
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo.
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set sexe.
+     *
+     * @param string|null $sexe
+     *
+     * @return User
+     */
+    public function setSexe($sexe = null)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe.
+     *
+     * @return string|null
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * Set maritalStatus.
+     *
+     * @param string|null $maritalStatus
+     *
+     * @return User
+     */
+    public function setMaritalStatus($maritalStatus = null)
+    {
+        $this->maritalStatus = $maritalStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get maritalStatus.
+     *
+     * @return string|null
+     */
+    public function getMaritalStatus()
+    {
+        return $this->maritalStatus;
+    }
+
+    /**
+     * Set quote.
+     *
+     * @param string|null $quote
+     *
+     * @return User
+     */
+    public function setQuote($quote = null)
+    {
+        $this->quote = $quote;
+
+        return $this;
+    }
+
+    /**
+     * Get quote.
+     *
+     * @return string|null
+     */
+    public function getQuote()
+    {
+        return $this->quote;
+    }
+
+    /**
+     * Set biography.
+     *
+     * @param string|null $biography
+     *
+     * @return User
+     */
+    public function setBiography($biography = null)
+    {
+        $this->biography = $biography;
+
+        return $this;
+    }
+
+    /**
+     * Get biography.
+     *
+     * @return string|null
+     */
+    public function getBiography()
+    {
+        return $this->biography;
+    }
+
+    /**
+     * Set money.
+     *
+     * @param int $money
+     *
+     * @return User
+     */
+    public function setMoney($money)
+    {
+        $this->money = $money;
+
+        return $this;
+    }
+
+    /**
+     * Get money.
+     *
+     * @return int
+     */
+    public function getMoney()
+    {
+        return $this->money;
+    }
+
+    /**
+     * Add familyMember.
+     *
+     * @param \ApiBundle\Entity\FamilyMember $familyMember
+     *
+     * @return User
+     */
+    public function addFamilyMember(\ApiBundle\Entity\FamilyMember $familyMember)
+    {
+        $this->familyMembers[] = $familyMember;
+
+        return $this;
+    }
+
+    /**
+     * Remove familyMember.
+     *
+     * @param \ApiBundle\Entity\FamilyMember $familyMember
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeFamilyMember(\ApiBundle\Entity\FamilyMember $familyMember)
+    {
+        return $this->familyMembers->removeElement($familyMember);
+    }
+
+    /**
+     * Get familyMembers.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFamilyMembers()
+    {
+        return $this->familyMembers;
+    }
+
+    /**
+     * Add websiteAccount.
+     *
+     * @param \ApiBundle\Entity\WebsiteAccount $websiteAccount
+     *
+     * @return User
+     */
+    public function addWebsiteAccount(\ApiBundle\Entity\WebsiteAccount $websiteAccount)
+    {
+        $this->website_accounts[] = $websiteAccount;
+
+        return $this;
+    }
+
+    /**
+     * Remove websiteAccount.
+     *
+     * @param \ApiBundle\Entity\WebsiteAccount $websiteAccount
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeWebsiteAccount(\ApiBundle\Entity\WebsiteAccount $websiteAccount)
+    {
+        return $this->website_accounts->removeElement($websiteAccount);
+    }
+
+    /**
+     * Get websiteAccounts.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWebsiteAccounts()
+    {
+        return $this->website_accounts;
+    }
+
+    /**
+     * Set portrait.
+     *
+     * @param \ApiBundle\Entity\Portrait|null $portrait
+     *
+     * @return User
+     */
+    public function setPortrait(\ApiBundle\Entity\Portrait $portrait = null)
+    {
+        $this->portrait = $portrait;
+
+        return $this;
+    }
+
+    /**
+     * Get portrait.
+     *
+     * @return \ApiBundle\Entity\Portrait|null
+     */
+    public function getPortrait()
+    {
+        return $this->portrait;
+    }
+
+    /**
+     * Set privateKey.
+     *
+     * @param string|null $privateKey
+     *
+     * @return User
+     */
+    public function setPrivateKey($privateKey = null)
+    {
+        $this->private_key = $privateKey;
+
+        return $this;
+    }
+
+    /**
+     * Get privateKey.
+     *
+     * @return string|null
+     */
+    public function getPrivateKey()
+    {
+        return $this->private_key;
+    }
+
+    /**
+     * Set walletAddress.
+     *
+     * @param string|null $walletAddress
+     *
+     * @return User
+     */
+    public function setWalletAddress($walletAddress = null)
+    {
+        $this->wallet_address = $walletAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get walletAddress.
+     *
+     * @return string|null
+     */
+    public function getWalletAddress()
+    {
+        return $this->wallet_address;
+    }
+
+    /**
+     * Set motivation.
+     *
+     * @param \ApiBundle\Entity\Motivation|null $motivation
+     *
+     * @return User
+     */
+    public function setMotivation(\ApiBundle\Entity\Motivation $motivation = null)
+    {
+        $this->motivation = $motivation;
+
+        return $this;
+    }
+
+    /**
+     * Get motivation.
+     *
+     * @return \ApiBundle\Entity\Motivation|null
+     */
+    public function getMotivation()
+    {
+        return $this->motivation;
+    }
+
+    /**
+     * Set birthday.
+     *
+     * @param \DateTime|null $birthday
+     *
+     * @return User
+     */
+    public function setBirthday($birthday = null)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * Get birthday.
+     *
+     * @return \DateTime|null
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * Set personnality.
+     *
+     * @param \ApiBundle\Entity\Personnality|null $personnality
+     *
+     * @return User
+     */
+    public function setPersonnality(\ApiBundle\Entity\Personnality $personnality = null)
+    {
+        $this->personnality = $personnality;
+
+        return $this;
+    }
+
+    /**
+     * Get personnality.
+     *
+     * @return \ApiBundle\Entity\Personnality|null
+     */
+    public function getPersonnality()
+    {
+        return $this->personnality;
     }
 }

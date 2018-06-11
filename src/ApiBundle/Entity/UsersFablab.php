@@ -43,6 +43,15 @@ class UsersFablab
     private $role = 'client';
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", columnDefinition="ENUM('member','secreatery', 'treasurer','president')")
+     * @Groups({"user","fablab"})
+     */
+    private $status = 'member';
+
+
+    /**
      * Set joinedAt.
      *
      * @param \DateTime $joinedAt
@@ -136,5 +145,29 @@ class UsersFablab
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * Set status.
+     *
+     * @param string $status
+     *
+     * @return UsersFablab
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

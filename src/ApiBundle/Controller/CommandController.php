@@ -7,6 +7,7 @@ use ApiBundle\Entity\Command;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
+use ApiBundle\Exception\BadRequestException;
 
 class CommandController extends AbstractController
 {
@@ -31,7 +32,9 @@ class CommandController extends AbstractController
      *              @SWG\Property(property="dateCommand", type="string"),
      *              @SWG\Property(property="status", type="string"),
      *              @SWG\Property(property="billingAddress", type="string"),
-     *              @SWG\Property(property="deliveryAddress", type="string")
+     *              @SWG\Property(property="deliveryAddress", type="string"),
+     *              @SWG\Property(property="delivery_method", type="string"),
+     *              @SWG\Property(property="payment_method", type="string")
      *         )
      *     )
      * )
@@ -57,7 +60,9 @@ class CommandController extends AbstractController
      *          @SWG\Property(property="dateCommand", type="string"),
      *          @SWG\Property(property="status", type="string"),
      *          @SWG\Property(property="billingAddress", type="string"),
-     *          @SWG\Property(property="deliveryAddress", type="string")
+     *          @SWG\Property(property="deliveryAddress", type="string"),
+     *          @SWG\Property(property="delivery_method", type="string"),
+     *          @SWG\Property(property="payment_method", type="string")
      *     )
      * )
      * @SWG\Response(
@@ -74,7 +79,7 @@ class CommandController extends AbstractController
      * @Rest\Post(
      *      path = "/commands",
      * )
-     * @ParamConverter("data", class="ApiBundle\Entity\Command", converter="fos_rest.request_body")
+     * @ParamConverter("command", class="ApiBundle\Entity\Command", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
      *      description="Returned when created"
@@ -84,8 +89,10 @@ class CommandController extends AbstractController
      *      description="Returned when a violation is raised by validation"
      * )
      */
-    public function createAction(Request $req, Command $data)
+    public function createAction(Request $req, Command $command)
     {
+
+        // purchaser_id parameter
         $purchaser_id = $req->get('purchaser_id');
 
         if(null == $purchaser_id || !is_int($purchaser_id)) {
@@ -96,19 +103,64 @@ class CommandController extends AbstractController
         if(null == $purchaser) {
             throw new BadRequestException("user/purchaser " . $purchaser_id . " doesn't exist");
         }
+        $command->setPurchaser($purchaser);
 
-        $data->setPurchaser($purchaser);
-        $data->setBillingAddress($req->get('billingAddress'));
-        $data->setDeliveryAddress($req->get('deliveryAddress'));
-        $data->setLastDigitCard($req->get('lastDigitCard'));
-        $data->setDateCommand(date_create_from_format('Y-m-d H:i:s',$req->get('dateCommand')));
+        // delivery_method parameter
+        if(null == $command->getDeliveryMethod()) {
+            throw new BadRequestException("delivery_method (string) is needed");
+        }
+
+        if(!in_array($command->getDeliveryMethod(),['colissimo','fablab'])) {
+            throw $this->createNotFoundException("'delivery_method' should be 'colissimo' or 'fablab'");
+        }
+
+        // payment_method parameter
+        if(null == $command->getPaymentMethod()) {
+            throw new BadRequestException("payment_method (string) is needed");
+        }
+
+        if(!in_array($command->getPaymentMethod(),['credit card','paypal','blockchain'])) {
+            throw $this->createNotFoundException("payment_method should be 'credit card','paypal' or 'blockchain'");
+        }
+
+        $command->setBillingAddress($req->get('billingAddress'));
+        $command->setDeliveryAddress($req->get('deliveryAddress'));
+        $command->setLastDigitCard($req->get('lastDigitCard'));
 
         $em = $this->getDoctrine()->getManager();
+        // on persiste la commande
+        $em->persist($command);
 
-        $em->merge($data);
+        $purchases = $command->getPurchases();
+
+        if(null == $purchases) {
+            throw new BadRequestException("You must specified at least one purchase in a command");
+        }
+
+        $purchases = $purchases->toArray();
+
+        for($i = 0 ; $i < count($purchases) ; $i++) {
+            // on lie la commande aux achats
+            $purchase = $purchases[$i];
+            $purchase->setCommand($command);
+            
+            if(!isset($req->get('purchases')[$i]['product_id'])) {
+                throw new BadRequestException("product_id is needed for adding purchase");
+            }
+            $product_id = $req->get('purchases')[$i]['product_id'];
+            
+            $product = $this->getDoctrine()->getRepository('ApiBundle:Product')->find($product_id);
+            if(null == $product) {
+                throw new BadRequestException("product with product_id " . $product_id . " doesn't exist");
+            }
+
+            // on lie le produit à l'achat
+            $purchases[$i]->setProduct($product);
+        }
+
         $em->flush();
 
-        return self::createResponse($data);
+        return self::createResponse($command);
     }
 
     /**
@@ -155,7 +207,7 @@ class CommandController extends AbstractController
      * )
      * @SWG\Response(
      *      response = 404,
-     *      description="Returned when product id doesn't exist"
+     *      description="Returned when command id doesn't exist"
      * )
      */
     public function deleteAction(Command $data)

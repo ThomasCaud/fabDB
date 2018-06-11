@@ -32,9 +32,9 @@ class Command
     /**
      * @var \DateTime
      * @Groups({"command","user"})
-     * @ORM\Column(name="dateCommand", type="datetime")
+     * @ORM\Column(name="date", type="datetime")
      */
-    private $dateCommand;
+    private $date;
 
     /**
      * @var string
@@ -69,6 +69,19 @@ class Command
      */
     protected $purchases;
 
+    /**
+     * @var string
+     * @Groups({"command","user"})
+     * @ORM\Column(name="delivery_method", type="string", columnDefinition="ENUM('colissimo','fablab')")
+     */
+    private $delivery_method;
+
+    /**
+     * @var string
+     * @Groups({"command","user"})
+     * @ORM\Column(name="payment_method", type="string", columnDefinition="ENUM('credit card','paypal','blockchain')")
+     */
+    private $payment_method;
 
     /**
      * Get id.
@@ -265,5 +278,77 @@ class Command
     public function getPurchases()
     {
         return $this->purchases;
+    }
+
+    /**
+     * Set date.
+     *
+     * @param \DateTime $date
+     *
+     * @return Command
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date.
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set deliveryMethod.
+     *
+     * @param string $deliveryMethod
+     *
+     * @return Command
+     */
+    public function setDeliveryMethod($deliveryMethod)
+    {
+        $this->delivery_method = $deliveryMethod;
+
+        return $this;
+    }
+
+    /**
+     * Get deliveryMethod.
+     *
+     * @return string
+     */
+    public function getDeliveryMethod()
+    {
+        return $this->delivery_method;
+    }
+
+    /**
+     * Set paymentMethod.
+     *
+     * @param string $paymentMethod
+     *
+     * @return Command
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->payment_method = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * Get paymentMethod.
+     *
+     * @return string
+     */
+    public function getPaymentMethod()
+    {
+        return $this->payment_method;
     }
 }

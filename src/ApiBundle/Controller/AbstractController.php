@@ -3,6 +3,8 @@ namespace ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use ApiBundle\Exception\BadRequestException;
 
 abstract class AbstractController extends Controller
 {
@@ -14,6 +16,40 @@ abstract class AbstractController extends Controller
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    protected function isString(Request $req, $variableName)
+    {
+    	$value = $req->get($variableName);
+
+        if(!isset($value)) {
+        	return false;
+        }
+
+        if(!is_string($value)) {
+            throw new BadRequestException($variableName . " should be a string");
+        }
+
+        return true;
+    }
+
+    protected function isInteger(Request $req, $variableName, $gt = 0, $lt = 999999)
+    {
+        $value = $req->get($variableName);
+
+        if(!isset($value)) {
+            return false;
+        }
+
+        if(!is_int($value)) {
+            throw new BadRequestException($variableName . " should be an integer");
+        }
+
+        if($value < $gt || $value > $lt) {
+            throw new BadRequestException($variableName . " should be between " . $gt . " and " . $lt);
+        }
+
+        return true;
     }
 
     abstract protected function getGroup();

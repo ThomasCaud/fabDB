@@ -15,7 +15,7 @@ class Product
 {
     /**
      * @var int
-     * @Groups({"all","user","fablab","comment"})
+     * @Groups({"all","user","fablab","comment", "command","purchase"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
