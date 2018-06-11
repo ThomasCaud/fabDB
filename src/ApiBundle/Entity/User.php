@@ -5,7 +5,6 @@ namespace ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiBundle\Entity\UsersFablab;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
