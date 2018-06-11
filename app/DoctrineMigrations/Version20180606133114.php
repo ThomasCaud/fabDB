@@ -13,7 +13,7 @@ final class Version20180606133114 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         $this->addSql("
-            INSERT INTO command (purchaser_id,lastDigitCard,dateCommand,status,billingAddress,deliveryAddress) VALUES
+            INSERT INTO command (purchaser_id,lastDigitCard,date,status,billingAddress,deliveryAddress) VALUES
             (1,341,'2018-06-18','pending','Adresse de facturation 1','Adresse de livraison 1'),
             (1,341,'2018-06-19','paid','Adresse de facturation 2','Adresse de livraison 2'),
             (2,579,'2018-05-18','cancelled','Adresse de facturation 3','Adresse de livraison 3'),
