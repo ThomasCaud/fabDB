@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Swagger\Annotations as SWG;
 use \Datetime;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 
 class UserController extends AbstractController
 {
