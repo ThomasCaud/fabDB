@@ -32,7 +32,9 @@ class CommandController extends AbstractController
      *              @SWG\Property(property="dateCommand", type="string"),
      *              @SWG\Property(property="status", type="string"),
      *              @SWG\Property(property="billingAddress", type="string"),
-     *              @SWG\Property(property="deliveryAddress", type="string")
+     *              @SWG\Property(property="deliveryAddress", type="string"),
+     *              @SWG\Property(property="delivery_method", type="string"),
+     *              @SWG\Property(property="payment_method", type="string")
      *         )
      *     )
      * )
@@ -58,7 +60,9 @@ class CommandController extends AbstractController
      *          @SWG\Property(property="dateCommand", type="string"),
      *          @SWG\Property(property="status", type="string"),
      *          @SWG\Property(property="billingAddress", type="string"),
-     *          @SWG\Property(property="deliveryAddress", type="string")
+     *          @SWG\Property(property="deliveryAddress", type="string"),
+     *          @SWG\Property(property="delivery_method", type="string"),
+     *          @SWG\Property(property="payment_method", type="string")
      *     )
      * )
      * @SWG\Response(
@@ -88,6 +92,7 @@ class CommandController extends AbstractController
     public function createAction(Request $req, Command $command)
     {
 
+        // purchaser_id parameter
         $purchaser_id = $req->get('purchaser_id');
 
         if(null == $purchaser_id || !is_int($purchaser_id)) {
@@ -98,8 +103,26 @@ class CommandController extends AbstractController
         if(null == $purchaser) {
             throw new BadRequestException("user/purchaser " . $purchaser_id . " doesn't exist");
         }
-
         $command->setPurchaser($purchaser);
+
+        // delivery_method parameter
+        if(null == $command->getDeliveryMethod()) {
+            throw new BadRequestException("delivery_method (string) is needed");
+        }
+
+        if(!in_array($command->getDeliveryMethod(),['colissimo','fablab'])) {
+            throw $this->createNotFoundException("'delivery_method' should be 'colissimo' or 'fablab'");
+        }
+
+        // payment_method parameter
+        if(null == $command->getPaymentMethod()) {
+            throw new BadRequestException("payment_method (string) is needed");
+        }
+
+        if(!in_array($command->getPaymentMethod(),['credit card','paypal','blockchain'])) {
+            throw $this->createNotFoundException("payment_method should be 'credit card','paypal' or 'blockchain'");
+        }
+
         $command->setBillingAddress($req->get('billingAddress'));
         $command->setDeliveryAddress($req->get('deliveryAddress'));
         $command->setLastDigitCard($req->get('lastDigitCard'));
