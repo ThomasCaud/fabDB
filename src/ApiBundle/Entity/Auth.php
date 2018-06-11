@@ -2,6 +2,7 @@
 
 namespace ApiBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="auth")
  * @ORM\Entity(repositoryClass="ApiBundle\Repository\AuthRepository")
  */
-class Auth
+class Auth implements UserInterface
 {
     /**
      * @var int
@@ -121,5 +122,20 @@ class Auth
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+
+    public function getRoles()
+    {
+        return [];
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+        $this->plainPassword = null;
     }
 }

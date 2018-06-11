@@ -1,0 +1,8 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+  # Ajout d'un encoder pour notre entité USer
+    encoders:
+      ApiBundle\Entity\Auth:
+        algorithm: bcrypt
+        cost: 12
