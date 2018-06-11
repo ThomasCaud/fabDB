@@ -37,8 +37,6 @@ class Auth
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="plainPassword", type="string", length=255)
      */
     private $plainPassword;
 
