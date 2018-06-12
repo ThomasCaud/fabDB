@@ -17,7 +17,7 @@ class User
 {
     /**
      * @var int
-     * @Groups({"user","fablab", "command","comment", "access"})
+     * @Groups({"user","fablab", "command","comment", "access","skill"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -47,7 +47,7 @@ class User
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"user","fablab","skill"})
      * @ORM\Column(name="login", type="string", unique=true)
      */
     private $login;
@@ -196,6 +196,12 @@ class User
      * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Personnality", cascade={"persist"})
      */
     private $personnality;
+
+    /**
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\UserSkill", mappedBy="user")
+     */
+    private $skills;
 
     /**
      * Get id.
@@ -914,5 +920,41 @@ class User
     public function getMaritalStatus()
     {
         return $this->marital_status;
+    }
+
+    /**
+     * Add skill.
+     *
+     * @param \ApiBundle\Entity\UserSkill $skill
+     *
+     * @return User
+     */
+    public function addSkill(\ApiBundle\Entity\UserSkill $skill)
+    {
+        $this->skills[] = $skill;
+
+        return $this;
+    }
+
+    /**
+     * Remove skill.
+     *
+     * @param \ApiBundle\Entity\UserSkill $skill
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeSkill(\ApiBundle\Entity\UserSkill $skill)
+    {
+        return $this->skills->removeElement($skill);
+    }
+
+    /**
+     * Get skills.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSkills()
+    {
+        return $this->skills;
     }
 }

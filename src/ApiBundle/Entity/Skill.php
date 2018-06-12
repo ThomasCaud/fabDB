@@ -31,14 +31,14 @@ class Skill
 
     /**
      * @var string
-     * @Groups({"skill","user"})
+     * @Groups({"skill"})
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
     /**
      * @var string
-     * @Groups({"skill","user"})
+     * @Groups({"skill"})
      * @ORM\Column(name="detail", type="string", length=255)
      */
     private $detail;
@@ -51,7 +51,7 @@ class Skill
     private $level_max;
 
     /**
-     * @Groups({"skill","user"})
+     * @Groups({"skill"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\SkillTree", mappedBy="parent", cascade={"merge", "persist"}, orphanRemoval=true)
      */
     private $children;
