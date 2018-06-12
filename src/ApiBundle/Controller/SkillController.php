@@ -94,6 +94,15 @@ class SkillController extends AbstractController
             throw new BadRequestException("level_max (integer) should be greater than 0");
         }
 
+        $domain_id = $req->get('domain_id');
+        if(null !== $domain_id) {
+            $domain = $this->getDoctrine()->getRepository('ApiBundle:SkillDomain')->find($domain_id);
+            if(null == $domain) {
+                throw new BadRequestException("domain_id " . $domain_id . " doesn't exist");
+            }
+            $data->setDomain($domain);
+        }
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
 
@@ -132,6 +141,14 @@ class SkillController extends AbstractController
 
         if($this->isInteger($req, 'level_max')) {
             $data->setLevelMax($req->get('level_max'));
+        }
+
+        if($this->isInteger($req, 'domain_id')) {
+            $domain = $this->getDoctrine()->getRepository('ApiBundle:SkillDomain')->find($req->get('domain_id'));
+            if(null == $domain) {
+                throw new BadRequestException("domain_id " . $req->get('domain_id') . " doesn't exist");
+            }
+            $data->setDomain($domain);
         }
 
         $data->getChildren()->clear();

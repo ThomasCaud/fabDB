@@ -57,7 +57,7 @@ class Skill
     private $children;
 
     /**
-     * @Groups({"comment"})
+     * @Groups({"skill"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\SkillDomain")
      */
     private $domain;
