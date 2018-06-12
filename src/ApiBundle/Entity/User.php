@@ -17,7 +17,7 @@ class User
 {
     /**
      * @var int
-     * @Groups({"user","fablab", "command","comment", "access","skill", "message"})
+     * @Groups({"user","fablab", "command","comment", "access","skill", "message","friend"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -47,7 +47,7 @@ class User
 
     /**
      * @var string
-     * @Groups({"user","fablab","skill"})
+     * @Groups({"user","fablab","skill","friend"})
      * @ORM\Column(name="login", type="string", unique=true)
      */
     private $login;
@@ -220,6 +220,18 @@ class User
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Message", mappedBy="from")
      */
     private $sent_messages;
+
+    /**
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Friend", mappedBy="user_a")
+     */
+    private $followings;
+
+    /**
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Friend", mappedBy="user_b")
+     */
+    private $followers;
 
     /**
      * Get id.
@@ -1070,5 +1082,77 @@ class User
     public function getSentMessages()
     {
         return $this->sent_messages;
+    }
+
+    /**
+     * Add following.
+     *
+     * @param \ApiBundle\Entity\Friend $following
+     *
+     * @return User
+     */
+    public function addFollowing(\ApiBundle\Entity\Friend $following)
+    {
+        $this->followings[] = $following;
+
+        return $this;
+    }
+
+    /**
+     * Remove following.
+     *
+     * @param \ApiBundle\Entity\Friend $following
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeFollowing(\ApiBundle\Entity\Friend $following)
+    {
+        return $this->followings->removeElement($following);
+    }
+
+    /**
+     * Get followings.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFollowings()
+    {
+        return $this->followings;
+    }
+
+    /**
+     * Add follower.
+     *
+     * @param \ApiBundle\Entity\Friend $follower
+     *
+     * @return User
+     */
+    public function addFollower(\ApiBundle\Entity\Friend $follower)
+    {
+        $this->followers[] = $follower;
+
+        return $this;
+    }
+
+    /**
+     * Remove follower.
+     *
+     * @param \ApiBundle\Entity\Friend $follower
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeFollower(\ApiBundle\Entity\Friend $follower)
+    {
+        return $this->followers->removeElement($follower);
+    }
+
+    /**
+     * Get followers.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFollowers()
+    {
+        return $this->followers;
     }
 }
