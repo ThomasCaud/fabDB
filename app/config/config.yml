@@ -102,14 +102,6 @@ assetic:
     filters:
         cssrewrite: ~
 
-security:
-    providers:
-        in_memory:
-            memory: ~
-    firewalls:
-        main:
-            anonymous: ~
-
 jms_serializer:
     handlers:
         datetime:

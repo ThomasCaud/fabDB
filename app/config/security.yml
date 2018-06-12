@@ -1,0 +1,15 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    providers:
+        in_memory:
+            memory: ~
+    firewalls:
+        main:
+            anonymous: ~
+
+  # Ajout d'un encoder pour notre entité Auth
+    encoders:
+        AppBundle\Entity\Auth:
+            algorithm: bcrypt
+            cost: 12
