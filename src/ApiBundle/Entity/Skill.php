@@ -57,6 +57,12 @@ class Skill
     private $children;
 
     /**
+     * @Groups({"comment"})
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\SkillDomain")
+     */
+    private $domain;
+
+    /**
      * Get id.
      *
      * @return int
@@ -203,5 +209,29 @@ class Skill
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * Set domain.
+     *
+     * @param \ApiBundle\Entity\SkillDomain $domain
+     *
+     * @return Skill
+     */
+    public function setDomain(\ApiBundle\Entity\SkillDomain $domain)
+    {
+        $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Get domain.
+     *
+     * @return \ApiBundle\Entity\SkillDomain
+     */
+    public function getDomain()
+    {
+        return $this->domain;
     }
 }
