@@ -15,7 +15,7 @@ class URL
 {
     /**
      * @var int
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","url"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,19 +24,20 @@ class URL
 
     /**
      * @var string
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","url"})
      * @ORM\Column(name="type", type="string", columnDefinition="ENUM('photo','video')")
      */
     private $type;
 
     /**
      * @var string
-     * @Groups({"all","user","fablab"})
-     * @ORM\Column(name="URL", type="string", length=255)
+     * @Groups({"all","url"})
+     * @ORM\Column(name="url", type="string", length=255)
      */
-    private $uRL;
+    private $url;
 
     /**
+     * @Groups({"all","url"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Product")
      */
     private $product;
@@ -76,30 +77,6 @@ class URL
     }
 
     /**
-     * Set uRL.
-     *
-     * @param string $uRL
-     *
-     * @return URL
-     */
-    public function setURL($uRL)
-    {
-        $this->uRL = $uRL;
-
-        return $this;
-    }
-
-    /**
-     * Get uRL.
-     *
-     * @return string
-     */
-    public function getURL()
-    {
-        return $this->uRL;
-    }
-
-    /**
      * Set product.
      *
      * @param \ApiBundle\Entity\Product|null $product
@@ -121,5 +98,29 @@ class URL
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Set url.
+     *
+     * @param string $url
+     *
+     * @return URL
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url.
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

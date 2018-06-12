@@ -22,7 +22,6 @@ class UserController extends AbstractController
      * @Rest\Get(
      *      path = "/users"
      * )
-     * 
      * @SWG\Response(
      *     response=200,
      *     description="Returns users",

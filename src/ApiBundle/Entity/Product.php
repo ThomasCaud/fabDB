@@ -15,7 +15,7 @@ class Product
 {
     /**
      * @var int
-     * @Groups({"all","user","fablab","comment", "command","purchase"})
+     * @Groups({"all","user","comment", "command","purchase","url"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,42 +24,42 @@ class Product
 
     /**
      * @var string
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","user","url"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string|null
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","user"})
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var float
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","user"})
      * @ORM\Column(name="price", type="float")
      */
     private $price;
 
     /**
      * @var float|null
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","user"})
      * @ORM\Column(name="discount", type="float", nullable=true, options={"default":1.0})
      */
     private $discount;
 
     /**
      * @var int|null
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","user"})
      * @ORM\Column(name="stock", type="integer", nullable=true)
      */
     private $stock;
 
     /**
      * @var \DateTime
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","user"})
      * @ORM\Column(name="publication", type="datetime")
      */
     private $publication;
@@ -70,7 +70,7 @@ class Product
     private $maker;
 
     /**
-     * @Groups({"all","user","fablab"})
+     * @Groups({"all","user"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Category")
      */
     private $category;
