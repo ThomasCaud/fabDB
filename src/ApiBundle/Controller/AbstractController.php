@@ -52,5 +52,24 @@ abstract class AbstractController extends Controller
         return true;
     }
 
+    protected function isFloat(Request $req, $variableName, $gt = 0, $lt = 999999)
+    {
+        $value = $req->get($variableName);
+
+        if(!isset($value)) {
+            return false;
+        }
+
+        if(!is_float($value) && !is_integer($value)) {
+            throw new BadRequestException($variableName . " should be a float value");
+        }
+
+        if($value < $gt || $value > $lt) {
+            throw new BadRequestException($variableName . " should be between " . $gt . " and " . $lt);
+        }
+
+        return true;
+    }
+
     abstract protected function getGroup();
 }

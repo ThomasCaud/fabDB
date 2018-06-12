@@ -3,6 +3,7 @@ namespace ApiBundle\Controller;
 
 use ApiBundle\Entity\User;
 use ApiBundle\Entity\UsersFablab;
+use ApiBundle\Entity\Position;
 use ApiBundle\Exception\BadRequestException;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -108,6 +109,22 @@ class UserController extends AbstractController
      */
     public function createAction(Request $req, User $user)
     {
+        if(null == $user->getFname()) {
+            throw new BadRequestException("'fname' is needed");
+        }
+
+        if(null == $user->getLname()) {
+            throw new BadRequestException("'lname' is needed");
+        }
+
+        if(null == $user->getLogin()) {
+            throw new BadRequestException("'login' is needed");
+        }
+
+        if(null == $user->getPassword()) {
+            throw new BadRequestException("'password' is needed");
+        }
+
         $em = $this->getDoctrine()->getManager();
         $body = (array)json_decode($req->getContent());
 
@@ -125,6 +142,14 @@ class UserController extends AbstractController
                     throw new BadRequestException("The fablab (id " . $id . ") doesn't exist.");
                 }
             }
+        }
+
+        if($this->isFloat($req, 'longitude', -180, 180) && $this->isFloat($req, 'latitude', 0, 90)) {
+            $position = new Position();
+            $position->setLatitude($req->get('latitude'));
+            $position->setLongitude($req->get('longitude'));
+            $em->persist($position);
+            $user->setPosition($position);
         }
 
         $em->persist($user);
@@ -247,6 +272,14 @@ class UserController extends AbstractController
         }
 
         $em = $this->getDoctrine()->getManager();
+
+        if($this->isFloat($req, 'longitude', -180, 180) && $this->isFloat($req, 'latitude', 0, 90)) {
+            $position = new Position();
+            $position->setLatitude($req->get('latitude'));
+            $position->setLongitude($req->get('longitude'));
+            $em->persist($position);
+            $user->setPosition($position);
+        }
 
         $em->merge($user);
         $em->flush();

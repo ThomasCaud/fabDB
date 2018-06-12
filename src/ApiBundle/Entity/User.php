@@ -204,6 +204,12 @@ class User
     private $skills;
 
     /**
+     * @Groups({"user"})
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Position", cascade={"persist"})
+     */
+    private $position;
+
+    /**
      * Get id.
      *
      * @return int
@@ -956,5 +962,29 @@ class User
     public function getSkills()
     {
         return $this->skills;
+    }
+
+    /**
+     * Set position.
+     *
+     * @param \ApiBundle\Entity\Position|null $position
+     *
+     * @return User
+     */
+    public function setPosition(\ApiBundle\Entity\Position $position = null)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position.
+     *
+     * @return \ApiBundle\Entity\Position|null
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }
