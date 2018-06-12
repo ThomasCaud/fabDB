@@ -83,6 +83,8 @@ class MessageController extends AbstractController
 
         $data->setFrom($user_from);
         $data->setTo($user_to);
+        $data->setSeen(false);
+        $data->setDate(date_create_from_format('Y-m-d H:i:s', date_create('now')->format('Y-m-d H:i:s')));
 
         $em = $this->getDoctrine()->getManager();
 
@@ -107,10 +109,18 @@ class MessageController extends AbstractController
      */
     public function updateAction(Request $req, Message $data)
     {
-        if(!$req->get('message')) {
-            throw new BadRequestException("Only 'message' attribute can be updated");
+        $message = $req->get('message');
+        if(null !== $message) {
+            $data->setMessage($message);
         }
-        $data->setMessage($req->get('message'));
+
+        $seen = $req->get('seen');
+        if(null !== $seen) {
+            if(!is_bool($seen)) {
+                throw new BadRequestException("'seen' field expected boolean value");
+            }
+            $data->setSeen($seen);
+        }
 
         $em = $this->getDoctrine()->getManager();
         $em->flush();

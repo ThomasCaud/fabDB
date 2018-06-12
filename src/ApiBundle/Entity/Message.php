@@ -42,6 +42,20 @@ class Message
     private $message;
 
     /**
+     * @var boolean
+     * @Groups({"message","user"})
+     * @ORM\Column(name="seen", type="boolean", length=255, options={"default":false})
+     */
+    private $seen;
+
+    /**
+     * @var \DateTime
+     * @Groups({"message","user"})
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
      * Get id.
      *
      * @return int
@@ -121,5 +135,53 @@ class Message
     public function getTo()
     {
         return $this->to;
+    }
+
+    /**
+     * Set seen.
+     *
+     * @param bool $seen
+     *
+     * @return Message
+     */
+    public function setSeen($seen)
+    {
+        $this->seen = $seen;
+
+        return $this;
+    }
+
+    /**
+     * Get seen.
+     *
+     * @return bool
+     */
+    public function getSeen()
+    {
+        return $this->seen;
+    }
+
+    /**
+     * Set date.
+     *
+     * @param \DateTime $date
+     *
+     * @return Message
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date.
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }
