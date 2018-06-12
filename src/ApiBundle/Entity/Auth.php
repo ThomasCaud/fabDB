@@ -3,7 +3,7 @@
 namespace ApiBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,21 +19,19 @@ class Auth implements UserInterface
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @Groups({"auth-token"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @Groups({"auth-token"})
+     * @Groups({"auth"})
      * @ORM\Column(name="login", type="string", length=255, unique=true)
      */
     private $login;
 
     /**
      * @var string
-     * @Groups({"auth-token"})
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;

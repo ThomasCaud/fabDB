@@ -3,7 +3,7 @@
 namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Groups;
 use ApiBundle\Entity\Auth;
 
 /**
@@ -19,7 +19,6 @@ class AuthToken
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @Groups({"auth"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
