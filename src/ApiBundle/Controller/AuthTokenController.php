@@ -14,7 +14,7 @@ use \Datetime;
 class AuthTokenController extends AbstractController
 {
     protected function getGroup() {
-        return "auth-token";
+        return "auth";
     }
 
     /**
@@ -62,27 +62,18 @@ class AuthTokenController extends AbstractController
         $em->persist($authToken);
         $em->flush();
 
-        return self::createResponse($authToken);
+        return self::createResponse($authToken);    
+    }
 
-        //if(isset($body['usersFablabs']) && count($body['usersFablabs']) > 0) {
-        //    $fablabsRaw = $body['usersFablabs'];
-//
-        //    foreach($fablabsRaw as $fablabRaw) {
-        //        $fablabRaw = (array)$fablabRaw;
-        //        $id = $fablabRaw["id"];
-//
-        //        $fablab = $this->getDoctrine()->getRepository('ApiBundle:Fablab')->find($id);
-        //        if($fablab != null) {
-        //            $this->addFablab($user, $fablab);
-        //        } else {
-        //            throw new BadRequestException("The fablab (id " . $id . ") doesn't exist.");
-        //        }
-        //    }
-        //}
-//
-        //$em->persist($user);
-        //$em->flush();
-
+    /**
+     * @Rest\Get(
+     *      path = "/auth-token"
+     * )
+     */
+    public function getAuthTokensAction()
+    {
+        $authTokens = $this->getDoctrine()->getRepository('ApiBundle:AuthToken')->findAll();
         
+        return self::createResponse($authTokens);
     }
 }

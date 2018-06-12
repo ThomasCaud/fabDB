@@ -19,28 +19,28 @@ class AuthToken
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @Groups({"auth-token"})
+     * @Groups({"auth"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @Groups({"auth-token"})
+     * @Groups({"auth"})
      * @ORM\Column(name="value", type="string", length=255)
      */
     private $value;
 
     /**
      * @var datetime
-     * @Groups({"auth-token"})
+     * @Groups({"auth"})
      * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var Auth
-     * @Groups({"auth-token"})
+     * @Groups({"auth"})
      * @ORM\ManyToOne(targetEntity="Auth")
      */
     private $auth;
