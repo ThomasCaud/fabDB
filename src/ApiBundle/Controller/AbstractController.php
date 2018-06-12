@@ -1,16 +1,24 @@
 <?php
 namespace ApiBundle\Controller;
 
+use ApiBundle\Exception\BadRequestException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use ApiBundle\Exception\BadRequestException;
+use JMS\Serializer\SerializationContext;
 
 abstract class AbstractController extends Controller
 {
     protected function createResponse($entities)
     {
-        $entities = $this->get('serializer')->serialize($entities, 'json', array('groups' => array($this->getGroup())));
+        $context = new SerializationContext();
+        $context->setGroups([$this->getGroup()]);
+
+        $entities = $this->get('jms_serializer')->serialize(
+            $entities,
+            'json',
+            $context
+        );
 
         $response = new Response($entities);
         $response->headers->set('Content-Type', 'application/json');

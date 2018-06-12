@@ -2,10 +2,10 @@
 
 namespace ApiBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use ApiBundle\Entity\UsersFablab;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * User
@@ -17,7 +17,7 @@ class User
 {
     /**
      * @var int
-     * @Groups({"user","fablab", "command","comment", "access","skill"})
+     * @Groups({"user","fablab", "command","comment", "access","skill", "message"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -208,6 +208,18 @@ class User
      * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Position", cascade={"persist"})
      */
     private $position;
+
+    /**
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Message", mappedBy="to")
+     */
+    private $received_messages;
+
+    /**
+     * @Groups({"user"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Message", mappedBy="from")
+     */
+    private $sent_messages;
 
     /**
      * Get id.
@@ -986,5 +998,77 @@ class User
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Add receivedMessage.
+     *
+     * @param \ApiBundle\Entity\Message $receivedMessage
+     *
+     * @return User
+     */
+    public function addReceivedMessage(\ApiBundle\Entity\Message $receivedMessage)
+    {
+        $this->received_messages[] = $receivedMessage;
+
+        return $this;
+    }
+
+    /**
+     * Remove receivedMessage.
+     *
+     * @param \ApiBundle\Entity\Message $receivedMessage
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReceivedMessage(\ApiBundle\Entity\Message $receivedMessage)
+    {
+        return $this->received_messages->removeElement($receivedMessage);
+    }
+
+    /**
+     * Get receivedMessages.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReceivedMessages()
+    {
+        return $this->received_messages;
+    }
+
+    /**
+     * Add sentMessage.
+     *
+     * @param \ApiBundle\Entity\Message $sentMessage
+     *
+     * @return User
+     */
+    public function addSentMessage(\ApiBundle\Entity\Message $sentMessage)
+    {
+        $this->sent_messages[] = $sentMessage;
+
+        return $this;
+    }
+
+    /**
+     * Remove sentMessage.
+     *
+     * @param \ApiBundle\Entity\Message $sentMessage
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeSentMessage(\ApiBundle\Entity\Message $sentMessage)
+    {
+        return $this->sent_messages->removeElement($sentMessage);
+    }
+
+    /**
+     * Get sentMessages.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSentMessages()
+    {
+        return $this->sent_messages;
     }
 }
