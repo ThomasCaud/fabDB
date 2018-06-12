@@ -52,7 +52,7 @@ class Skill
 
     /**
      * @Groups({"skill","user"})
-     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\SkillTree", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\SkillTree", mappedBy="parent", cascade={"merge", "persist"}, orphanRemoval=true)
      */
     private $children;
 

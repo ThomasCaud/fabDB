@@ -58,6 +58,22 @@ class SkillController extends AbstractController
         return $this;
     }
 
+    private function addChildren(Skill $parent, $children_id)
+    {
+        if(null !== $children_id) {
+            foreach($children_id as $child_id) {
+                $child_id = ((array)$child_id)["id"];
+
+                $child = $this->getDoctrine()->getRepository('ApiBundle:Skill')->find($child_id);
+                if($child != null) {
+                    $this->addParent($parent, $child);
+                } else {
+                    throw new BadRequestException("The skill (id " . $child_id . ") doesn't exist.");
+                }
+            }
+        }
+    }
+
     /**
      * @Rest\Post(
      *      path = "/skills"
@@ -81,28 +97,14 @@ class SkillController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
 
-        // Add children
-        $children_id = $req->get('children_id');
-        if(null !== $children_id) {
-            foreach($children_id as $child_id) {
-                $child_id = ((array)$child_id)["id"];
-
-                $child = $this->getDoctrine()->getRepository('ApiBundle:Skill')->find($child_id);
-                if($child != null) {
-                    $this->addParent($data, $child);
-                } else {
-                    throw new BadRequestException("The skill (id " . $child_id . ") doesn't exist.");
-                }
-            }
-        }
-
+        $this->addChildren($data, $req->get('children_id'));
 
         $em->flush();
         return self::createResponse($data);
     }
 
     /**
-     * @Rest\Get(
+     * @Rest\Put(
      *      path = "/skills/{id}",
      * )
      * @SWG\Response(
@@ -116,6 +118,29 @@ class SkillController extends AbstractController
      */
     public function updateAction(Request $req, Skill $data)
     {
+        if($this->isString($req, 'title')) {
+            $data->setTitle($req->get('title'));
+        }
+
+        if($this->isString($req, 'description')) {
+            $data->setDescription($req->get('description'));
+        }
+
+        if($this->isString($req, 'detail')) {
+            $data->setDetail($req->get('detail'));
+        }
+
+        if($this->isInteger($req, 'level_max')) {
+            $data->setLevelMax($req->get('level_max'));
+        }
+
+        $data->getChildren()->clear();
+        $this->addChildren($data, $req->get('children_id'));
+
+        $em = $this->getDoctrine()->getManager();
+        $em->merge($data);
+        $em->flush();
+
         return self::createResponse($data);
     }
 
