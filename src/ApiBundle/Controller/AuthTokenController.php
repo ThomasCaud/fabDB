@@ -64,16 +64,4 @@ class AuthTokenController extends AbstractController
 
         return self::createResponse($authToken);    
     }
-
-    /**
-     * @Rest\Get(
-     *      path = "/auth-token"
-     * )
-     */
-    public function getAuthTokensAction()
-    {
-        $authTokens = $this->getDoctrine()->getRepository('ApiBundle:AuthToken')->findAll();
-        
-        return self::createResponse($authTokens);
-    }
 }
