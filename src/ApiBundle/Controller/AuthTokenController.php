@@ -54,6 +54,16 @@ class AuthTokenController extends AbstractController
             throw new BadRequestException("Invalid credentials.");  
         }
 
+        $authToken = new AuthToken();
+        $authToken->setValue(base64_encode(random_bytes(50)));
+        $authToken->setCreatedAt(new \DateTime('now'));
+        $authToken->setAuth($auth);
+
+        $em->persist($authToken);
+        $em->flush();
+
+        return self::createResponse($authToken);
+
         //if(isset($body['usersFablabs']) && count($body['usersFablabs']) > 0) {
         //    $fablabsRaw = $body['usersFablabs'];
 //
@@ -73,6 +83,6 @@ class AuthTokenController extends AbstractController
         //$em->persist($user);
         //$em->flush();
 
-        return self::createResponse($user);
+        
     }
 }

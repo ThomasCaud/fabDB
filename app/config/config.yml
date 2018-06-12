@@ -33,6 +33,17 @@ framework:
     templating:
         engines: ['twig']
 
+security:
+    providers:
+        in_memory:
+            memory: ~
+    firewalls:
+        main:
+            anonymous: ~
+    encoders:
+        ApiBundle\Entity\Auth:
+            algorithm: bcrypt
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
