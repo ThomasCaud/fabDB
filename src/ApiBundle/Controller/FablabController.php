@@ -46,7 +46,7 @@ class FablabController extends AbstractController
      *      path = "/fablabs/{id}",
      * )
      * @SWG\Tag(
-     *   name="A supprimer ?"
+     *   name="Common"
      * )
      * @SWG\Response(
      *     response=200,

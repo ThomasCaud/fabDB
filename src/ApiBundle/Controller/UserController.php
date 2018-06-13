@@ -312,6 +312,21 @@ class UserController extends AbstractController
             $user->setPosition($position);
         }
 
+        $usersFablabs = $req->get('usersFablabs');
+        if(null !== $usersFablabs) {
+            $user->getUsersFablabs()->clear();
+            foreach($usersFablabs as $fablabRaw) {
+                $id = $fablabRaw["id"];
+
+                $fablab = $this->getDoctrine()->getRepository('ApiBundle:Fablab')->find($id);
+                if($fablab != null) {
+                    $this->addFablab($user, $fablab);
+                } else {
+                    throw new BadRequestException("The fablab (id " . $id . ") doesn't exist.");
+                }
+            }
+        }
+
         $em->merge($user);
         $em->flush();
 
