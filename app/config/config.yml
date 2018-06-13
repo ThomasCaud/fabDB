@@ -35,10 +35,20 @@ framework:
 
 security:
     providers:
-        in_memory:
-            memory: ~
+        auth_token_user_provider:
+            id: auth_token_user_provider
     firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
         main:
+            pattern: ^/
+            stateless: true
+            simple_preauth:
+                authenticator: auth_token_authenticator
+            provider: auth_token_user_provider
             anonymous: ~
     encoders:
         ApiBundle\Entity\Auth:
@@ -103,8 +113,10 @@ fos_rest:
             - { path: '^/', priorities: ['json'], fallback_format: 'json' }
     exception:
         enabled: true
+        messages:
+            Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException: true
         codes:
-            ApiBundle\Exception\AuthenticationException: 401
+            Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException: 401
             ApiBundle\Exception\BadRequestException: 400
 
 assetic:
@@ -117,3 +129,21 @@ jms_serializer:
     handlers:
         datetime:
             default_format: 'Y-m-d\TH:i:s'
+
+services:
+    auth_token_user_provider:
+        class: ApiBundle\Security\AuthTokenUserProvider
+        arguments: ["@auth_token_repository", "@user_repository"]
+        public:    false
+    auth_token_repository:
+        class:   Doctrine\ORM\EntityManager
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        arguments: ["ApiBundle:AuthToken"]
+    user_repository:
+        class:   Doctrine\ORM\EntityManager
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        arguments: ["ApiBundle:Auth"]
+    auth_token_authenticator:
+        class:     ApiBundle\Security\AuthTokenAuthenticator
+        arguments: ["@security.http_utils"]
+        public:    false
