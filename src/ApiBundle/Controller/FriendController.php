@@ -16,6 +16,21 @@ class FriendController extends AbstractController
     }
 
     /**
+     * @Rest\Options(
+     *      path = "/friends"
+     * )
+     *
+     * @SWG\Response(
+     *      response = 201,
+     *      description="Returned when created"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Get(
      *      path = "/friends"
      * )
@@ -40,31 +55,8 @@ class FriendController extends AbstractController
     }
 
     /**
-     * @Rest\Options(
+     * @Rest\Post(
      *      path = "/friends"
-     * )
-     *
-     * @SWG\Response(
-     *      response = 201,
-     *      description="Returned when created"
-     * )
-     * @SWG\Response(
-     *      response = 400,
-     *      description="Returned when a violation is raised by validation"
-     * )
-     */
-    public function optionsAction(Request $req)
-    {
-        return self::createResponse([]);
-    }
-
-
-    /**
-     * @Rest\Route(
-     *   "/friends", 
-     *   methods = { 
-     *     Request::METHOD_POST,
-     *   }
      * )
      *
      * @ParamConverter("data", class="ApiBundle\Entity\Friend", converter="fos_rest.request_body")

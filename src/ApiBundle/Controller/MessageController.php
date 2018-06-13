@@ -16,6 +16,21 @@ class MessageController extends AbstractController
     }
 
     /**
+     * @Rest\Options(
+     *      path = "/messages"
+     * )
+     *
+     * @SWG\Response(
+     *      response = 201,
+     *      description="Returned when created"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Get(
      *      path = "/messages"
      * )
