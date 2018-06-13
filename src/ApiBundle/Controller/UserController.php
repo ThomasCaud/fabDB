@@ -22,7 +22,9 @@ class UserController extends AbstractController
      * @Rest\Options(
      *      path = "/users"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
      * @SWG\Response(
      *      response = 201,
      *      description="Returned when created"
@@ -37,6 +39,9 @@ class UserController extends AbstractController
      * @Rest\Get(
      *      path = "/users"
      * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
      * @SWG\Response(
      *     response=200,
      *     description="Returns users",
@@ -66,6 +71,9 @@ class UserController extends AbstractController
      * @Rest\Get(
      *      path = "/users/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
      * @SWG\Response(
      *     response=200,
      *     description="Return the user data",
@@ -111,6 +119,9 @@ class UserController extends AbstractController
      * @Rest\Post(
      *      path = "/users",
      * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
      * @ParamConverter("user", class="ApiBundle\Entity\User", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
@@ -176,6 +187,9 @@ class UserController extends AbstractController
      * @Rest\Put(
      *      path = "/users/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
      * @SWG\Response(
      *      response = 200,
      *      description="Returned when updated"

@@ -19,7 +19,9 @@ class WebsiteController extends AbstractController
      * @Rest\Get(
      *      path = "/websites"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns websites",
@@ -45,6 +47,9 @@ class WebsiteController extends AbstractController
      * @Rest\Post(
      *      path = "/websites"
      * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )
      * @ParamConverter("data", class="ApiBundle\Entity\Website", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
@@ -69,6 +74,9 @@ class WebsiteController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/websites/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
      * )
      * @SWG\Response(
      *      response = 200,

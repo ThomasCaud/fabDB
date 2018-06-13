@@ -19,7 +19,9 @@ class SkillDomainController extends AbstractController
      * @Rest\Get(
      *      path = "/skill-domains"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns skill domains",
@@ -45,6 +47,9 @@ class SkillDomainController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/skill-domains"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\SkillDomain", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -82,6 +87,9 @@ class SkillDomainController extends AbstractController
      * @Rest\Put(
      *      path = "/skill-domains/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )
      * @SWG\Response(
      *      response = 200,
      *      description="Returned when updated"
@@ -114,6 +122,9 @@ class SkillDomainController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/skill-domains/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
      * )
      * @SWG\Response(
      *      response = 200,

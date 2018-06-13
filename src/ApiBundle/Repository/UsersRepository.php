@@ -10,7 +10,7 @@ namespace ApiBundle\Repository;
  */
 class UsersRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getAll()
+	public function getAllMakers()
 	{
 		$query = $this->getEntityManager()->createQueryBuilder('ca1')
 	        ->add('select', 'user')

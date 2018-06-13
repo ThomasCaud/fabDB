@@ -16,7 +16,9 @@ class MakerController extends AbstractController
      * @Rest\Get(
      *      path = "/makers"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns makers",
@@ -39,7 +41,7 @@ class MakerController extends AbstractController
             ->getManager()
             ->getRepository('ApiBundle:User');
 
-        $makers = $repository->getAll();        
+        $makers = $repository->getAllMakers();        
         
         return self::createResponse($makers);
     }

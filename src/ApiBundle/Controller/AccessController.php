@@ -19,7 +19,9 @@ class AccessController extends AbstractController
      * @Rest\Get(
      *      path = "/access"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe YS",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns access",
@@ -44,6 +46,9 @@ class AccessController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/access"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe YS",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\Access", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -92,6 +97,9 @@ class AccessController extends AbstractController
      * @Rest\Put(
      *      path = "/access",
      * )
+     * @SWG\Tag(
+     *   name="Groupe YS",
+     * )
      * @SWG\Response(
      *      response = 200,
      *      description="Returned when updated"
@@ -134,6 +142,9 @@ class AccessController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/access",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe YS",
      * )
      * @SWG\Response(
      *      response = 200,

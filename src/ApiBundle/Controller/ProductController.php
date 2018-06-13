@@ -19,7 +19,9 @@ class ProductController extends AbstractController
      * @Rest\Get(
      *      path = "/products"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns products",
@@ -58,6 +60,9 @@ class ProductController extends AbstractController
      * @Rest\Get(
      *      path = "/products/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Return the product data",
@@ -84,6 +89,9 @@ class ProductController extends AbstractController
      * @Rest\Post(
      *      path = "/products",
      * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @ParamConverter("data", class="ApiBundle\Entity\Product", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
@@ -107,6 +115,9 @@ class ProductController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/products/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @SWG\Response(
      *      response = 200,
@@ -167,6 +178,9 @@ class ProductController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/products/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @SWG\Response(
      *      response = 200,

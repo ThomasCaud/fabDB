@@ -18,7 +18,9 @@ class ConnectedObjectController extends AbstractController
      * @Rest\Get(
      *      path = "/connected-objects"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe YS",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns connected objects",
@@ -43,6 +45,9 @@ class ConnectedObjectController extends AbstractController
      * @Rest\Post(
      *      path = "/connected-objects"
      * )
+     * @SWG\Tag(
+     *   name="Groupe YS",
+     * )
      * @ParamConverter("data", class="ApiBundle\Entity\ConnectedObject", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
@@ -66,6 +71,9 @@ class ConnectedObjectController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/connected-objects/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe YS",
      * )
      * @SWG\Response(
      *      response = 200,
@@ -95,6 +103,9 @@ class ConnectedObjectController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/connected-objects/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe YS",
      * )
      * @SWG\Response(
      *      response = 200,

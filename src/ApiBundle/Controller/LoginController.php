@@ -19,7 +19,9 @@ class LoginController extends AbstractController
      * @Rest\Post(
      *      path = "/login"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Return true if login and password match",

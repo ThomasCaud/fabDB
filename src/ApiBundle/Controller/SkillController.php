@@ -20,7 +20,9 @@ class SkillController extends AbstractController
      * @Rest\Get(
      *      path = "/skills"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns skills",
@@ -78,6 +80,9 @@ class SkillController extends AbstractController
      * @Rest\Post(
      *      path = "/skills"
      * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )
      * @ParamConverter("data", class="ApiBundle\Entity\Skill", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
@@ -115,6 +120,9 @@ class SkillController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/skills/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
      * )
      * @SWG\Response(
      *      response = 200,
@@ -164,6 +172,9 @@ class SkillController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/skills/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
      * )
      * @SWG\Response(
      *      response = 200,

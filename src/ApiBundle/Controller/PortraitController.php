@@ -19,6 +19,9 @@ class PortraitController extends AbstractController
      * @Rest\Post(
      *      path = "/portraits"
      * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )
      * @ParamConverter("data", class="ApiBundle\Entity\Portrait", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
@@ -42,6 +45,9 @@ class PortraitController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/portraits/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
      * )
      * @SWG\Response(
      *      response = 200,
