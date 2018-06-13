@@ -1,13 +1,14 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
+use ApiBundle\Entity\Category;
 use ApiBundle\Entity\Product;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Request;
 use ApiBundle\Exception\BadRequestException;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 
 class ProductController extends AbstractController
 {
@@ -167,6 +168,16 @@ class ProductController extends AbstractController
 
         if(null !== $req->get('category')) {
             $product->setCategory($req->get('category'));
+        }
+
+        $category_id = $req->get('category_id');
+        if(null !== $category_id) {
+            $category = $this->getDoctrine()->getRepository('ApiBundle:Category')->find($category_id);
+            if($category != null) {
+                $product->setCategory($category);
+            } else {
+                throw new BadRequestException("The category (id " . $category_id . ") doesn't exist.");
+            }
         }
 
         $em = $this->getDoctrine()->getManager();
