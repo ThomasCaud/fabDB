@@ -18,7 +18,7 @@ class FablabController extends AbstractController
      *      path = "/fablabs"
      * )
      * @SWG\Tag(
-     *   name="A supprimer ?"
+     *   name="Common"
      * )
      * @SWG\Response(
      *     response=200,
@@ -73,7 +73,7 @@ class FablabController extends AbstractController
      *      path = "/fablabs",
      * )
      * @SWG\Tag(
-     *   name="A supprimer ?"
+     *   name="Common"
      * )
      * @ParamConverter("fablab", class="ApiBundle\Entity\Fablab", converter="fos_rest.request_body")
      * @SWG\Response(

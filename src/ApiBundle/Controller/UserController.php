@@ -100,17 +100,19 @@ class UserController extends AbstractController
 
     private function addFablab(User $user, \ApiBundle\Entity\Fablab $fablab)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $userFablab = new UsersFabLab();
         $userFablab->setFablab($fablab);
+        $em->persist($user);
+        $em->flush();
         $userFablab->setUser($user);
+        $em->persist($userFablab);           
+
         $dt = new DateTime();
         $userFablab->setJoinedAt(new DateTime());
 
         $user->addUsersFablab($userFablab);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);             
-        $em->persist($userFablab);
 
         return $this;
     }
@@ -151,13 +153,10 @@ class UserController extends AbstractController
         }
 
         $em = $this->getDoctrine()->getManager();
-        $body = (array)json_decode($req->getContent());
+        $usersFablabs = $req->get('usersFablabs');
 
-        if(isset($body['usersFablabs']) && count($body['usersFablabs']) > 0) {
-            $fablabsRaw = $body['usersFablabs'];
-
-            foreach($fablabsRaw as $fablabRaw) {
-                $fablabRaw = (array)$fablabRaw;
+        if(null !== $usersFablabs) {
+            foreach($usersFablabs as $fablabRaw) {
                 $id = $fablabRaw["id"];
 
                 $fablab = $this->getDoctrine()->getRepository('ApiBundle:Fablab')->find($id);
