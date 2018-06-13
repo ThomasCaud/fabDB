@@ -270,6 +270,10 @@ class UserController extends AbstractController
             $user->setMoney($req->get('money'));
         }
 
+        if ($this->isInteger($req,'glenhs')) {
+            $user->setGlenhs($req->get('glenhs'));
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         if($this->isFloat($req, 'longitude', -180, 180) && $this->isFloat($req, 'latitude', 0, 90)) {
