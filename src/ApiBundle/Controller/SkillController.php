@@ -51,8 +51,8 @@ class SkillController extends AbstractController
      *      path = "/skills/{id}",
      * )
      * @SWG\Tag(
-     *   name="Common",
-     * )   
+     *   name="Groupe DDT",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Return the skill data",
