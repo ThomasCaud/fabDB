@@ -46,6 +46,35 @@ class SkillController extends AbstractController
         return self::createResponse($data);
     }
 
+    /**
+     * @Rest\Get(
+     *      path = "/skills/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
+     * @SWG\Response(
+     *     response=200,
+     *     description="Return the skill data",
+     *     @SWG\Schema(
+     *          type="object",
+     *          @SWG\Property(property="id", type="integer"),
+     *          @SWG\Property(property="title", type="string"),
+     *          @SWG\Property(property="description", type="string"),
+     *          @SWG\Property(property="detail", type="string"),
+     *          @SWG\Property(property="level", type="string")
+     *     )
+     * )
+     * @SWG\Response(
+     *      response = 404,
+     *      description="Returned when the skill ID doesn't exist"
+     * )
+     */
+    public function getAction(Skill $skill)
+    {
+        return self::createResponse($skill);
+    }
+
     private function addParent(Skill $parent, Skill $child)
     {
         $skillTree = new SkillTree();
