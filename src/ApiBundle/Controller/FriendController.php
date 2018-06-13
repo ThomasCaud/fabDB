@@ -40,12 +40,14 @@ class FriendController extends AbstractController
     }
 
     /**
-     * @Rest\Post(
-     *      path = "/friends"
+     * @Rest\Route(
+     *   "/friends", 
+     *   methods = { 
+     *     Request::METHOD_POST,
+     *     Request::METHOD_OPTIONS,
+     *   }
      * )
-     * @Rest\Options(
-     *      path = "/friends"
-     * )
+     *
      * @ParamConverter("data", class="ApiBundle\Entity\Friend", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
