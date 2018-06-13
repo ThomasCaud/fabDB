@@ -15,7 +15,7 @@ class ConnectedObject
 {
     /**
      * @var int
-     * @Groups({"connectedObject","user","access"})
+     * @Groups({"connectedObject","user","access","connectedobjects"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,7 +24,7 @@ class ConnectedObject
 
     /**
      * @var string
-     * @Groups({"connectedObject","user"})
+     * @Groups({"connectedObject","user","connectedobjects"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
