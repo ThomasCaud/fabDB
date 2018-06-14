@@ -103,9 +103,19 @@ class ProductController extends AbstractController
      *      description="Returned when a violation is raised by validation"
      * )
      */
-    public function createAction(Product $data)
+    public function createAction(Request $req, Product $data)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $category_id = $req->get('category_id');
+        if(null !== $category_id) {
+            $category = $this->getDoctrine()->getRepository('ApiBundle:Category')->find($category_id);
+            if($category != null) {
+                $data->setCategory($category);
+            } else {
+                throw new BadRequestException("The category (id " . $category_id . ") doesn't exist.");
+            }
+        }
 
         $em->persist($data);
         $em->flush();
