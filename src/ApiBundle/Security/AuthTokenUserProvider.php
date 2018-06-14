@@ -17,7 +17,7 @@ class AuthTokenUserProvider implements UserProviderInterface
     public function __construct(EntityRepository $authTokenRepository, EntityRepository $authRepository)
     {
         $this->authTokenRepository = $authTokenRepository;
-        $this->userRepository = $userRepository;
+        $this->authRepository = $authRepository;
     }
 
     public function getAuthToken($authTokenHeader)
