@@ -25,21 +25,20 @@ class AuthToken
 
     /**
      * @var string
-     * @Groups({"auth"})
+     * @Groups({"common"})
      * @ORM\Column(name="value", type="string", length=255)
      */
     private $value;
 
     /**
      * @var datetime
-     * @Groups({"auth"})
+     * @Groups({"common"})
      * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var Auth
-     * @Groups({"auth"})
      * @ORM\ManyToOne(targetEntity="Auth")
      */
     private $auth;
