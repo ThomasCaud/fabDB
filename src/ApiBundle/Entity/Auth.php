@@ -25,7 +25,6 @@ class Auth implements UserInterface
 
     /**
      * @var string
-     * @Groups({"auth"})
      * @ORM\Column(name="login", type="string", length=255, unique=true)
      */
     private $login;
