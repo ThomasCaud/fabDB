@@ -29,13 +29,14 @@ class LoginController extends AbstractController
      */
     public function loginAction(Request $req)
     {
-        $body = (array)json_decode($req->getContent());
+        $login = $req->get('login');
+        $password = $req->get('password');
 
-        if(!isset($body['login'])) {
+        if(null == $login) {
             throw new AuthenticationException('login is mandatory');
         }
 
-        if(!isset($body['password'])) {
+        if(null == $password) {
             throw new AuthenticationException('password is mandatory');
         }
 
@@ -44,8 +45,17 @@ class LoginController extends AbstractController
             ->getManager()
             ->getRepository('ApiBundle:User');
 
-        $makers = $repository->connect($body['login'], $body['password']);        
-        
-        return self::createResponse($makers);
+        $user = $repository->findOneBy(
+            Array(
+                "login" => $login,
+                "password" => $password
+            )
+        );
+
+        if($user == null) {
+            throw new AuthenticationException("login doesn't exist or login-password combination doesn't matched");
+        }
+
+        return self::createResponse($user);
     }
 }
