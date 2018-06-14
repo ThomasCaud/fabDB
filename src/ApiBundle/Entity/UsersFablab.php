@@ -16,13 +16,12 @@ class UsersFablab
 {
     /**
      * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Fablab", inversedBy="fablab", cascade="persist")
-     * @Groups({"user"})
+     * @Groups({"marketplace","usersprofile","userscommunication"})
      */
     private $fablab;
 
     /**
      * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="user", cascade="persist")
-     * @Groups({"fablab"})
      */
     private $user;
 
@@ -30,7 +29,7 @@ class UsersFablab
      * @var date
      *
      * @ORM\Column(name="joined_at", type="date")
-     * @Groups({"user","fablab"})
+     * @Groups({"marketplace","usersprofile","userscommunication"})
      */
     private $joined_at;
 
@@ -38,7 +37,7 @@ class UsersFablab
      * @var string
      *
      * @ORM\Column(name="role", type="string", columnDefinition="ENUM('maker','client','admin')")
-     * @Groups({"user","fablab"})
+     * @Groups({"marketplace","usersprofile","userscommunication"})
      */
     private $role = 'client';
 
@@ -46,7 +45,7 @@ class UsersFablab
      * @var string
      *
      * @ORM\Column(name="status", type="string", columnDefinition="ENUM('member','secreatery', 'treasurer','president')")
-     * @Groups({"user","fablab"})
+     * @Groups({"marketplace","usersprofile","userscommunication"})
      */
     private $status = 'member';
 
