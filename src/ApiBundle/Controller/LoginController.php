@@ -11,9 +11,6 @@ use Swagger\Annotations as SWG;
 
 class LoginController extends AbstractController
 {
-    protected function getGroup() {
-        return "user";
-    }
 
     /**
      * @Rest\Post(

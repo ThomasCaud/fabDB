@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class SubsidiaryProfilController extends AbstractController
 {
-    protected function getGroup() {
-        return "subsidiaryProfil";
-    }
 
     /**
      * @Rest\Get(

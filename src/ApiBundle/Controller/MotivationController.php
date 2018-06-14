@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class MotivationController extends AbstractController
 {
-    protected function getGroup() {
-        return "motivation";
-    }
 
     /**
      * @Rest\Post(

@@ -7,9 +7,6 @@ use Swagger\Annotations as SWG;
 
 class CheckServicesController extends AbstractController
 {
-    protected function getGroup() {
-        return "checkservice";
-    }
 
     /**
      * @Route("/checkservices", methods={"GET"})

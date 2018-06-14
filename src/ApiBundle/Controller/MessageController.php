@@ -11,9 +11,6 @@ use Swagger\Annotations as SWG;
 
 class MessageController extends AbstractController
 {
-    protected function getGroup() {
-        return "message";
-    }
 
     /**
      * @Rest\Get(

@@ -7,12 +7,10 @@ use ApiBundle\Entity\ConnectedObject;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class ConnectedObjectController extends AbstractController
 {
-    protected function getGroup() {
-        return "connectedObject";
-    }
 
     /**
      * @Rest\Get(
@@ -35,7 +33,6 @@ class ConnectedObjectController extends AbstractController
     public function getAllAction()
     {
         $data = $this->getDoctrine()->getRepository('ApiBundle:ConnectedObject')->findAll();
-        
         return self::createResponse($data);
     }
 

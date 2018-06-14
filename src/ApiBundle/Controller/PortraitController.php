@@ -11,10 +11,7 @@ use ApiBundle\Exception\BadRequestException;
 
 class PortraitController extends AbstractController
 {
-    protected function getGroup() {
-        return "portrait";
-    }
-
+    
     /**
      * @Rest\Post(
      *      path = "/portraits"

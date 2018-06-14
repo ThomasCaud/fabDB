@@ -8,9 +8,6 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class MakerController extends AbstractController
 {
-    protected function getGroup() {
-        return "user";
-    }
 
     /**
      * @Rest\Get(

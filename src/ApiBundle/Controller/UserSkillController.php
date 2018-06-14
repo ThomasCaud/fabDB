@@ -12,9 +12,6 @@ use Swagger\Annotations as SWG;
 
 class UserSkillController extends AbstractController
 {
-    protected function getGroup() {
-        return "skill";
-    }
 
     /**
      * @Rest\Get(

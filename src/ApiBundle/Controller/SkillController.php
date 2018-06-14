@@ -12,10 +12,7 @@ use ApiBundle\Exception\BadRequestException;
 
 class SkillController extends AbstractController
 {
-    protected function getGroup() {
-        return "skill";
-    }
-
+    
     /**
      * @Rest\Get(
      *      path = "/skills"

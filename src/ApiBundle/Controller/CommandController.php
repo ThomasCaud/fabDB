@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class CommandController extends AbstractController
 {
-    protected function getGroup() {
-        return "command";
-    }
 
     /**
      * @Rest\Get(

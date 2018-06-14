@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class WebsiteAccountController extends AbstractController
 {
-    protected function getGroup() {
-        return "website";
-    }
 
     /**
      * @Rest\Post(

@@ -11,9 +11,6 @@ use Swagger\Annotations as SWG;
 
 class URLController extends AbstractController
 {
-    protected function getGroup() {
-        return "url";
-    }
 
     /**
      * @Rest\Get(

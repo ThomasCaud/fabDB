@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class PersonnalityController extends AbstractController
 {
-    protected function getGroup() {
-        return "personnality";
-    }
 
     /**
      * @Rest\Get(

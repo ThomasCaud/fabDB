@@ -13,9 +13,6 @@ use \Datetime;
 
 class AuthTokenController extends AbstractController
 {
-    protected function getGroup() {
-        return "auth";
-    }
 
     /**
      * @Rest\Post(

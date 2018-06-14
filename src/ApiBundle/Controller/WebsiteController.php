@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class WebsiteController extends AbstractController
 {
-    protected function getGroup() {
-        return "website";
-    }
 
     /**
      * @Rest\Get(

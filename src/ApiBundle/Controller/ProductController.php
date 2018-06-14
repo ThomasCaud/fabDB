@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class ProductController extends AbstractController
 {
-    protected function getGroup() {
-        return "all";
-    }
 
     /**
      * @Rest\Get(

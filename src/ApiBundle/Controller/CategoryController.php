@@ -9,9 +9,6 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class CategoryController extends AbstractController
 {
-    protected function getGroup() {
-        return "all";
-    }
 
     /**
      * @Rest\Get(

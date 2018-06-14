@@ -14,9 +14,6 @@ use \Datetime;
 
 class UserController extends AbstractController
 {
-    protected function getGroup() {
-        return "user";
-    }
 
     /**
      * @Rest\Get(

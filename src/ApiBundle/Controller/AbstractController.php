@@ -6,13 +6,39 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use JMS\Serializer\SerializationContext;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 abstract class AbstractController extends Controller
 {
     protected function createResponse($entities)
     {
+        $groups = ["common"];
+
+        // Récupération du groupe courant, si existant
+        $request = Request::createFromGlobals();
+        $authTokenHeader = $request->headers->get('X-Auth-Token');
+        
+        $login = "";
+        if($authTokenHeader) {
+            $authToken = $this->getDoctrine()->getRepository('ApiBundle:AuthToken')->findOneByValue($authTokenHeader);
+            if($authToken) { 
+                $login = $authToken->getAuth()->getLogin();
+                $groups[] = $login;
+            }
+        }
+
+        // Ajout de tous les groupes pour le compte root
+        if($login == "root") {
+            $groups[] = "connectedobjects";
+            $groups[] = "usersprofile";
+            $groups[] = "marketplace";
+            $groups[] = "blockchain";
+            $groups[] = "userscommunication";
+            $groups[] = "userskills";
+        }
+
         $context = new SerializationContext();
-        $context->setGroups([$this->getGroup()]);
+        $context->setGroups($groups);        
 
         $entities = $this->get('jms_serializer')->serialize(
             $entities,
@@ -78,6 +104,4 @@ abstract class AbstractController extends Controller
 
         return true;
     }
-
-    abstract protected function getGroup();
 }

@@ -11,9 +11,6 @@ use Swagger\Annotations as SWG;
 
 class FriendController extends AbstractController
 {
-    protected function getGroup() {
-        return "friend";
-    }
 
     /**
      * @Rest\Get(

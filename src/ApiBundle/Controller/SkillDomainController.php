@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class SkillDomainController extends AbstractController
 {
-    protected function getGroup() {
-        return "skill";
-    }
 
     /**
      * @Rest\Get(

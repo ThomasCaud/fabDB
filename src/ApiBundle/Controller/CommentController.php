@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class CommentController extends AbstractController
 {
-    protected function getGroup() {
-        return "comment";
-    }
 
     /**
      * @Rest\Get(

@@ -11,10 +11,7 @@ use Swagger\Annotations as SWG;
 
 class AccessController extends AbstractController
 {
-    protected function getGroup() {
-        return "access";
-    }
-
+    
     /**
      * @Rest\Get(
      *      path = "/access"

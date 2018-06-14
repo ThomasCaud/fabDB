@@ -11,9 +11,6 @@ use ApiBundle\Exception\BadRequestException;
 
 class FamilyMemberController extends AbstractController
 {
-    protected function getGroup() {
-        return "user";
-    }
 
     /**
      * @Rest\Post(
