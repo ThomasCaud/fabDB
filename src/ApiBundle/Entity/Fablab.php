@@ -16,7 +16,7 @@ class Fablab
 {
     /**
      * @var int
-     * @Groups({"user","fablab"})
+     * @Groups({"common"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -25,27 +25,26 @@ class Fablab
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"common"})
      * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"common"})
      * @ORM\Column(name="PC", type="string", length=255)
      */
     private $pc;
 
     /**
-     * @Groups({"fablab"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\UsersFablab", mappedBy="fablab")
      */
     private $users;
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"common"})
      * @ORM\Column(name="city", type="string", length=255)
      */
     private $city;
