@@ -15,19 +15,19 @@ class Access
 {
     /**
      * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="user", cascade="persist")
-     * @Groups({"access"})
+     * @Groups({"connectedobjects"})
      */
     private $user;
 
     /**
      * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\ConnectedObject", inversedBy="connectedObject", cascade="persist")
-     * @Groups({"access","user"})
+     * @Groups({"connectedobjects"})
      */
     private $connectedObject;
 
     /**
      * @var string
-     * @Groups({"access","user"})
+     * @Groups({"connectedobjects"})
      * @ORM\Column(name="type", type="string", columnDefinition="ENUM('normal','premium','admin')")
      */
     private $type;
