@@ -16,9 +16,29 @@ class UserController extends AbstractController
 {
 
     /**
+     * @Rest\Options(
+     *      path = "/users"
+     * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
+     * @SWG\Response(
+     *      response = 201,
+     *      description="Returned when created"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Get(
      *      path = "/users"
      * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
      * @SWG\Response(
      *     response=200,
      *     description="Returns users",
@@ -48,6 +68,9 @@ class UserController extends AbstractController
      * @Rest\Get(
      *      path = "/users/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
      * @SWG\Response(
      *     response=200,
      *     description="Return the user data",
@@ -74,17 +97,19 @@ class UserController extends AbstractController
 
     private function addFablab(User $user, \ApiBundle\Entity\Fablab $fablab)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $userFablab = new UsersFabLab();
         $userFablab->setFablab($fablab);
+        $em->persist($user);
+        $em->flush();
         $userFablab->setUser($user);
+        $em->persist($userFablab);           
+
         $dt = new DateTime();
         $userFablab->setJoinedAt(new DateTime());
 
         $user->addUsersFablab($userFablab);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);             
-        $em->persist($userFablab);
 
         return $this;
     }
@@ -93,6 +118,9 @@ class UserController extends AbstractController
      * @Rest\Post(
      *      path = "/users",
      * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
      * @ParamConverter("user", class="ApiBundle\Entity\User", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
@@ -122,13 +150,10 @@ class UserController extends AbstractController
         }
 
         $em = $this->getDoctrine()->getManager();
-        $body = (array)json_decode($req->getContent());
+        $usersFablabs = $req->get('usersFablabs');
 
-        if(isset($body['usersFablabs']) && count($body['usersFablabs']) > 0) {
-            $fablabsRaw = $body['usersFablabs'];
-
-            foreach($fablabsRaw as $fablabRaw) {
-                $fablabRaw = (array)$fablabRaw;
+        if(null !== $usersFablabs) {
+            foreach($usersFablabs as $fablabRaw) {
                 $id = $fablabRaw["id"];
 
                 $fablab = $this->getDoctrine()->getRepository('ApiBundle:Fablab')->find($id);
@@ -158,6 +183,9 @@ class UserController extends AbstractController
      * @Rest\Put(
      *      path = "/users/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
      * @SWG\Response(
      *      response = 200,
      *      description="Returned when updated"
@@ -267,6 +295,10 @@ class UserController extends AbstractController
             $user->setMoney($req->get('money'));
         }
 
+        if ($this->isInteger($req,'glenhs')) {
+            $user->setGlenhs($req->get('glenhs'));
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         if($this->isFloat($req, 'longitude', -180, 180) && $this->isFloat($req, 'latitude', 0, 90)) {
@@ -275,6 +307,21 @@ class UserController extends AbstractController
             $position->setLongitude($req->get('longitude'));
             $em->persist($position);
             $user->setPosition($position);
+        }
+
+        $usersFablabs = $req->get('usersFablabs');
+        if(null !== $usersFablabs) {
+            $user->getUsersFablabs()->clear();
+            foreach($usersFablabs as $fablabRaw) {
+                $id = $fablabRaw["id"];
+
+                $fablab = $this->getDoctrine()->getRepository('ApiBundle:Fablab')->find($id);
+                if($fablab != null) {
+                    $this->addFablab($user, $fablab);
+                } else {
+                    throw new BadRequestException("The fablab (id " . $id . ") doesn't exist.");
+                }
+            }
         }
 
         $em->merge($user);

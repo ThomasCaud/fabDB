@@ -16,7 +16,9 @@ class CommandController extends AbstractController
      * @Rest\Get(
      *      path = "/commands"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns commands",
@@ -47,6 +49,9 @@ class CommandController extends AbstractController
      * @Rest\Get(
      *      path = "/commands/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Return the command data",
@@ -75,6 +80,9 @@ class CommandController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/commands",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @ParamConverter("command", class="ApiBundle\Entity\Command", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -164,6 +172,9 @@ class CommandController extends AbstractController
      * @Rest\Put(
      *      path = "/commands/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *      response = 200,
      *      description="Returned when updated"
@@ -197,6 +208,9 @@ class CommandController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/commands/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @SWG\Response(
      *      response = 200,

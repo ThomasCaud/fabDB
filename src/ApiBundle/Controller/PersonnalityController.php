@@ -16,7 +16,9 @@ class PersonnalityController extends AbstractController
      * @Rest\Get(
      *      path = "/personnalities"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns personnalities",
@@ -45,6 +47,9 @@ class PersonnalityController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/personnalities",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\Personnality", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -86,6 +91,9 @@ class PersonnalityController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/personnalities/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
      * )
      * @SWG\Response(
      *      response = 200,

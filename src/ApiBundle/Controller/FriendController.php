@@ -13,10 +13,29 @@ class FriendController extends AbstractController
 {
 
     /**
+     * @Rest\Options(
+     *      path = "/friends"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe LENH",
+     * )
+     * @SWG\Response(
+     *      response = 201,
+     *      description="Returned when created"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Get(
      *      path = "/friends"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe LENH",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns friends",
@@ -39,6 +58,9 @@ class FriendController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/friends"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe LENH",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\Friend", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -85,6 +107,9 @@ class FriendController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/friends/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe LENH",
      * )
      * @SWG\Response(
      *      response = 200,

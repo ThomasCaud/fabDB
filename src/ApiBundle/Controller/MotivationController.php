@@ -16,6 +16,9 @@ class MotivationController extends AbstractController
      * @Rest\Post(
      *      path = "/motivations"
      * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )
      * @ParamConverter("data", class="ApiBundle\Entity\Motivation", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
@@ -39,6 +42,9 @@ class MotivationController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/motivations/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
      * )
      * @SWG\Response(
      *      response = 200,

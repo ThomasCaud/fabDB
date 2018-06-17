@@ -27,7 +27,7 @@ class AuthTokenUserProvider implements UserProviderInterface
 
     public function loadUserByUsername($login)
     {
-        return $this->userRepository->findByLogin($login);
+        return $this->authRepository->findByLogin($login);
     }
 
     public function refreshUser(UserInterface $user)

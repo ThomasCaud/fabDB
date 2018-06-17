@@ -32,7 +32,7 @@ class Product
     /**
      * @var string|null
      * @Groups({"all","user"})
-     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @ORM\Column(name="description", type="string", length=500, nullable=true)
      */
     private $description;
 

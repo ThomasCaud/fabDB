@@ -1,13 +1,14 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
+use ApiBundle\Entity\Category;
 use ApiBundle\Entity\Product;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Request;
 use ApiBundle\Exception\BadRequestException;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 
 class ProductController extends AbstractController
 {
@@ -16,7 +17,9 @@ class ProductController extends AbstractController
      * @Rest\Get(
      *      path = "/products"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns products",
@@ -55,6 +58,9 @@ class ProductController extends AbstractController
      * @Rest\Get(
      *      path = "/products/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Return the product data",
@@ -81,6 +87,9 @@ class ProductController extends AbstractController
      * @Rest\Post(
      *      path = "/products",
      * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @ParamConverter("data", class="ApiBundle\Entity\Product", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,
@@ -91,9 +100,19 @@ class ProductController extends AbstractController
      *      description="Returned when a violation is raised by validation"
      * )
      */
-    public function createAction(Product $data)
+    public function createAction(Request $req, Product $data)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $category_id = $req->get('category_id');
+        if(null !== $category_id) {
+            $category = $this->getDoctrine()->getRepository('ApiBundle:Category')->find($category_id);
+            if($category != null) {
+                $data->setCategory($category);
+            } else {
+                throw new BadRequestException("The category (id " . $category_id . ") doesn't exist.");
+            }
+        }
 
         $em->persist($data);
         $em->flush();
@@ -104,6 +123,9 @@ class ProductController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/products/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @SWG\Response(
      *      response = 200,
@@ -155,6 +177,16 @@ class ProductController extends AbstractController
             $product->setCategory($req->get('category'));
         }
 
+        $category_id = $req->get('category_id');
+        if(null !== $category_id) {
+            $category = $this->getDoctrine()->getRepository('ApiBundle:Category')->find($category_id);
+            if($category != null) {
+                $product->setCategory($category);
+            } else {
+                throw new BadRequestException("The category (id " . $category_id . ") doesn't exist.");
+            }
+        }
+
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
@@ -164,6 +196,9 @@ class ProductController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/products/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @SWG\Response(
      *      response = 200,

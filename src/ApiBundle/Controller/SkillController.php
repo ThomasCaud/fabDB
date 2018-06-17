@@ -17,7 +17,9 @@ class SkillController extends AbstractController
      * @Rest\Get(
      *      path = "/skills"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns skills",
@@ -39,6 +41,35 @@ class SkillController extends AbstractController
         $data = $this->getDoctrine()->getRepository('ApiBundle:Skill')->findAll();
         
         return self::createResponse($data);
+    }
+
+    /**
+     * @Rest\Get(
+     *      path = "/skills/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Return the skill data",
+     *     @SWG\Schema(
+     *          type="object",
+     *          @SWG\Property(property="id", type="integer"),
+     *          @SWG\Property(property="title", type="string"),
+     *          @SWG\Property(property="description", type="string"),
+     *          @SWG\Property(property="detail", type="string"),
+     *          @SWG\Property(property="level", type="string")
+     *     )
+     * )
+     * @SWG\Response(
+     *      response = 404,
+     *      description="Returned when the skill ID doesn't exist"
+     * )
+     */
+    public function getAction(Skill $skill)
+    {
+        return self::createResponse($skill);
     }
 
     private function addParent(Skill $parent, Skill $child)
@@ -74,6 +105,9 @@ class SkillController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/skills"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\Skill", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -112,6 +146,9 @@ class SkillController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/skills/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
      * )
      * @SWG\Response(
      *      response = 200,
@@ -161,6 +198,9 @@ class SkillController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/skills/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
      * )
      * @SWG\Response(
      *      response = 200,

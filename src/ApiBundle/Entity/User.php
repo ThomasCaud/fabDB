@@ -234,6 +234,13 @@ class User
     private $followers;
 
     /**
+     * @var int
+     * @Groups({"user"})
+     * @ORM\Column(name="glenhs", type="integer", length=1, options={"default":0}, nullable=true)
+     */
+    private $glenhs;
+
+    /**
      * Get id.
      *
      * @return int
@@ -1154,5 +1161,29 @@ class User
     public function getFollowers()
     {
         return $this->followers;
+    }
+
+    /**
+     * Set glenhs.
+     *
+     * @param int|null $glenhs
+     *
+     * @return User
+     */
+    public function setGlenhs($glenhs = null)
+    {
+        $this->glenhs = $glenhs;
+
+        return $this;
+    }
+
+    /**
+     * Get glenhs.
+     *
+     * @return int|null
+     */
+    public function getGlenhs()
+    {
+        return $this->glenhs;
     }
 }

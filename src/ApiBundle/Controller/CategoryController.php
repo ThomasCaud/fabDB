@@ -14,7 +14,9 @@ class CategoryController extends AbstractController
      * @Rest\Get(
      *      path = "/categories"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns categories",

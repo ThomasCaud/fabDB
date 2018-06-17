@@ -16,7 +16,9 @@ class CommentController extends AbstractController
      * @Rest\Get(
      *      path = "/comments"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns comments",
@@ -42,6 +44,9 @@ class CommentController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/comments",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\Comment", converter="fos_rest.request_body")
      * @SWG\Response(

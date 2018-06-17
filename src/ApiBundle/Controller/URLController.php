@@ -16,7 +16,9 @@ class URLController extends AbstractController
      * @Rest\Get(
      *      path = "/urls"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns URLs",
@@ -42,6 +44,9 @@ class URLController extends AbstractController
      * @Rest\Get(
      *      path = "/urls/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Return the URL data",
@@ -65,6 +70,9 @@ class URLController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/urls",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\URL", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -110,6 +118,9 @@ class URLController extends AbstractController
      * @Rest\Put(
      *      path = "/urls/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *      response = 200,
      *      description="Returned when updated"
@@ -152,6 +163,9 @@ class URLController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/urls/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @SWG\Response(
      *      response = 200,

@@ -10,7 +10,9 @@ class CheckServicesController extends AbstractController
 
     /**
      * @Route("/checkservices", methods={"GET"})
-     *
+     * @SWG\Tag(
+     *   name="Common",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns 'OK'. Created in order to test the good API access."

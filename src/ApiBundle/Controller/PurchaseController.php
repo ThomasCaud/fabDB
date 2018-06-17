@@ -16,7 +16,9 @@ class PurchaseController extends AbstractController
      * @Rest\Get(
      *      path = "/purchases"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns purchases",
@@ -42,6 +44,9 @@ class PurchaseController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/purchases",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\Purchase", converter="fos_rest.request_body")
      * @SWG\Response(

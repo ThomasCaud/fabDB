@@ -16,7 +16,9 @@ class SubsidiaryProfilController extends AbstractController
      * @Rest\Get(
      *      path = "/subsidiary-profils"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns subsidiary profils",
@@ -42,6 +44,9 @@ class SubsidiaryProfilController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/subsidiary-profils",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\SubsidiaryProfil", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -78,6 +83,9 @@ class SubsidiaryProfilController extends AbstractController
     /**
      * @Rest\Put(
      *      path = "/subsidiary-profils/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
      * )
      * @SWG\Response(
      *      response = 200,

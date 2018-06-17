@@ -16,6 +16,9 @@ class WebsiteAccountController extends AbstractController
      * @Rest\Post(
      *      path = "/website-accounts"
      * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )
      * @ParamConverter("data", class="ApiBundle\Entity\WebsiteAccount", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,

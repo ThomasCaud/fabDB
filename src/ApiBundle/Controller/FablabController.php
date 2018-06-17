@@ -14,7 +14,9 @@ class FablabController extends AbstractController
      * @Rest\Get(
      *      path = "/fablabs"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Common"
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns fab labs",
@@ -40,6 +42,9 @@ class FablabController extends AbstractController
      * @Rest\Get(
      *      path = "/fablabs/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Common"
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Return the fab lab data",
@@ -63,6 +68,9 @@ class FablabController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/fablabs",
+     * )
+     * @SWG\Tag(
+     *   name="Common"
      * )
      * @ParamConverter("fablab", class="ApiBundle\Entity\Fablab", converter="fos_rest.request_body")
      * @SWG\Response(

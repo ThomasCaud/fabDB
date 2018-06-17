@@ -17,7 +17,9 @@ class UserSkillController extends AbstractController
      * @Rest\Get(
      *      path = "/user-skills"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns skills for each user",
@@ -43,6 +45,9 @@ class UserSkillController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/user-skills"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\UserSkill", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -99,6 +104,9 @@ class UserSkillController extends AbstractController
      * @Rest\Put(
      *      path = "/user-skills",
      * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )
      * @SWG\Response(
      *      response = 200,
      *      description="Returned when updated"
@@ -152,6 +160,9 @@ class UserSkillController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/user-skills",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
      * )
      * @SWG\Response(
      *      response = 200,
