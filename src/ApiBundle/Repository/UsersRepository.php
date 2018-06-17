@@ -10,7 +10,7 @@ namespace ApiBundle\Repository;
  */
 class UsersRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getAll()
+	public function getAllMakers()
 	{
 		$query = $this->getEntityManager()->createQueryBuilder('ca1')
 	        ->add('select', 'user')
@@ -19,20 +19,5 @@ class UsersRepository extends \Doctrine\ORM\EntityRepository
 	        ->getQuery();
 
     	return $query->getResult();
-	}
-
-	public function connect($login, $password)
-	{
-		$count = $this->getEntityManager()->createQueryBuilder()
-		->select('count(user)')
-		->add('from','ApiBundle:User user')
-        ->where('user.login LIKE :login')
-        ->setParameter('login', '%'.$login.'%')
-        ->andWhere('user.password LIKE :password')
-        ->setParameter('password', '%'.$password.'%')
-		->getQuery()
-		->getSingleScalarResult();
-
-		return intval($count) == 1;
 	}
 }

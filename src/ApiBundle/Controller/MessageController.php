@@ -16,10 +16,29 @@ class MessageController extends AbstractController
     }
 
     /**
+     * @Rest\Options(
+     *      path = "/messages"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe LENH",
+     * )
+     * @SWG\Response(
+     *      response = 201,
+     *      description="Returned when created"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Get(
      *      path = "/messages"
      * )
-     *
+     * @SWG\Tag(
+     *   name="Groupe LENH",
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns messages",
@@ -43,6 +62,9 @@ class MessageController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/messages"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe LENH",
      * )
      * @ParamConverter("data", class="ApiBundle\Entity\Message", converter="fos_rest.request_body")
      * @SWG\Response(
@@ -98,6 +120,9 @@ class MessageController extends AbstractController
      * @Rest\Put(
      *      path = "/messages/{id}",
      * )
+     * @SWG\Tag(
+     *   name="Groupe LENH",
+     * )
      * @SWG\Response(
      *      response = 200,
      *      description="Returned when updated"
@@ -131,6 +156,9 @@ class MessageController extends AbstractController
     /**
      * @Rest\Delete(
      *      path = "/messages/{id}",
+     * )
+     * @SWG\Tag(
+     *   name="Groupe LENH",
      * )
      * @SWG\Response(
      *      response = 200,

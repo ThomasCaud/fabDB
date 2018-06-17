@@ -58,6 +58,7 @@ security:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    cache: false
 
 # Doctrine Configuration
 doctrine:

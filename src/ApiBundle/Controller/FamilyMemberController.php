@@ -19,6 +19,9 @@ class FamilyMemberController extends AbstractController
      * @Rest\Post(
      *      path = "/family-members"
      * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )
      * @ParamConverter("data", class="ApiBundle\Entity\FamilyMember", converter="fos_rest.request_body")
      * @SWG\Response(
      *      response = 201,

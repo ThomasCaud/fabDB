@@ -44,6 +44,12 @@ class SkillDomain
     private $detail;
 
     /**
+     * @Groups({"skill"})
+     * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Skill", mappedBy="domain")
+     */
+    private $skills;
+
+    /**
      * Get id.
      *
      * @return int
