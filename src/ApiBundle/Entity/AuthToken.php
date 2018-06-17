@@ -39,7 +39,6 @@ class AuthToken
 
     /**
      * @var Auth
-     * @Groups({"auth"})
      * @ORM\ManyToOne(targetEntity="Auth")
      */
     private $auth;
