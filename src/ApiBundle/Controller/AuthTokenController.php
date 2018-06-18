@@ -18,6 +18,23 @@ class AuthTokenController extends AbstractController
     }
 
     /**
+     * @Rest\Options(
+     *      path = "/auth-token"
+     * )
+     * @SWG\Tag(
+     *   name="common",
+     * )
+     * @SWG\Response(
+     *      response = 201,
+     *      description="Returned when created"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Post(
      *      path = "/auth-token",
      * )
