@@ -17,7 +17,7 @@ class User
 {
     /**
      * @var int
-     * @Groups({"user","fablab", "command","comment", "access","skill", "message","friend"})
+     * @Groups({"common"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,216 +26,216 @@ class User
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"common"})
      * @ORM\Column(name="fname", type="string", length=255)
      */
     protected $fname;
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"common"})
      * @ORM\Column(name="lname", type="string", length=255)
      */
     protected $lname;
 
     /**
      * @var string
-     * @Groups({"user","fablab"})
+     * @Groups({"common"})
      * @ORM\Column(name="email", nullable=true, type="string", unique=true)
      */
     private $email;
 
     /**
      * @var string
-     * @Groups({"user","fablab","skill","friend"})
+     * @Groups({"common"})
      * @ORM\Column(name="login", type="string", unique=true)
      */
     private $login;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"usersprofile","userscommunication","marketplace"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\UsersFablab", mappedBy="user")
      */
     private $usersFablabs;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"connectedobjects"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Access", mappedBy="user")
      */
     private $access;
 
     /**
      * @var float
-     * @Groups({"user"})
+     * @Groups({"marketplace","blockchain","userscommunication"})
      * @ORM\Column(name="note", type="float", options={"default":0.0}, nullable=true)
      */
     private $note;
 
     /**
      * @var int
-     * @Groups({"user"})
+     * @Groups({"marketplace","userscommunication"})
      * @ORM\Column(name="current_reward_points", type="integer", options={"default":0}, nullable=true)
      */
     private $current_reward_points;
 
     /**
      * @var int
-     * @Groups({"user"})
+     * @Groups({"marketplace","userscommunication"})
      * @ORM\Column(name="total_reward_points", type="integer", options={"default":0}, nullable=true)
      */
     private $total_reward_points;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"marketplace"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Product", cascade={"persist", "remove"}, mappedBy="maker")
      */
     protected $productsCreated;
 
     /**
      * @var string|null
-     * @Groups({"user"})
+     * @Groups({"blockchain"})
      * @ORM\Column(name="wallet_address", type="string", length=150, nullable=true, unique=true)
      */
     protected $wallet_address;
 
     /**
      * @var string|null
-     * @Groups({"user"})
+     * @Groups({"blockchain"})
      * @ORM\Column(name="private_key", type="string", length=150, nullable=true)
      */
     protected $private_key;
 
     /**
      * @var string|null
-     * @Groups({"user"})
+     * @Groups({"marketplace"})
      * @ORM\Column(name="password", type="string", nullable=false)
      */
     protected $password;
 
     /**
-     * @Groups({"all","user"})
+     * @Groups({"marketplace"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Command", cascade={"persist", "remove"}, mappedBy="purchaser")
      */
     protected $commands;
 
     /**
      * @var string|null
-     * @Groups({"user"})
+     * @Groups({"userscommunication","usersprofile","blockchain","userskills"})
      * @ORM\Column(name="photo", type="string", nullable=true)
      */
     protected $photo;
 
     /**
      * @var \Date
-     * @Groups({"user"})
+     * @Groups({"userscommunication","usersprofile","blockchain"})
      * @ORM\Column(name="birthday", type="date", nullable=true)
      */
     private $birthday;
 
     /**
      * @var string
-     * @Groups({"user"})
+     * @Groups({"userscommunication","usersprofile","blockchain"})
      * @ORM\Column(name="sexe", type="string", columnDefinition="ENUM('M','F','O')", nullable=true)
      */
     private $sexe;
 
     /**
      * @var string
-     * @Groups({"user"})
+     * @Groups({"userscommunication","usersprofile","blockchain"})
      * @ORM\Column(name="marital_status", type="string", columnDefinition="ENUM('married','widowed','separated', 'divorced','single')", nullable=true)
      */
     private $marital_status;
 
     /**
      * @var string|null
-     * @Groups({"user"})
+     * @Groups({"userscommunication","usersprofile","blockchain"})
      * @ORM\Column(name="quote", type="string", nullable=true)
      */
     private $quote;
 
     /**
      * @var string|null
-     * @Groups({"user"})
+     * @Groups({"userscommunication","usersprofile","blockchain"})
      * @ORM\Column(name="biography", type="string", nullable=true)
      */
     private $biography;
 
     /**
      * @var int
-     * @Groups({"user"})
+     * @Groups({"marketplace","blockchain"})
      * @ORM\Column(name="money", type="integer", length=1, options={"default":0}, nullable=true)
      */
     private $money;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"usersprofile"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\FamilyMember", cascade={"persist", "remove"}, mappedBy="referrer")
      */
     protected $familyMembers;
 
     /** 
-     * @Groups({"user"})
+     * @Groups({"usersprofile"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\WebsiteAccount", cascade={"persist", "remove"}, mappedBy="owner")
      */
     protected $website_accounts;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"usersprofile"})
      * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Portrait", cascade={"persist"})
      */
     private $portrait;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"usersprofile"})
      * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Motivation", cascade={"persist"})
      */
     private $motivation;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"usersprofile","userscommunication"})
      * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Personnality", cascade={"persist"})
      */
     private $personnality;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"userskills"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\UserSkill", mappedBy="user")
      */
     private $skills;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"userscommunication"})
      * @ORM\OneToOne(targetEntity="ApiBundle\Entity\Position", cascade={"persist"})
      */
     private $position;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"userscommunication"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Message", mappedBy="to")
      */
     private $received_messages;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"userscommunication"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Message", mappedBy="from")
      */
     private $sent_messages;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"userscommunication"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Friend", mappedBy="user_a")
      */
     private $followings;
 
     /**
-     * @Groups({"user"})
+     * @Groups({"userscommunication"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Friend", mappedBy="user_b")
      */
     private $followers;
 
     /**
      * @var int
-     * @Groups({"user"})
+     * @Groups({"userscommunication"})
      * @ORM\Column(name="glenhs", type="integer", length=1, options={"default":0}, nullable=true)
      */
     private $glenhs;
