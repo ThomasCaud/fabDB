@@ -22,7 +22,7 @@ class AuthTokenController extends AbstractController
      *      path = "/auth-token"
      * )
      * @SWG\Tag(
-     *   name="common",
+     *   name="Common",
      * )
      * @SWG\Response(
      *      response = 201,
@@ -37,6 +37,13 @@ class AuthTokenController extends AbstractController
     /**
      * @Rest\Post(
      *      path = "/auth-token",
+     * )
+     * @SWG\Tag(
+     *   name="Common"
+     * )
+     * @SWG\Response(
+     *      response = 200,
+     *      description="Returned when created"
      * )
      */
     public function createAction(Request $req)
