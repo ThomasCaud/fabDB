@@ -22,9 +22,6 @@ class UserController extends AbstractController
      * @Rest\Options(
      *      path = "/users"
      * )
-     * @Rest\Options(
-     *      path = "/users/{id}"
-     * )
      * @SWG\Tag(
      *   name="Common",
      * )   
