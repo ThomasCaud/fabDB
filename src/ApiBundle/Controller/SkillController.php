@@ -1,19 +1,39 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
 use ApiBundle\Entity\Skill;
 use ApiBundle\Entity\SkillTree;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Request;
 use ApiBundle\Exception\BadRequestException;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 
 class SkillController extends AbstractController
 {
     protected function getGroup() {
         return "skill";
+    }
+
+    /**
+     * @Rest\Options(
+     *      path = "/skills"
+     * )
+     * @Rest\Options(
+     *      path = "/skills/{id}"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
     }
 
     /**

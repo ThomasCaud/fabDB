@@ -31,7 +31,7 @@ class AuthTokenController extends AbstractController
      */
     public function optionsAction(Request $req)
     {
-	return self::createResponse([]);
+	   return self::createResponse([]);
     }
 
     /**

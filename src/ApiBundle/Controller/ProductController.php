@@ -17,6 +17,26 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Rest\Options(
+     *      path = "/products"
+     * )
+     * @Rest\Options(
+     *      path = "/products/{id}"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Get(
      *      path = "/products"
      * )

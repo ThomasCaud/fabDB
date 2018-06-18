@@ -17,6 +17,23 @@ class UserSkillController extends AbstractController
     }
 
     /**
+     * @Rest\Options(
+     *      path = "/user-skills"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Get(
      *      path = "/user-skills"
      * )

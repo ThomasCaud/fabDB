@@ -80,4 +80,6 @@ abstract class AbstractController extends Controller
     }
 
     abstract protected function getGroup();
+
+    abstract public function optionsAction(Request $req);
 }

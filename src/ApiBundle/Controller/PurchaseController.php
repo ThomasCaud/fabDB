@@ -1,18 +1,35 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
-use ApiBundle\Entity\Purchase;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\Annotations as Rest;
 use ApiBundle\Exception\BadRequestException;
+use ApiBundle\Entity\Purchase;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 
 class PurchaseController extends AbstractController
 {
     protected function getGroup() {
         return "purchase";
+    }
+
+    /**
+     * @Rest\Options(
+     *      path = "/purchases"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
     }
 
     /**

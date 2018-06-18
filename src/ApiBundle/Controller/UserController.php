@@ -29,8 +29,8 @@ class UserController extends AbstractController
      *   name="Common",
      * )   
      * @SWG\Response(
-     *      response = 201,
-     *      description="Returned when created"
+     *      response = 200,
+     *      description="When a request can be executed"
      * )
      */
     public function optionsAction(Request $req)

@@ -16,6 +16,23 @@ class AccessController extends AbstractController
     }
 
     /**
+     * @Rest\Options(
+     *      path = "/access"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe YS",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Get(
      *      path = "/access"
      * )

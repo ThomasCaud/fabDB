@@ -1,15 +1,33 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
 use ApiBundle\Entity\User;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 
 class MakerController extends AbstractController
 {
     protected function getGroup() {
         return "user";
+    }
+
+    /**
+     * @Rest\Options(
+     *      path = "/makers"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
     }
 
     /**
