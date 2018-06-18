@@ -15,7 +15,7 @@ class WebsiteAccount
 {
     /**
      * @var int
-     * @Groups({"website","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,7 +24,7 @@ class WebsiteAccount
 
     /**
      * @var string
-     * @Groups({"website","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="account_url", type="string", length=255)
      */
     private $account_url;
@@ -35,7 +35,7 @@ class WebsiteAccount
     private $owner;
 
     /**
-     * @Groups({"website","user"})
+     * @Groups({"usersprofile"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Website")
      */
     private $website;

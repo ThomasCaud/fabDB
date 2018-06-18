@@ -15,7 +15,7 @@ class Friend
 {
     /**
      * @var int
-     * @Groups({"user","friend"})
+     * @Groups({"userscommunication"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,13 +23,13 @@ class Friend
     private $id;
 
     /**
-     * @Groups({"user","friend"})
+     * @Groups({"userscommunication"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="user_a", cascade="persist")
      */
     private $user_a;
 
     /**
-     * @Groups({"user","friend"})
+     * @Groups({"userscommunication"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="user_b", cascade="persist")
      */
     private $user_b;

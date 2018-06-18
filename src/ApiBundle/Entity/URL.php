@@ -15,7 +15,7 @@ class URL
 {
     /**
      * @var int
-     * @Groups({"all","url"})
+     * @Groups({"marketplace"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,20 +24,20 @@ class URL
 
     /**
      * @var string
-     * @Groups({"all","url"})
+     * @Groups({"marketplace"})
      * @ORM\Column(name="type", type="string", columnDefinition="ENUM('photo','video')")
      */
     private $type;
 
     /**
      * @var string
-     * @Groups({"all","url"})
+     * @Groups({"marketplace"})
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
 
     /**
-     * @Groups({"all","url"})
+     * @Groups({"marketplace"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Product")
      */
     private $product;

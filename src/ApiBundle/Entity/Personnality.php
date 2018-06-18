@@ -15,7 +15,7 @@ class Personnality
 {
     /**
      * @var int
-     * @Groups({"personnality","user"})
+     * @Groups({"usersprofile","userscommunication"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,48 +24,48 @@ class Personnality
 
     /**
      * @var int
-     * @Groups({"personnality","user"})
+     * @Groups({"usersprofile","userscommunication"})
      * @ORM\Column(name="mind", type="integer")
      */
     private $mind;
 
     /**
      * @var int
-     * @Groups({"personnality","user"})
+     * @Groups({"usersprofile","userscommunication"})
      * @ORM\Column(name="energy", type="integer")
      */
     private $energy;
 
     /**
      * @var int
-     * @Groups({"personnality","user"})
+     * @Groups({"usersprofile","userscommunication"})
      * @ORM\Column(name="nature", type="integer")
      */
     private $nature;
 
     /**
      * @var int
-     * @Groups({"personnality","user"})
+     * @Groups({"usersprofile","userscommunication"})
      * @ORM\Column(name="tactical", type="integer")
      */
     private $tactical;
 
     /**
      * @var int
-     * @Groups({"personnality","user"})
+     * @Groups({"usersprofile","userscommunication"})
      * @ORM\Column(name="identity", type="integer")
      */
     private $identity;
 
     /**
      * @var string
-     * @Groups({"personnality","user"})
+     * @Groups({"usersprofile","userscommunication"})
      * @ORM\Column(name="profil", type="string", columnDefinition="ENUM('analyst','diplomat','explorer','sentinel')", nullable=false)
      */
     private $profil;
 
     /**
-     * @Groups({"personnality","user"})
+     * @Groups({"usersprofile","userscommunication"})
      * @ORM\OneToOne(targetEntity="ApiBundle\Entity\SubsidiaryProfil", cascade={"persist"})
      */
     private $subprofil;

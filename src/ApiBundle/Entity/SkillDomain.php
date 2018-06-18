@@ -15,7 +15,7 @@ class SkillDomain
 {
     /**
      * @var int
-     * @Groups({"skill","user"})
+     * @Groups({"userskills"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,27 +24,27 @@ class SkillDomain
 
     /**
      * @var string
-     * @Groups({"skill"})
+     * @Groups({"userskills"})
      * @ORM\Column(name="title", type="string", length=255, unique=true)
      */
     private $title;
 
     /**
      * @var string
-     * @Groups({"skill"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
     /**
      * @var string
-     * @Groups({"skill"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="detail", type="string", length=255)
      */
     private $detail;
 
     /**
-     * @Groups({"skill"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Skill", mappedBy="domain")
      */
     private $skills;

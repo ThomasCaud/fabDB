@@ -15,7 +15,7 @@ class Skill
 {
     /**
      * @var int
-     * @Groups({"skill","user"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,40 +24,40 @@ class Skill
 
     /**
      * @var string
-     * @Groups({"skill","user"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="title", type="string", length=255, unique=true)
      */
     private $title;
 
     /**
      * @var string
-     * @Groups({"skill"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
     /**
      * @var string
-     * @Groups({"skill"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="detail", type="string", length=255)
      */
     private $detail;
 
     /**
      * @var int
-     * @Groups({"skill","user"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="level_max", type="integer")
      */
     private $level_max;
 
     /**
-     * @Groups({"skill"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\SkillTree", mappedBy="parent", cascade={"merge", "persist"}, orphanRemoval=true)
      */
     private $children;
 
     /**
-     * @Groups({"skill"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\SkillDomain")
      */
     private $domain;

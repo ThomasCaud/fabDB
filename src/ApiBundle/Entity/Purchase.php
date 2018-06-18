@@ -15,7 +15,7 @@ class Purchase
 {
     /**
      * @var int
-     * @Groups({"command", "purchase", "user"})
+     * @Groups({"marketplace"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,14 +24,14 @@ class Purchase
 
     /**
      * @var int
-     * @Groups({"command", "purchase", "user"})
+     * @Groups({"marketplace"})
      * @ORM\Column(name="quantity", type="integer")
      */
     private $quantity;
 
     /**
      * @var float
-     * @Groups({"command", "purchase", "user"})
+     * @Groups({"marketplace"})
      * @ORM\Column(name="price", type="float")
      */
     private $price;
@@ -43,7 +43,7 @@ class Purchase
     private $command;
 
     /**
-     * @Groups({"command","purchase","user"})
+     * @Groups({"marketplace"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Product")
      */
     private $product;

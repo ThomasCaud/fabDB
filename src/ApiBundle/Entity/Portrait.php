@@ -15,7 +15,7 @@ class Portrait
 {
     /**
      * @var int
-     * @Groups({"user","portrait"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,49 +24,49 @@ class Portrait
 
     /**
      * @var string|null
-     * @Groups({"user","portrait"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="about_me", type="string", length=255, nullable=true)
      */
     private $aboutMe;
 
     /**
      * @var string|null
-     * @Groups({"user","portrait"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="goal", type="string", length=255, nullable=true)
      */
     private $goal;
 
     /**
      * @var string|null
-     * @Groups({"user","portrait"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="fear", type="string", length=255, nullable=true)
      */
     private $fear;
 
     /**
      * @var string|null
-     * @Groups({"user","portrait"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="challenge", type="string", length=255, nullable=true)
      */
     private $challenge;
 
     /**
      * @var string|null
-     * @Groups({"user","portrait"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="frustration", type="string", length=255, nullable=true)
      */
     private $frustration;
 
     /**
      * @var string|null
-     * @Groups({"user","portrait"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="hobby", type="string", length=255, nullable=true)
      */
     private $hobby;
 
     /**
      * @var string|null
-     * @Groups({"user","portrait"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="other", type="string", length=255, nullable=true)
      */
     private $other;

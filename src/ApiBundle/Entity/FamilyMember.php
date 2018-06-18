@@ -15,7 +15,7 @@ class FamilyMember
 {
     /**
      * @var int
-     * @Groups({"familyMember","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,34 +24,34 @@ class FamilyMember
 
     /**
      * @var \DateTime
-     * @Groups({"familyMember"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="birthday", type="date")
      */
     private $birthday;
 
     /**
      * @var string
-     * @Groups({"familyMember"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="relationship", type="string", columnDefinition="ENUM('son','daughter','father','mother','other')")
      */
     private $relationship;
 
     /**
      * @var string
-     * @Groups({"familyMember"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="sexe", type="string", columnDefinition="ENUM('M','F','O')")
      */
     private $sexe;
 
     /**
-     * @Groups({"familyMember"})
+     * @Groups({"usersprofile"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User")
      * @ORM\JoinColumn(name="referrer_id", referencedColumnName="id", nullable=false)
      */
     private $referrer;
 
     /**
-     * @Groups({"familyMember"})
+     * @Groups({"usersprofile"})
      * @ORM\OneToOne(targetEntity="ApiBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(name="user_account_id", referencedColumnName="id", nullable=true)
      */

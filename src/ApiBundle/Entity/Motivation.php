@@ -15,7 +15,7 @@ class Motivation
 {
     /**
      * @var int
-     * @Groups({"motivation","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,56 +24,56 @@ class Motivation
 
     /**
      * @var int
-     * @Groups({"motivation","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="meaning", type="integer")
      */
     private $meaning;
 
     /**
      * @var int
-     * @Groups({"motivation","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="empowerment", type="integer")
      */
     private $empowerment;
 
     /**
      * @var int
-     * @Groups({"motivation","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="social_influence", type="integer")
      */
     private $socialInfluence;
 
     /**
      * @var int
-     * @Groups({"motivation","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="unpredictability", type="integer")
      */
     private $unpredictability;
 
     /**
      * @var int
-     * @Groups({"motivation","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="avoidance", type="integer")
      */
     private $avoidance;
 
     /**
      * @var int
-     * @Groups({"motivation","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="scarcity", type="integer")
      */
     private $scarcity;
 
     /**
      * @var int
-     * @Groups({"motivation","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="ownership", type="integer")
      */
     private $ownership;
 
     /**
      * @var int
-     * @Groups({"motivation","user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="accomplishment", type="integer")
      */
     private $accomplishment;

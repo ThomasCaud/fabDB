@@ -15,7 +15,7 @@ class Message
 {
     /**
      * @var int
-     * @Groups({"message","user"})
+     * @Groups({"userscommunication"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,13 +24,13 @@ class Message
 
     /**
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="from", cascade="persist")
-     * @Groups({"message","user"})
+     * @Groups({"userscommunication"})
      */
     private $from;
 
     /**
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="to", cascade="persist")
-     * @Groups({"message","user"})
+     * @Groups({"userscommunication"})
      */
     private $to;
 

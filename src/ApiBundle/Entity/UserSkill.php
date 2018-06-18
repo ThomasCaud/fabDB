@@ -15,26 +15,26 @@ class UserSkill
 {
     /**
      * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", inversedBy="user", cascade="persist")
-     * @Groups({"skill"})
+     * @Groups({"userskills"})
      */
     private $user;
 
     /**
      * @ORM\Id @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Skill", inversedBy="skill", cascade="persist")
-     * @Groups({"user","skill"})
+     * @Groups({"userskills","userscommunication"})
      */
     private $skill;
 
     /**
      * @var int
-     * @Groups({"skill","user"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="niveau", type="integer")
      */
     private $niveau;
 
     /**
      * @var \DateTime
-     * @Groups({"skill","user"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;

@@ -23,14 +23,14 @@ class Position
 
     /**
      * @var float
-     * @Groups({"user"})
+     * @Groups({"userscommunication"})
      * @ORM\Column(name="latitude", type="float")
      */
     private $latitude;
 
     /**
      * @var float
-     * @Groups({"user"})
+     * @Groups({"userscommunication"})
      * @ORM\Column(name="longitude", type="float")
      */
     private $longitude;

@@ -15,7 +15,7 @@ class SubsidiaryProfil
 {
     /**
      * @var int
-     * @Groups({"subsidiaryProfil","personnality", "user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,21 +24,21 @@ class SubsidiaryProfil
 
     /**
      * @var string
-     * @Groups({"subsidiaryProfil","personnality", "user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="name", type="string", columnDefinition="ENUM('avocat','logicien','architecte','commandant','innovateur','médiateur','protagoniste','inspirateur','logisticien','défenseur','directeur','consul', 'virtuose','aventurier','entrepreneur','amuseur')")
      */
     private $name;
 
     /**
      * @var string
-     * @Groups({"subsidiaryProfil","personnality", "user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="logo", type="string", length=255)
      */
     private $logo;
 
     /**
      * @var string
-     * @Groups({"subsidiaryProfil","personnality", "user"})
+     * @Groups({"usersprofile"})
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;

@@ -15,7 +15,7 @@ class SkillTree
 {
     /**
      * @var int
-     * @Groups({"skill","user"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,12 +24,13 @@ class SkillTree
 
     /**
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Skill", inversedBy="parent", cascade="persist")
+     * @Groups({"userskills","userscommunication"})
      */
     private $parent;
 
     /**
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Skill", inversedBy="child", cascade="persist")
-     * @Groups({"skill","user"})
+     * @Groups({"userskills","userscommunication"})
      */
     private $child;
 
