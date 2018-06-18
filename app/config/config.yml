@@ -115,6 +115,7 @@ fos_rest:
         enabled: true
         messages:
             Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException: true
+            ApiBundle\Exception\BadRequestException: true
         codes:
             Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException: 401
             ApiBundle\Exception\BadRequestException: 400

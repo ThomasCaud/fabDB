@@ -31,7 +31,7 @@ class AuthTokenController extends AbstractController
      */
     public function optionsAction(Request $req)
     {
-        return self::createResponse([]);
+	return self::createResponse([]);
     }
 
     /**
@@ -49,12 +49,12 @@ class AuthTokenController extends AbstractController
 
         if( !isset($password) || !isset($login) || empty($login) || empty($password) )
         {
-           throw new BadRequestException("The field 'login' and 'password' are required."); 
+           throw new BadRequestException("The field 'login' and 'password' are required.");
         }
 
         if( !$this->isString($req,"login") || !$this->isString($req,"password") )
         {
-           throw new BadRequestException("The field 'login' and 'password' must be string."); 
+           throw new BadRequestException("The field 'login' and 'password' must be string.");
         }
 
         $auth = $em->getRepository('ApiBundle:Auth')->findOneByLogin($login);
