@@ -32,8 +32,32 @@ class AuthTokenController extends AbstractController
     }
 
     /**
+     * @Rest\Options(
+     *      path = "/auth-token"
+     * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )
+     * @SWG\Response(
+     *      response = 201,
+     *      description="Returned when created"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+	   return self::createResponse([]);
+    }
+
+    /**
      * @Rest\Post(
      *      path = "/auth-token",
+     * )
+     * @SWG\Tag(
+     *   name="Common"
+     * )
+     * @SWG\Response(
+     *      response = 200,
+     *      description="Returned when created"
      * )
      */
     public function createAction(Request $req)
@@ -46,12 +70,12 @@ class AuthTokenController extends AbstractController
 
         if( !isset($password) || !isset($login) || empty($login) || empty($password) )
         {
-           throw new BadRequestException("The field 'login' and 'password' are required."); 
+           throw new BadRequestException("The field 'login' and 'password' are required.");
         }
 
         if( !$this->isString($req,"login") || !$this->isString($req,"password") )
         {
-           throw new BadRequestException("The field 'login' and 'password' must be string."); 
+           throw new BadRequestException("The field 'login' and 'password' must be string.");
         }
 
         $auth = $em->getRepository('ApiBundle:Auth')->findOneByLogin($login);

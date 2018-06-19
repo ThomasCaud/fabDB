@@ -1,16 +1,36 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
 use ApiBundle\Entity\SkillDomain;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Request;
 use ApiBundle\Exception\BadRequestException;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 
 class SkillDomainController extends AbstractController
 {
+
+    /**
+     * @Rest\Options(
+     *      path = "/skill-domains"
+     * )
+     * @Rest\Options(
+     *      path = "/skill-domains/{id}"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe DDT",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
 
     /**
      * @Rest\Get(

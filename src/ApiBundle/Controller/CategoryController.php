@@ -1,14 +1,32 @@
 <?php
 namespace ApiBundle\Controller;
 
+use ApiBundle\Entity\Comment;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Swagger\Annotations as SWG;
-use ApiBundle\Entity\Comment;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Request;
 
 class CategoryController extends AbstractController
 {
+
+    /**
+     * @Rest\Options(
+     *      path = "/categories"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe SAL",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
 
     /**
      * @Rest\Get(

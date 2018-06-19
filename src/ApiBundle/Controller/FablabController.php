@@ -1,14 +1,35 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
 use ApiBundle\Entity\Fablab;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 
 class FablabController extends AbstractController
 {
+
+    /**
+     * @Rest\Options(
+     *      path = "/fablabs"
+     * )
+     * @Rest\Options(
+     *      path = "/fablabs/{id}"
+     * )
+     * @SWG\Tag(
+     *   name="Common",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
 
     /**
      * @Rest\Get(

@@ -19,12 +19,15 @@ class UserController extends AbstractController
      * @Rest\Options(
      *      path = "/users"
      * )
+     * @Rest\Options(
+     *      path = "/users/{id}"
+     * )
      * @SWG\Tag(
      *   name="Common",
      * )   
      * @SWG\Response(
-     *      response = 201,
-     *      description="Returned when created"
+     *      response = 200,
+     *      description="When a request can be executed"
      * )
      */
     public function optionsAction(Request $req)

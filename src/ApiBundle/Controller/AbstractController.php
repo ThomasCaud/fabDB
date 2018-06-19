@@ -104,4 +104,6 @@ abstract class AbstractController extends Controller
 
         return true;
     }
+
+    abstract public function optionsAction(Request $req);
 }

@@ -1,16 +1,36 @@
 <?php
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
 use ApiBundle\Entity\Motivation;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Request;
 use ApiBundle\Exception\BadRequestException;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Swagger\Annotations as SWG;
 
 class MotivationController extends AbstractController
 {
+
+    /**
+     * @Rest\Options(
+     *      path = "/motivations"
+     * )
+     * @Rest\Options(
+     *      path = "/motivations/{id}"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )   
+     * @SWG\Response(
+     *      response = 200,
+     *      description="When a request can be executed"
+     * )
+     */
+    public function optionsAction(Request $req)
+    {
+        return self::createResponse([]);
+    }
 
     /**
      * @Rest\Post(
