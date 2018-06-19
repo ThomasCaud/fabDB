@@ -65,6 +65,7 @@ class Product
     private $publication;
 
     /**
+     * @Groups({"marketplace"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User")
      */
     private $maker;
