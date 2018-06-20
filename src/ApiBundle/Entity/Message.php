@@ -36,21 +36,21 @@ class Message
 
     /**
      * @var string
-     * @Groups({"message","user"})
+     * @Groups({"userscommunication"})
      * @ORM\Column(name="message", type="string", length=255)
      */
     private $message;
 
     /**
      * @var boolean
-     * @Groups({"message","user"})
+     * @Groups({"userscommunication"})
      * @ORM\Column(name="seen", type="boolean", length=255, options={"default":false})
      */
     private $seen;
 
     /**
      * @var \DateTime
-     * @Groups({"message","user"})
+     * @Groups({"userscommunication"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
