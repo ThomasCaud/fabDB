@@ -15,7 +15,7 @@ class SkillDomain
 {
     /**
      * @var int
-     * @Groups({"userskills"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,7 +24,7 @@ class SkillDomain
 
     /**
      * @var string
-     * @Groups({"userskills"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\Column(name="title", type="string", length=255, unique=true)
      */
     private $title;
