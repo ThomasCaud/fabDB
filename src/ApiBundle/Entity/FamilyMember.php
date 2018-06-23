@@ -32,7 +32,7 @@ class FamilyMember
     /**
      * @var string
      * @Groups({"usersprofile"})
-     * @ORM\Column(name="relationship", type="string", columnDefinition="ENUM('son','daughter','father','mother','other')")
+     * @ORM\Column(name="relationship", type="string", columnDefinition="ENUM('son','daughter','father','mother','brother','sister', 'other')")
      */
     private $relationship;
 
@@ -52,7 +52,7 @@ class FamilyMember
 
     /**
      * @Groups({"usersprofile"})
-     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User")
      * @ORM\JoinColumn(name="user_account_id", referencedColumnName="id", nullable=true)
      */
     private $user_account;
