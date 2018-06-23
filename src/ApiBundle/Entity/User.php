@@ -67,7 +67,7 @@ class User
 
     /**
      * @var float
-     * @Groups({"marketplace","blockchain","userscommunication"})
+     * @Groups({"marketplace","blockchain","userscommunication","marketplace-command"})
      * @ORM\Column(name="note", type="float", options={"default":0.0}, nullable=true)
      */
     private $note;
@@ -164,7 +164,7 @@ class User
 
     /**
      * @var int
-     * @Groups({"marketplace","blockchain"})
+     * @Groups({"marketplace","blockchain","marketplace-command"})
      * @ORM\Column(name="money", type="integer", length=1, options={"default":0}, nullable=true)
      */
     private $money;

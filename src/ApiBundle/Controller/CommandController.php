@@ -11,6 +11,9 @@ use Swagger\Annotations as SWG;
 
 class CommandController extends AbstractController
 {
+    private function getControllerName() {
+        return "-command";
+    }
 
     /**
      * @Rest\Options(
@@ -62,7 +65,7 @@ class CommandController extends AbstractController
     {
         $data = $this->getDoctrine()->getRepository('ApiBundle:Command')->findAll();
         
-        return self::createResponse($data);
+        return self::createResponse($data, $this->getControllerName());
     }
 
     /**
@@ -94,7 +97,7 @@ class CommandController extends AbstractController
      */
     public function getAction(Command $data)
     {
-        return self::createResponse($data);
+        return self::createResponse($data, $this->getControllerName());
     }
 
     /**
@@ -185,7 +188,7 @@ class CommandController extends AbstractController
 
         $em->flush();
 
-        return self::createResponse($command);
+        return self::createResponse($command, $this->getControllerName());
     }
 
     /**
@@ -222,7 +225,7 @@ class CommandController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        return self::createResponse($command);
+        return self::createResponse($command, $this->getControllerName());
     }
 
     /**
@@ -247,6 +250,6 @@ class CommandController extends AbstractController
         $em->remove($data);
         $em->flush();
 
-        return self::createResponse($data);
+        return self::createResponse($data, $this->getControllerName());
     }
 }

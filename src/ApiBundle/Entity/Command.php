@@ -15,7 +15,7 @@ class Command
 {
     /**
      * @var int
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,61 +24,61 @@ class Command
 
     /**
      * @var int
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\Column(name="lastDigitCard", type="integer")
      */
     private $lastDigitCard;
 
     /**
      * @var \DateTime
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var string
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\Column(name="status", type="string", columnDefinition="ENUM('pending','paid','cancelled')")
      */
     private $status;
 
     /**
      * @var string
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\Column(name="billingAddress", type="string", length=255)
      */
     private $billingAddress;
 
     /**
      * @var string
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\Column(name="deliveryAddress", type="string", length=255)
      */
     private $deliveryAddress;
 
     /**
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User")
      */
     private $purchaser;
 
     /**
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Purchase", cascade={"persist", "remove"}, mappedBy="command")
      */
     protected $purchases;
 
     /**
      * @var string
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\Column(name="delivery_method", type="string", columnDefinition="ENUM('colissimo','fablab')")
      */
     private $delivery_method;
 
     /**
      * @var string
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-command"})
      * @ORM\Column(name="payment_method", type="string", columnDefinition="ENUM('credit card','paypal','blockchain')")
      */
     private $payment_method;

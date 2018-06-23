@@ -15,7 +15,7 @@ class URL
 {
     /**
      * @var int
-     * @Groups({"marketplace","marketplace-product"})
+     * @Groups({"marketplace","marketplace-product","marketplace-command"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,14 +24,14 @@ class URL
 
     /**
      * @var string
-     * @Groups({"marketplace","marketplace-product"})
+     * @Groups({"marketplace","marketplace-product","marketplace-command"})
      * @ORM\Column(name="type", type="string", columnDefinition="ENUM('photo','video')")
      */
     private $type;
 
     /**
      * @var string
-     * @Groups({"marketplace","marketplace-product"})
+     * @Groups({"marketplace","marketplace-product","marketplace-command"})
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;

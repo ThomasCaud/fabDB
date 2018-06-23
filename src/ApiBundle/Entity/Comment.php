@@ -15,7 +15,7 @@ class Comment
 {
     /**
      * @var int
-     * @Groups({"marketplace","marketplace-product"})
+     * @Groups({"marketplace","marketplace-product","marketplace-command"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,27 +24,27 @@ class Comment
 
     /**
      * @var int
-     * @Groups({"marketplace","marketplace-product"})
+     * @Groups({"marketplace","marketplace-product","marketplace-command"})
      * @ORM\Column(name="note", type="integer")
      */
     private $note;
 
     /**
      * @var string|null
-     * @Groups({"marketplace","marketplace-product"})
+     * @Groups({"marketplace","marketplace-product","marketplace-command"})
      * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
     private $comment;
 
     /**
      * @var \DateTime
-     * @Groups({"marketplace","marketplace-product"})
+     * @Groups({"marketplace","marketplace-product","marketplace-command"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
-     * @Groups({"marketplace","marketplace-product"})
+     * @Groups({"marketplace","marketplace-product","marketplace-command"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User")
      * @ORM\JoinColumn(name="writer_id", referencedColumnName="id", nullable=false)
      */

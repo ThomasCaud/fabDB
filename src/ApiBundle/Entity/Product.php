@@ -16,7 +16,7 @@ class Product
 {
     /**
      * @var int
-     * @Groups({"marketplace", "marketplace-product"})
+     * @Groups({"marketplace", "marketplace-product","marketplace-command"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -25,21 +25,21 @@ class Product
 
     /**
      * @var string
-     * @Groups({"marketplace", "marketplace-product"})
+     * @Groups({"marketplace", "marketplace-product","marketplace-command"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string|null
-     * @Groups({"marketplace", "marketplace-product"})
+     * @Groups({"marketplace", "marketplace-product","marketplace-command"})
      * @ORM\Column(name="description", type="string", length=500, nullable=true)
      */
     private $description;
 
     /**
      * @var float
-     * @Groups({"marketplace", "marketplace-product"})
+     * @Groups({"marketplace", "marketplace-product","marketplace-command"})
      * @ORM\Column(name="price", type="float")
      */
     private $price;
@@ -60,7 +60,7 @@ class Product
 
     /**
      * @var \DateTime
-     * @Groups({"marketplace", "marketplace-product"})
+     * @Groups({"marketplace", "marketplace-product","marketplace-command"})
      * @ORM\Column(name="publication", type="datetime")
      */
     private $publication;
@@ -73,19 +73,19 @@ class Product
     private $maker;
 
     /**
-     * @Groups({"marketplace", "marketplace-product"})
+     * @Groups({"marketplace", "marketplace-product","marketplace-command"})
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Category")
      */
     private $category;
 
     /**
-     * @Groups({"marketplace", "marketplace-product"})
+     * @Groups({"marketplace", "marketplace-product","marketplace-command"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\URL", cascade={"persist", "remove"}, mappedBy="product")
      */
     protected $urls;
 
     /**
-     * @Groups({"marketplace", "marketplace-product"})
+     * @Groups({"marketplace", "marketplace-product","marketplace-command"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Comment", cascade={"persist", "remove"}, mappedBy="product")
      */
     protected $comments;
