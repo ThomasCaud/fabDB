@@ -4,6 +4,7 @@ namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Product
@@ -66,6 +67,7 @@ class Product
 
     /**
      * @Groups({"marketplace"})
+     * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User")
      */
     private $maker;
