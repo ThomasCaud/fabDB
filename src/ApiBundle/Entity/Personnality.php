@@ -66,7 +66,7 @@ class Personnality
 
     /**
      * @Groups({"usersprofile","userscommunication"})
-     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\SubsidiaryProfil", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\SubsidiaryProfil")
      */
     private $subprofil;
 
