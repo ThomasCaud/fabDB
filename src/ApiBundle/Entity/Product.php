@@ -85,7 +85,7 @@ class Product
     protected $urls;
 
     /**
-     * @Groups({"marketplace", "marketplace-product","marketplace-command"})
+     * @Groups({"marketplace-product","marketplace-command"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Comment", cascade={"persist", "remove"}, mappedBy="product")
      */
     protected $comments;
