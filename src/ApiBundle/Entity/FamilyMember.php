@@ -23,7 +23,7 @@ class FamilyMember
     private $id;
 
     /**
-     * @var \DateTime
+     * @var date
      * @Groups({"usersprofile"})
      * @ORM\Column(name="birthday", type="date")
      */

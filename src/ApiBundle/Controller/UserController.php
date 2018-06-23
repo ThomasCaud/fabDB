@@ -53,9 +53,7 @@ class UserController extends AbstractController
      *              @SWG\Property(property="fname", type="string"),
      *              @SWG\Property(property="lname", type="string"),
      *              @SWG\Property(property="email", type="string"),
-     *              @SWG\Property(property="login", type="string"),
-     *              @SWG\Property(property="wallet_address", type="string"),
-     *              @SWG\Property(property="private_key", type="string")
+     *              @SWG\Property(property="login", type="string")
      *         )
      *     )
      * )

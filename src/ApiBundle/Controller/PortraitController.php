@@ -33,6 +33,38 @@ class PortraitController extends AbstractController
     }
 
     /**
+     * @Rest\Get(
+     *      path = "/portraits"
+     * )
+     * @SWG\Tag(
+     *   name="Groupe JCQ",
+     * )   
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns portraits",
+     *     @SWG\Schema(
+     *         type="array",
+     *         @SWG\Items(
+     *              type="object",
+     *              @SWG\Property(property="id", type="integer"),
+     *              @SWG\Property(property="aboutMe", type="string"),
+     *              @SWG\Property(property="goal", type="string"),
+     *              @SWG\Property(property="fear", type="string"),
+     *              @SWG\Property(property="challenge", type="string"),
+     *              @SWG\Property(property="hobby", type="string"),
+     *              @SWG\Property(property="other", type="string")
+     *         )
+     *     )
+     * )
+     */
+    public function getAction()
+    {
+        $portraits = $this->getDoctrine()->getRepository('ApiBundle:Portrait')->findAll();
+        
+        return self::createResponse($portraits);
+    }
+
+    /**
      * @Rest\Post(
      *      path = "/portraits"
      * )
