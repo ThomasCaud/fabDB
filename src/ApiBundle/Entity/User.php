@@ -156,7 +156,7 @@ class User
     /**
      * @var string|null
      * @Groups({"userscommunication","usersprofile","blockchain"})
-     * @ORM\Column(name="biography", type="string", nullable=true)
+     * @ORM\Column(name="biography", type="text", nullable=true)
      */
     private $biography;
 
