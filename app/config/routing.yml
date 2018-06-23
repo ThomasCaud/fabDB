@@ -11,3 +11,7 @@ app.swagger:
     path: /api/doc.json
     methods: GET
     defaults: { _controller: nelmio_api_doc.controller.swagger }
+
+_profiler:
+    resource: '@WebProfilerBundle/Resources/config/routing/profiler.xml'
+    prefix: /_profiler
