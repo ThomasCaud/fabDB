@@ -6,6 +6,7 @@ use ApiBundle\Entity\UsersFablab;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * User
@@ -87,6 +88,7 @@ class User
 
     /**
      * @Groups({"marketplace"})
+     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\Product", cascade={"persist", "remove"}, mappedBy="maker")
      */
     protected $productsCreated;
