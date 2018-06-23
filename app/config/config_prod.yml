@@ -21,6 +21,6 @@ monolog:
             type: console
             process_psr_3_messages: false
 
-framework:
-    profiler:
-        enabled: false
+# framework:
+#     profiler:
+#         enabled: false
