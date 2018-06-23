@@ -38,7 +38,8 @@ abstract class AbstractController extends Controller
         }
 
         $context = new SerializationContext();
-        $context->setGroups($groups);        
+        $context->setGroups($groups);
+        $context->enableMaxDepthChecks();
 
         $entities = $this->get('jms_serializer')->serialize(
             $entities,
