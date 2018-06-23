@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 abstract class AbstractController extends Controller
 {
-    protected function createResponse($entities)
+    protected function createResponse($entities, $additionalName = '')
     {
         $groups = ["common"];
 
@@ -23,7 +23,7 @@ abstract class AbstractController extends Controller
             $authToken = $this->getDoctrine()->getRepository('ApiBundle:AuthToken')->findOneByValue($authTokenHeader);
             if($authToken) { 
                 $login = $authToken->getAuth()->getLogin();
-                $groups[] = $login;
+                $groups[] = $login . $additionalName;
             }
         }
 

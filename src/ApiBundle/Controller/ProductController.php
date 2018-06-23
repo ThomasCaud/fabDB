@@ -12,6 +12,9 @@ use Swagger\Annotations as SWG;
 
 class ProductController extends AbstractController
 {
+    private function getControllerName() {
+        return "-product";
+    }
 
     /**
      * @Rest\Options(
@@ -71,7 +74,7 @@ class ProductController extends AbstractController
     {
         $data = $this->getDoctrine()->getRepository('ApiBundle:Product')->findAll();
         
-        return self::createResponse($data);
+        return self::createResponse($data, $this->getControllerName());
     }
 
     /**
@@ -100,7 +103,7 @@ class ProductController extends AbstractController
      */
     public function getAction(Product $data)
     {
-        return self::createResponse($data);
+        return self::createResponse($data, $this->getControllerName());
     }
 
     /**

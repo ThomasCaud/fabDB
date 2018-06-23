@@ -15,7 +15,7 @@ class Category
 {
     /**
      * @var int
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-product"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,7 +24,7 @@ class Category
 
     /**
      * @var string
-     * @Groups({"marketplace"})
+     * @Groups({"marketplace", "marketplace-product"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
