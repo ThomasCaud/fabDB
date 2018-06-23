@@ -32,14 +32,14 @@ class SubsidiaryProfil
     /**
      * @var string
      * @Groups({"usersprofile"})
-     * @ORM\Column(name="logo", type="string", length=255)
+     * @ORM\Column(name="logo", type="text")
      */
     private $logo;
 
     /**
      * @var string
      * @Groups({"usersprofile"})
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
