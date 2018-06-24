@@ -300,6 +300,10 @@ class UserController extends AbstractController
             $user->setGlenhs($req->get('glenhs'));
         }
 
+        if(null !== $req->get('birthday')) {
+            $user->setBirthday(date_create_from_format('Y-m-dTH:i:s', $req->get('birthday')));
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         if($this->isFloat($req, 'longitude', -180, 180) && $this->isFloat($req, 'latitude', 0, 90)) {
