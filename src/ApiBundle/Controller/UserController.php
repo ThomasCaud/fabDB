@@ -166,6 +166,14 @@ class UserController extends AbstractController
             }
         }
 
+        if(null !== $user->getMaritalStatus() && !in_array($user->getMaritalStatus(),['married','widowed','separated', 'divorced','single'])) {
+            throw new BadRequestException("'marital_status' should be 'married','widowed','separated', 'divorced' or 'single'");
+        }
+
+        if(null !== $user->getSexe() && !in_array($user->getSexe(),['M','F','O'])) {
+            throw new BadRequestException("'sexe' should be 'M','F', or 'O'");
+        }
+
         if($this->isFloat($req, 'longitude', -180, 180) && $this->isFloat($req, 'latitude', 0, 90)) {
             $position = new Position();
             $position->setLatitude($req->get('latitude'));
