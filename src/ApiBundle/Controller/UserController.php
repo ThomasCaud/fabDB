@@ -309,7 +309,8 @@ class UserController extends AbstractController
         }
 
         if(null !== $req->get('birthday')) {
-            $user->setBirthday(date_create_from_format('Y-m-dTH:i:s', $req->get('birthday')));
+            $birthday = new DateTime($req->get('birthday'));
+            $user->setBirthday($birthday);
         }
 
         $em = $this->getDoctrine()->getManager();
