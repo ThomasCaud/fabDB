@@ -19,7 +19,7 @@ class AuthTokenController extends AbstractController
      *      path = "/auth-token"
      * )
      * @SWG\Tag(
-     *   name="common",
+     *   name="Common",
      * )
      * @SWG\Response(
      *      response = 201,
