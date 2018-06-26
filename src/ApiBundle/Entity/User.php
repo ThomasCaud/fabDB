@@ -200,7 +200,7 @@ class User
     private $personnality;
 
     /**
-     * @Groups({"userskills"})
+     * @Groups({"userskills","userscommunication"})
      * @ORM\OneToMany(targetEntity="ApiBundle\Entity\UserSkill", mappedBy="user")
      */
     private $skills;
