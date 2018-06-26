@@ -95,14 +95,14 @@ class User
 
     /**
      * @var string|null
-     * @Groups({"blockchain"})
+     * @Groups({"blockchain","usersprofile"})
      * @ORM\Column(name="wallet_address", type="string", length=150, nullable=true, unique=true)
      */
     protected $wallet_address;
 
     /**
      * @var string|null
-     * @Groups({"blockchain"})
+     * @Groups({"blockchain","usersprofile"})
      * @ORM\Column(name="private_key", type="string", length=150, nullable=true)
      */
     protected $private_key;
