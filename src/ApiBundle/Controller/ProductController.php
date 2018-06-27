@@ -137,6 +137,16 @@ class ProductController extends AbstractController
             }
         }
 
+        $maker_id = $req->get('maker_id');
+        if(null !== $maker_id) {
+            $maker = $this->getDoctrine()->getRepository('ApiBundle:User')->find($maker_id);
+            if($maker != null) {
+                $data->setMaker($maker);
+            } else {
+                throw new BadRequestException("The user (id " . $maker_id . ") doesn't exist.");
+            }
+        }
+
         $em->persist($data);
         $em->flush();
 
